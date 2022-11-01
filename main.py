@@ -1,10 +1,11 @@
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui, QtCore
-from HomeUi import Ui_MainWindow
-from DevicesUi import Ui_SITHome_Dispositivos 
-from LoginAdminUi import Ui_MainWindow as Admin
+from interfaces.HomeUi import Ui_MainWindow
+from interfaces.DevicesUi import Ui_SITHome_Dispositivos
+from interfaces.LoginAdminUi import Ui_MainWindow as Admin
 import database as DB
-import sys, os
+import sys
+
 
 class DevicesUi(QMainWindow):
         def __init__(self):

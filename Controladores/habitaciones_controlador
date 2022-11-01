@@ -1,0 +1,24 @@
+import pymysql
+
+
+class HabitacionControlador:
+    def __init__(self):
+        self.connection = pymysql.connect(
+            host='localhost',
+            user='root',
+            password='',
+            db='sithome'
+        )
+        self.cursor = self.connection.cursor()
+
+    def crearHabitacion(self):
+        pass
+
+    def actualizarHabitacion(self):
+        pass
+
+    def eliminarHabitacion(self):
+        pass
+
+    def mostrarHabitacion(self):
+        pass

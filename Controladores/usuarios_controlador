@@ -1,0 +1,26 @@
+from Modelos.usuario_modelo import UsuarioModelo
+import pymysql
+
+class UsuarioControlador:
+    def __init__(self):
+        self.connection = pymysql.connect(
+            host='localhost',
+            user='root',
+            password='',
+            db='sithome'
+        )
+        self.cursor = self.connection.cursor()
+
+    def crearUsuario(self,usuario):
+        sql = f"INSERT INTO userias (id, nombre, contrasena, rol) " \
+              f"VALUES (NULL, '{usuario.getnombreU()}', '{}', '{type}')"
+        pass
+
+    def actualizarUsuario(self):
+        pass
+
+    def eliminarUsuario(self):
+        pass
+
+    def mostrarUsuario(self):
+        pass
