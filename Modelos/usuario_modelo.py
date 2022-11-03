@@ -4,7 +4,7 @@ class UsuarioModelo:
     def __init__(self):
         self.nombre = str
         self.contrasena = str
-        self.rol = str
+        self.rol = int
 
     def setNombreU(self,nombre):
         self.nombre = nombre

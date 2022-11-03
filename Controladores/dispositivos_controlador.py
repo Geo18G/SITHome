@@ -1,17 +1,10 @@
-
+from conexion import Conexion
 
 import pymysql
 
 
 class DispositivosControlador:
-    def __init__(self):
-        self.connection = pymysql.connect(
-            host='localhost',
-            user='root',
-            password='',
-            db='sithome'
-        )
-        self.cursor = self.connection.cursor()
+    conexion = Conexion()
 
     def crearDispositivos(self):
         pass

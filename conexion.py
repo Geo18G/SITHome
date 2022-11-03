@@ -1,7 +1,5 @@
 import pymysql
-
-
-class HabitacionControlador:
+class Conexion:
     def __init__(self):
         self.connection = pymysql.connect(
             host='localhost',
@@ -10,15 +8,8 @@ class HabitacionControlador:
             db='sithome'
         )
         self.cursor = self.connection.cursor()
+        print("conexion correcta")
 
-    def crearHabitacion(self):
-        pass
-
-    def actualizarHabitacion(self):
-        pass
-
-    def eliminarHabitacion(self):
-        pass
-
-    def mostrarHabitacion(self):
-        pass
+    def close(self):
+        self.connection.close()
+        print("conexion a base de datos cerrada")

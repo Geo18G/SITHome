@@ -1,17 +1,16 @@
 import pymysql
 
 class Database:
-    def __init__(self):
-        self.connection = pymysql.connect(
-            host='localhost',
-            user='root',
-            password='',
-            db='sithome'
-        )
-
-        self.cursor = self.connection.cursor()
-
-        print("conexion correcta")
+    # def __init__(self):
+    #     self.connection = pymysql.connect(
+    #         host='localhost',
+    #         user='root',
+    #         password='',
+    #         db='sithome'
+    #     )
+    #
+    #     self.cursor = self.connection.cursor()
+    #     print("conexion correcta")
 
     def select_code(self, code):
         sql = f"SELECT * FROM users WHERE code = '{code}'"
