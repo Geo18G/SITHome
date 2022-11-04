@@ -3,48 +3,37 @@ import pymysql
 from conexion import Conexion
 
 class UsuarioControlador:
-    conexion = Conexion()
+    def __init__(self):
+        self.__conexion = Conexion()
 
     def crearUsuario(self,usuario):
         sql = f"INSERT INTO usuarios (idusuarios, nombre, contrasena, roles_idroles) " \
               f"VALUES (NULL, '{usuario.getNombreU()}','{usuario.getContrasenaU()}','{int(usuario.getRolU())}')"
-        try:
-            self.conexion.cursor.execute(sql)
-            self.conexion.connection.commit()
-            print("usuario ingresado")
+        return self.__conexion.insert(sql)
 
-        except:
-            print("no se puede ingresar usuario")
+    def actualizarUsuario(self, usuario, id):
+        sql = f"UPDATE usuarios SET nombre='{usuario.getNombreU()}', contrasena='{usuario.getContrasena()}'," \
+              f"roles_idroles='{usuario.getRolU()}' WHERE idusurios={id}"
+        return self.__conexion.update(sql)
 
-    def actualizarUsuario(self):
-        pass
-
-    def eliminarUsuario(self):
-        pass
+    def eliminarUsuario(self,id):
+        sql = f"DELETE FROM usuarios WHERE idusuarios = '{id}'"
+        return self.__conexion.delete(sql)
 
     def mostrarUsuario(self):
         sql = 'SELECT nombre, roles_idroles FROM usuarios'
+        registred_users = list()
+        users = self.__conexion.selectAll(sql)
+        for user in users:
+            name = user[0]
+            typpe = user[1]
+            registred_users.append((f'{name}', f'{typpe}'))
+        return registred_users
 
-        try:
-            registred_users = list()
-            self.conexion.cursor.execute(sql)
-            users = self.conexion.cursor.fetchall()
-            for user in users:
-                name = user[0]
-                typpe = user[1]
-                registred_users.append((f'{name}', f'{typpe}'))
-            return registred_users
-        except:
-            print("error all users")
 
     def buscarUsuario(self, code):
         sql = f"SELECT * FROM usuarios WHERE contrasena = '{code}'"
-        try:
-            self.conexion.cursor.execute(sql)
-            print(1)
-            usuario = self.conexion.cursor.fetchone()
-            return usuario
-        except:
-            print("error, usuario no encontrado")
-            return False
+        return self.__conexion.select(sql)
+
+
 

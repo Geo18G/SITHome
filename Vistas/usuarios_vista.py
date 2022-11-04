@@ -2,7 +2,7 @@ from Controladores.usuarios_controlador import UsuarioControlador
 from Modelos.usuario_modelo import UsuarioModelo
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui, QtCore
-from interfaces.LoginAdminUi import Ui_MainWindow as Admin
+from interfaces.SITHome_LoginAdmin import  Ui_MainWindow as Admin
 from Vistas.dispositivos_vista import DispositivosUi
 
 class UsuariosUi(QMainWindow):
@@ -34,6 +34,7 @@ class UsuariosUi(QMainWindow):
 
     def showUsers(self):
         registredUsers = self.usuarioC.mostrarUsuario()
+        print(type(registredUsers))
         self.loginAdmin.userTable.clearContents()
         row = 0
         for user in registredUsers:
@@ -64,6 +65,8 @@ class UsuariosUi(QMainWindow):
             self.usuarioC.crearUsuario(newUsuario)
             self.showUsers()
 
+
+
     def viewPass(self):
             self.loginAdmin.codeRegister.setEchoMode(0)
 
@@ -72,3 +75,4 @@ class UsuariosUi(QMainWindow):
         # self.checkStatus("Luz")
         UsuariosUi().hide()
         self.dispositivos.show()
+

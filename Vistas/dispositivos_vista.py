@@ -1,7 +1,7 @@
 
 
 from PyQt5.QtWidgets import *
-from interfaces.DevicesUi import Ui_SITHome_Dispositivos
+from interfaces.SITHome_Devices import Ui_SITHome_Dispositivos
 
 
 

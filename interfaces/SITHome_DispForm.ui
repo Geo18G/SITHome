@@ -57,7 +57,7 @@ border-radius: 15px;</string>
          <item>
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; color:#ffffff;&quot;&gt;Agregar Nueva Habitación&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; color:#ffffff;&quot;&gt;Agregar Nuevo Dispositivo&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
@@ -78,7 +78,7 @@ border-radius: 15px;</string>
         <widget class="QLabel" name="label_2">
          <property name="geometry">
           <rect>
-           <x>20</x>
+           <x>10</x>
            <y>30</y>
            <width>131</width>
            <height>41</height>
@@ -94,7 +94,7 @@ border-radius: 15px;</string>
         <widget class="QLineEdit" name="nameRegister">
          <property name="geometry">
           <rect>
-           <x>150</x>
+           <x>140</x>
            <y>30</y>
            <width>341</width>
            <height>41</height>
@@ -116,7 +116,7 @@ font: 12pt;</string>
           <set>Qt::AlignCenter</set>
          </property>
          <property name="placeholderText">
-          <string>&quot;Sala principal&quot;</string>
+          <string>&quot;Foco Inteligente&quot;</string>
          </property>
         </widget>
        </widget>
@@ -135,7 +135,7 @@ font: 12pt;</string>
         <widget class="QPushButton" name="pushButton">
          <property name="geometry">
           <rect>
-           <x>330</x>
+           <x>320</x>
            <y>30</y>
            <width>80</width>
            <height>35</height>
@@ -168,7 +168,7 @@ font: 10pt;</string>
         <widget class="QPushButton" name="pushButton_2">
          <property name="geometry">
           <rect>
-           <x>420</x>
+           <x>410</x>
            <y>30</y>
            <width>80</width>
            <height>35</height>

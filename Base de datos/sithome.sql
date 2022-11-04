@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 02-11-2022 a las 19:56:20
--- Versión del servidor: 8.0.30
--- Versión de PHP: 8.1.10
+-- Tiempo de generación: 03-11-2022 a las 17:57:37
+-- Versión del servidor: 5.7.33
+-- Versión de PHP: 7.4.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -28,11 +29,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `dispositivos` (
-  `usuarios_idusuarios` int NOT NULL,
-  `habitaciones_idhabitaciones` int NOT NULL,
+  `usuarios_idusuarios` int(11) NOT NULL,
+  `habitaciones_idhabitaciones` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
-  `status` tinyint DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `status` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -41,9 +42,9 @@ CREATE TABLE `dispositivos` (
 --
 
 CREATE TABLE `habitaciones` (
-  `idhabitaciones` int NOT NULL,
+  `idhabitaciones` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -52,9 +53,17 @@ CREATE TABLE `habitaciones` (
 --
 
 CREATE TABLE `roles` (
-  `idroles` int NOT NULL,
+  `idroles` int(11) NOT NULL,
   `tipo` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`idroles`, `tipo`) VALUES
+(1, 'Administrador'),
+(2, 'Usuario');
 
 -- --------------------------------------------------------
 
@@ -63,11 +72,18 @@ CREATE TABLE `roles` (
 --
 
 CREATE TABLE `usuarios` (
-  `idusuarios` int NOT NULL,
+  `idusuarios` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `contrasena` varchar(45) DEFAULT NULL,
-  `roles_idroles` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `roles_idroles` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`idusuarios`, `nombre`, `contrasena`, `roles_idroles`) VALUES
+(1, 'Nacho', '123', 1);
 
 --
 -- Índices para tablas volcadas
@@ -108,19 +124,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  MODIFY `idhabitaciones` int NOT NULL AUTO_INCREMENT;
+  MODIFY `idhabitaciones` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `idroles` int NOT NULL AUTO_INCREMENT;
+  MODIFY `idroles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuarios` int NOT NULL AUTO_INCREMENT;
+  MODIFY `idusuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
