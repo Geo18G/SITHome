@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1105</width>
-    <height>812</height>
+    <width>1115</width>
+    <height>715</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1115</width>
+    <height>715</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1115</width>
+    <height>715</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>SITHome</string>
@@ -83,7 +95,7 @@ background-color: None;
          <widget class="QPushButton" name="login">
           <property name="geometry">
            <rect>
-            <x>90</x>
+            <x>110</x>
             <y>220</y>
             <width>141</width>
             <height>51</height>
@@ -132,7 +144,7 @@ font: 24px;
          <widget class="QLabel" name="label_2">
           <property name="geometry">
            <rect>
-            <x>30</x>
+            <x>40</x>
             <y>70</y>
             <width>271</width>
             <height>41</height>
@@ -169,7 +181,7 @@ font: 24px;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1105</width>
+     <width>1115</width>
      <height>26</height>
     </rect>
    </property>

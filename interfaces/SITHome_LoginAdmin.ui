@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1124</width>
-    <height>716</height>
+    <width>1115</width>
+    <height>715</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1115</width>
+    <height>715</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1115</width>
+    <height>715</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -17,6 +29,12 @@
    <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0.386364 rgba(162, 254, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="minimumSize">
+    <size>
+     <width>1115</width>
+     <height>715</height>
+    </size>
+   </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QFrame" name="frame">
@@ -40,11 +58,11 @@ border-radius: 15px;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border: 3px solid black;
+        <string notr="true">border: 3px solid white;
 font : black;</string>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:24pt; color:#000000;&quot;&gt;SITHome Administrador&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:24pt; color:#ffffff;&quot;&gt;SITHome Administrador&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
       <widget class="QTableWidget" name="userTable">
@@ -52,7 +70,7 @@ font : black;</string>
         <rect>
          <x>20</x>
          <y>180</y>
-         <width>461</width>
+         <width>501</width>
          <height>501</height>
         </rect>
        </property>
@@ -70,7 +88,17 @@ border-radius: 15px;</string>
        </column>
        <column>
         <property name="text">
-         <string>Tipo</string>
+         <string>comboBox</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Editar</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Borrar</string>
         </property>
        </column>
       </widget>
@@ -78,13 +106,14 @@ border-radius: 15px;</string>
        <property name="geometry">
         <rect>
          <x>150</x>
-         <y>120</y>
+         <y>130</y>
          <width>211</width>
          <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: none;</string>
+        <string notr="true">background-color: none;
+color: white;</string>
        </property>
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Usuarios Registrados&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -141,7 +170,7 @@ border-radius: 15px;</string>
              <item>
               <widget class="QLabel" name="label_2">
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Agregar nuevo usuario&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#ffffff;&quot;&gt;Agregar nuevo usuario&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
@@ -406,7 +435,7 @@ border-radius: 15px;
              <item>
               <widget class="QLabel" name="label_6">
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Administrar Dispositivos&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#ffffff;&quot;&gt;Administrar Dispositivos&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>

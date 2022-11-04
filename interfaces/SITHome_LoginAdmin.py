@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\SITHome_LoginAdmin.ui'
+# Form implementation generated from reading ui file 'SITHome_LoginAdmin.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -14,9 +14,12 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1124, 716)
+        MainWindow.resize(1115, 715)
+        MainWindow.setMinimumSize(QtCore.QSize(1115, 715))
+        MainWindow.setMaximumSize(QtCore.QSize(1115, 715))
         MainWindow.setStyleSheet("background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0.386364 rgba(162, 254, 255, 255), stop:1 rgba(255, 255, 255, 255));")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setMinimumSize(QtCore.QSize(1115, 715))
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -28,24 +31,29 @@ class Ui_MainWindow(object):
         self.frame.setObjectName("frame")
         self.label = QtWidgets.QLabel(self.frame)
         self.label.setGeometry(QtCore.QRect(40, 20, 451, 71))
-        self.label.setStyleSheet("border: 3px solid black;\n"
+        self.label.setStyleSheet("border: 3px solid white;\n"
 "font : black;")
         self.label.setObjectName("label")
         self.userTable = QtWidgets.QTableWidget(self.frame)
-        self.userTable.setGeometry(QtCore.QRect(20, 180, 461, 501))
+        self.userTable.setGeometry(QtCore.QRect(20, 180, 501, 501))
         self.userTable.setStyleSheet("background-color: none;\n"
 "border-radius: 15px;")
         self.userTable.setGridStyle(QtCore.Qt.NoPen)
         self.userTable.setObjectName("userTable")
-        self.userTable.setColumnCount(2)
+        self.userTable.setColumnCount(4)
         self.userTable.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.userTable.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.userTable.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.userTable.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.userTable.setHorizontalHeaderItem(3, item)
         self.label_5 = QtWidgets.QLabel(self.frame)
-        self.label_5.setGeometry(QtCore.QRect(150, 120, 211, 31))
-        self.label_5.setStyleSheet("background-color: none;")
+        self.label_5.setGeometry(QtCore.QRect(150, 130, 211, 31))
+        self.label_5.setStyleSheet("background-color: none;\n"
+"color: white;")
         self.label_5.setObjectName("label_5")
         self.horizontalLayout.addWidget(self.frame)
         self.frame_2 = QtWidgets.QFrame(self.centralwidget)
@@ -201,13 +209,17 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:24pt; color:#000000;\">SITHome Administrador</span></p></body></html>"))
+        self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:24pt; color:#ffffff;\">SITHome Administrador</span></p></body></html>"))
         item = self.userTable.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Nombre"))
         item = self.userTable.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Tipo"))
+        item.setText(_translate("MainWindow", "comboBox"))
+        item = self.userTable.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Editar"))
+        item = self.userTable.horizontalHeaderItem(3)
+        item.setText(_translate("MainWindow", "Borrar"))
         self.label_5.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Usuarios Registrados</span></p></body></html>"))
-        self.label_2.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt;\">Agregar nuevo usuario</span></p></body></html>"))
+        self.label_2.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; color:#ffffff;\">Agregar nuevo usuario</span></p></body></html>"))
         self.label_3.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Nombre:</span></p></body></html>"))
         self.nameRegister.setPlaceholderText(_translate("MainWindow", "Nombre"))
         self.label_4.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Código:</span></p></body></html>"))
@@ -215,5 +227,5 @@ class Ui_MainWindow(object):
         self.viewPass.setText(_translate("MainWindow", "ver"))
         self.adminCheck.setText(_translate("MainWindow", "Administrador"))
         self.registerButton.setText(_translate("MainWindow", "Registrar"))
-        self.label_6.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt;\">Administrar Dispositivos</span></p></body></html>"))
+        self.label_6.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; color:#ffffff;\">Administrar Dispositivos</span></p></body></html>"))
         self.dispButton.setText(_translate("MainWindow", "Entrar"))

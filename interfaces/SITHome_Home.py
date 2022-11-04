@@ -14,7 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1105, 812)
+        MainWindow.resize(1115, 715)
+        MainWindow.setMinimumSize(QtCore.QSize(1115, 715))
+        MainWindow.setMaximumSize(QtCore.QSize(1115, 715))
         MainWindow.setStyleSheet("background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0.386364 rgba(162, 254, 255, 255), stop:1 rgba(255, 255, 255, 255));")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -54,7 +56,7 @@ class Ui_MainWindow(object):
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
         self.login = QtWidgets.QPushButton(self.frame_4)
-        self.login.setGeometry(QtCore.QRect(90, 220, 141, 51))
+        self.login.setGeometry(QtCore.QRect(110, 220, 141, 51))
         self.login.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.login.setStyleSheet("border-radius: 10px;\n"
 "background-color: white;\n"
@@ -71,7 +73,7 @@ class Ui_MainWindow(object):
         self.loginCode.setAlignment(QtCore.Qt.AlignCenter)
         self.loginCode.setObjectName("loginCode")
         self.label_2 = QtWidgets.QLabel(self.frame_4)
-        self.label_2.setGeometry(QtCore.QRect(30, 70, 271, 41))
+        self.label_2.setGeometry(QtCore.QRect(40, 70, 271, 41))
         self.label_2.setStyleSheet("font: 24pt \"MS shell Dlg 2\";\n"
 "\n"
 "")
@@ -85,7 +87,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.frame_2)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1105, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1115, 26))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
 
