@@ -1,10 +1,10 @@
 
 
-class DispositivosModelo:
+class DispositivoModelo:
     def __init__(self):
         self.nombre = str
         self.status = bool
-        self.habitacion = str
+        self.habitacion = int
 
     def setNombreD(self,nombre):
         self.nombre = nombre
@@ -15,7 +15,7 @@ class DispositivosModelo:
     def setHabitacionD(self, habitacion):
         self.habitacion = habitacion
 
-    def getNombred(self):
+    def getNombreD(self):
         return self.nombre
 
     def getStatus(self):
