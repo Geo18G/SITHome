@@ -4,7 +4,7 @@ class RolModelo:
         self.tipoR = str
         # self.usuario = str
 
-    def setTipo(self ,rol):
+    def setTipoR(self ,rol):
         self.tipoR = rol
 
     def getTipoR(self):

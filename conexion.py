@@ -28,21 +28,6 @@ class Conexion:
             print(MySQLError)
             return False
 
-    # def createDB(self, database_name):
-    #     if self.__openConnection(database_name) == True:
-    #         try:
-    #             self.__cursor.execute(
-    #                 'create table if not exists contactos(id integer PRIMARY KEY AUTOINCREMENT, name text, cel text, tel text, address text, city text)')
-    #             self.__connection.commit()
-    #             return True
-    #         except MySQLError:
-    #             print(MySQLError)
-    #             return False
-    #         finally:
-    #             self.__closeConnection()
-    #     else:
-    #         return False
-
     def insert(self, sql):
         if self.__openConnection():
             try:
@@ -114,3 +99,18 @@ class Conexion:
                 self.__closeConnection()
         else:
             return False
+
+    # def createDB(self, database_name):
+#     if self.__openConnection(database_name) == True:
+#         try:
+#             self.__cursor.execute(
+#                 'create table if not exists contactos(id integer PRIMARY KEY AUTOINCREMENT, name text, cel text, tel text, address text, city text)')
+#             self.__connection.commit()
+#             return True
+#         except MySQLError:
+#             print(MySQLError)
+#             return False
+#         finally:
+#             self.__closeConnection()
+#     else:
+#         return False

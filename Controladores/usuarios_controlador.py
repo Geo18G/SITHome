@@ -1,5 +1,5 @@
 from Modelos.usuario_modelo import UsuarioModelo
-import pymysql
+
 from conexion import Conexion
 
 class UsuarioControlador:
@@ -12,8 +12,8 @@ class UsuarioControlador:
         return self.__conexion.insert(sql)
 
     def actualizarUsuario(self, usuario, id):
-        sql = f"UPDATE usuarios SET nombre='{usuario.getNombreU()}', contrasena='{usuario.getContrasena()}'," \
-              f"roles_idroles='{usuario.getRolU()}' WHERE idusurios={id}"
+        sql = f"UPDATE usuarios SET nombre='{usuario.getNombreU()}', contrasena='{usuario.getContrasenaU()}'," \
+              f"roles_idroles='{usuario.getRolU()}' WHERE idusuarios= '{id}'"
         return self.__conexion.update(sql)
 
     def eliminarUsuario(self,id):
@@ -21,12 +21,12 @@ class UsuarioControlador:
         return self.__conexion.delete(sql)
 
     def mostrarUsuario(self):
-        sql = 'SELECT nombre, roles_idroles FROM usuarios'
+        sql = 'SELECT u.idusuarios, u.nombre, r.tipo  FROM usuarios u INNER JOIN  roles r on u.roles_idroles = r.idroles'
         registred_users = list()
         users = self.__conexion.selectAll(sql)
         for user in users:
-            name = user[0]
-            typpe = user[1]
+            name = user[1]
+            typpe = user[2]
             registred_users.append((f'{name}', f'{typpe}'))
         return registred_users
 
@@ -35,5 +35,14 @@ class UsuarioControlador:
         sql = f"SELECT * FROM usuarios WHERE contrasena = '{code}'"
         return self.__conexion.select(sql)
 
-
+# prueba = UsuarioControlador()
+# usuario = UsuarioModelo()
+# usuario.setNombreU("Nacho")
+# usuario.setcontrasena(123)
+# usuario.setRolU(1)
+# # prueba.crearUsuario(usuario)
+# print(prueba.mostrarUsuario())
+# # prueba.eliminarUsuario(2)
+# prueba.actualizarUsuario(usuario,1)
+# print(prueba.mostrarUsuario())
 

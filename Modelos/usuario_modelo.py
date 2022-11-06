@@ -9,7 +9,7 @@ class UsuarioModelo:
     def setNombreU(self,nombre):
         self.nombre = nombre
 
-    def setcontrasena(self,contrasena):
+    def setContrasenaU(self,contrasena):
         self.contrasena = contrasena
 
     def setRolU(self, rol):

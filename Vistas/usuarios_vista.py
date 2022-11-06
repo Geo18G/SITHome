@@ -34,7 +34,7 @@ class UsuariosUi(QMainWindow):
 
     def showUsers(self):
         registredUsers = self.usuarioC.mostrarUsuario()
-        print(type(registredUsers))
+        # print(type(registredUsers))
         self.loginAdmin.userTable.clearContents()
         row = 0
         for user in registredUsers:
@@ -49,7 +49,7 @@ class UsuariosUi(QMainWindow):
     def SITHome_register(self):
             newUsuario = UsuarioModelo()
             newUsuario.setNombreU(self.loginAdmin.nameRegister.text())
-            newUsuario.setcontrasena(self.loginAdmin.codeRegister.text())
+            newUsuario.setContrasenaU(self.loginAdmin.codeRegister.text())
             regButton = self.loginAdmin.registerButton
             if self.loginAdmin.adminCheck.isChecked():
                     typpe = 1
@@ -75,4 +75,5 @@ class UsuariosUi(QMainWindow):
         # self.checkStatus("Luz")
         UsuariosUi().hide()
         self.dispositivos.show()
+
 

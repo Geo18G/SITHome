@@ -1,21 +1,26 @@
 
 
-
 class DispositivosModelo:
     def __init__(self):
         self.nombre = str
-        self.status = str
-        # self.habitacion = str
+        self.status = bool
+        self.habitacion = str
 
-    def setNombreU(self,nombre):
+    def setNombreD(self,nombre):
         self.nombre = nombre
 
-    def setcodigo(self,contrasena):
-        self.contrasena = contrasena
+    def setStatusD(self,status):
+        self.status = status
 
-    def getNombreU(self):
+    def setHabitacionD(self, habitacion):
+        self.habitacion = habitacion
+
+    def getNombred(self):
         return self.nombre
 
-    def getContrasena(self):
-        return self.contrasena
+    def getStatus(self):
+        return self.status
+
+    def getHabitacionD(self):
+        return self.habitacion
 
