@@ -1,5 +1,5 @@
 from Controladores.usuarios_controlador import UsuarioControlador
-from interfaces.HomeUi import Ui_MainWindow
+from interfaces.SITHome_Home import Ui_MainWindow
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui, QtCore
 from Vistas.dispositivos_vista import DispositivosUi

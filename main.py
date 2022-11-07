@@ -1,8 +1,8 @@
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui, QtCore
-from interfaces.HomeUi import Ui_MainWindow
-from interfaces.DevicesUi import Ui_SITHome_Dispositivos
-from interfaces.LoginAdminUi import Ui_MainWindow as Admin
+from interfaces.SITHome_Home import Ui_MainWindow
+from interfaces.SITHome_Devices import Ui_SITHome_Dispositivos
+from interfaces.SITHome_LoginAdmin import Ui_MainWindow as Admin
 import database as DB
 from Vistas.login_vista import LoginVista
 import sys
@@ -37,7 +37,7 @@ class SITHome(QMainWindow):
 
                 self.loginAdmin.ui.registerButton.clicked.connect(lambda: self.SITHome_register())
                 self.loginAdmin.ui.viewPass.clicked.connect(lambda: self.viewPass())
-                self.loginAdmin.ui.dispButton.clicked.connect(lambda: self.allDevs())
+                self.loginAdmin.ui.dispButton.clicked.connect(self.allDevs)
 
                 self.checkStatus('Puerta')
                 self.checkStatus('Luz')
