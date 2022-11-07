@@ -1,13 +1,6 @@
 from PyQt5.QtWidgets import *
-from PyQt5 import QtWidgets, QtGui, QtCore
-from interfaces.SITHome_Home import Ui_MainWindow
-from interfaces.SITHome_Devices import Ui_SITHome_Dispositivos
-from interfaces.SITHome_LoginAdmin import Ui_MainWindow as Admin
-import database as DB
 from Vistas.login_vista import LoginVista
 import sys
-from Controladores.usuarios_controlador import UsuarioControlador
-from Modelos.usuario_modelo import UsuarioModelo
 
 # class DevicesUi(QMainWindow):
 #         def __init__(self):

@@ -7,13 +7,13 @@ class UsuarioControlador:
         self.__conexion = Conexion()
 
     def crearUsuario(self,usuario):
-        sql = f"INSERT INTO usuarios (idusuarios, nombre, contrasena, roles_idroles) " \
-              f"VALUES (NULL, '{usuario.getNombreU()}','{usuario.getContrasenaU()}','{int(usuario.getRolU())}')"
+        sql = f"INSERT INTO usuarios (idusuarios, nombreUsuario, contrasena, roles_idroles) " \
+              f"VALUES (NULL, '{usuario.getNombreU()}','{usuario.getContrasenaU()}','{usuario.getRolU()}')"
         return self.__conexion.insert(sql)
 
     def actualizarUsuario(self, usuario, id):
-        sql = f"UPDATE usuarios SET nombre='{usuario.getNombreU()}', contrasena='{usuario.getContrasenaU()}'," \
-              f"roles_idroles='{usuario.getRolU()}' WHERE idusuarios= '{id}'"
+        sql = f"UPDATE usuarios SET nombreUsuario='{usuario.getNombreU()}', contrasena='{usuario.getContrasenaU()}'," \
+              f"roles_idroles='{usuario.getRolU()}' WHERE idusuarios = '{id}'"
         return self.__conexion.update(sql)
 
     def eliminarUsuario(self,id):
@@ -21,28 +21,29 @@ class UsuarioControlador:
         return self.__conexion.delete(sql)
 
     def mostrarUsuario(self):
-        sql = 'SELECT u.idusuarios, u.nombre, r.tipo  FROM usuarios u INNER JOIN  roles r on u.roles_idroles = r.idroles'
+        sql = 'SELECT u.idusuarios, u.nombreUsuario, u.contrasena, r.tipo  FROM usuarios u INNER JOIN  roles r on u.roles_idroles = r.idroles'
         registred_users = list()
         users = self.__conexion.selectAll(sql)
         for user in users:
+            id = user[0]
             name = user[1]
-            typpe = user[2]
-            registred_users.append((f'{name}', f'{typpe}'))
+            typpe = user[3]
+            registred_users.append((f'{id}', f'{name}', f'{typpe}'))
         return registred_users
 
 
-    def buscarUsuario(self, code):
-        sql = f"SELECT * FROM usuarios WHERE contrasena = '{code}'"
+    def buscarUsuario(self, nombre, contrasena):
+        sql = f"SELECT * FROM usuarios WHERE contrasena = '{contrasena}' AND nombreUsuario = '{nombre}'"
         return self.__conexion.select(sql)
 
 # prueba = UsuarioControlador()
 # usuario = UsuarioModelo()
-# usuario.setNombreU("Nacho")
-# usuario.setcontrasena(123)
+# usuario.setNombreU("Geo")
+# usuario.setContrasenaU(111)
 # usuario.setRolU(1)
 # # prueba.crearUsuario(usuario)
-# print(prueba.mostrarUsuario())
-# # prueba.eliminarUsuario(2)
+# #print(prueba.mostrarUsuario())
+# # prueba.eliminarUsuario(3)
 # prueba.actualizarUsuario(usuario,1)
 # print(prueba.mostrarUsuario())
 

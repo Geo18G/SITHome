@@ -32,7 +32,6 @@ class Conexion:
         if self.__openConnection():
             try:
                 self.__cursor.execute(sql)
-                print(1)
                 self.__connection.commit()
                 return True
             except MySQLError:

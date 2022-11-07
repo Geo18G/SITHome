@@ -3,7 +3,7 @@
 class DispositivoModelo:
     def __init__(self):
         self.nombre = str
-        self.status = bool
+        self.status = int
         self.habitacion = int
 
     def setNombreD(self,nombre):

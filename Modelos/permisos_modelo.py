@@ -1,7 +1,7 @@
 
 class PermisoModelo:
     def __init__(self):
-        self.permiso = bool
+        self.permiso = int
         self.id_usuario = int
         self.id_habitacion = int
 

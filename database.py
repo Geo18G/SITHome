@@ -100,5 +100,5 @@ class Database:
         self.connection.close()
         print("conexion a base de datos cerrada")
 
-database = Database()
-database.changeStatusDB("Luz")
+# database = Database()
+# database.changeStatusDB("Luz")

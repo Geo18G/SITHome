@@ -45,51 +45,55 @@ class Ui_MainWindow(object):
         self.frame_2.setObjectName("frame_2")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.frame_2)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.frame_3 = QtWidgets.QFrame(self.frame_2)
-        self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_3.setObjectName("frame_3")
-        self.horizontalLayout.addWidget(self.frame_3)
         self.frame_4 = QtWidgets.QFrame(self.frame_2)
-        self.frame_4.setStyleSheet("")
+        self.frame_4.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0.493, y1:0, x2:0.502, y2:1, stop:0 rgba(0, 166, 255, 255), stop:1 rgba(162, 254, 255, 0));\n"
+"border-radius: 15px;\n"
+"")
         self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
         self.login = QtWidgets.QPushButton(self.frame_4)
-        self.login.setGeometry(QtCore.QRect(110, 220, 141, 51))
+        self.login.setGeometry(QtCore.QRect(490, 240, 111, 41))
         self.login.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.login.setStyleSheet("border-radius: 10px;\n"
-"background-color: white;\n"
+"background-color: rgb(0, 255, 0);\n"
 "border: None;")
         self.login.setObjectName("login")
         self.loginCode = QtWidgets.QLineEdit(self.frame_4)
-        self.loginCode.setGeometry(QtCore.QRect(60, 140, 211, 41))
+        self.loginCode.setGeometry(QtCore.QRect(450, 170, 191, 41))
         self.loginCode.setStyleSheet("border-radius: 10px;\n"
 "border: none;\n"
 "font: 24px;\n"
-"")
-        self.loginCode.setMaxLength(6)
+"background-color: white;")
+        self.loginCode.setMaxLength(8)
         self.loginCode.setEchoMode(QtWidgets.QLineEdit.Password)
         self.loginCode.setAlignment(QtCore.Qt.AlignCenter)
         self.loginCode.setObjectName("loginCode")
         self.label_2 = QtWidgets.QLabel(self.frame_4)
-        self.label_2.setGeometry(QtCore.QRect(40, 70, 271, 41))
+        self.label_2.setGeometry(QtCore.QRect(500, 130, 81, 41))
         self.label_2.setStyleSheet("font: 24pt \"MS shell Dlg 2\";\n"
-"\n"
-"")
+"background-color: none;\n"
+"color: white;")
         self.label_2.setObjectName("label_2")
+        self.loginCode_2 = QtWidgets.QLineEdit(self.frame_4)
+        self.loginCode_2.setGeometry(QtCore.QRect(440, 60, 211, 41))
+        self.loginCode_2.setStyleSheet("border-radius: 10px;\n"
+"border: none;\n"
+"font: 24px;\n"
+"background-color: white;")
+        self.loginCode_2.setMaxLength(6)
+        self.loginCode_2.setEchoMode(QtWidgets.QLineEdit.Normal)
+        self.loginCode_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.loginCode_2.setObjectName("loginCode_2")
+        self.label_3 = QtWidgets.QLabel(self.frame_4)
+        self.label_3.setGeometry(QtCore.QRect(470, 20, 141, 41))
+        self.label_3.setStyleSheet("font: 24pt \"MS shell Dlg 2\";\n"
+"background-color: none;\n"
+"color: white;")
+        self.label_3.setObjectName("label_3")
         self.horizontalLayout.addWidget(self.frame_4)
-        self.frame_5 = QtWidgets.QFrame(self.frame_2)
-        self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_5.setObjectName("frame_5")
-        self.horizontalLayout.addWidget(self.frame_5)
         self.verticalLayout.addWidget(self.frame_2)
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1115, 26))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -97,7 +101,8 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "SITHome"))
-        self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">SITHome</p></body></html>"))
+        self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:36pt;\">SITHome</span></p></body></html>"))
         self.login.setText(_translate("MainWindow", "Ingresar"))
         self.login.setShortcut(_translate("MainWindow", "Return"))
-        self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt;\">Código de Ingreso:</span></p></body></html>"))
+        self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Contraseña</span></p></body></html>"))
+        self.label_3.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Nombre de usuario</span></p></body></html>"))

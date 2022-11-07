@@ -52,7 +52,7 @@ background-color: None;
 </string>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;SITHome&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:36pt;&quot;&gt;SITHome&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
@@ -72,19 +72,11 @@ background-color: None;
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QFrame" name="frame_3">
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QFrame" name="frame_4">
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">background-color: qlineargradient(spread:pad, x1:0.493, y1:0, x2:0.502, y2:1, stop:0 rgba(0, 166, 255, 255), stop:1 rgba(162, 254, 255, 0));
+border-radius: 15px;
+</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
@@ -95,10 +87,10 @@ background-color: None;
          <widget class="QPushButton" name="login">
           <property name="geometry">
            <rect>
-            <x>110</x>
-            <y>220</y>
-            <width>141</width>
-            <height>51</height>
+            <x>490</x>
+            <y>240</y>
+            <width>111</width>
+            <height>41</height>
            </rect>
           </property>
           <property name="cursor">
@@ -106,7 +98,7 @@ background-color: None;
           </property>
           <property name="styleSheet">
            <string notr="true">border-radius: 10px;
-background-color: white;
+background-color: rgb(0, 255, 0);
 border: None;</string>
           </property>
           <property name="text">
@@ -119,9 +111,9 @@ border: None;</string>
          <widget class="QLineEdit" name="loginCode">
           <property name="geometry">
            <rect>
-            <x>60</x>
-            <y>140</y>
-            <width>211</width>
+            <x>450</x>
+            <y>170</y>
+            <width>191</width>
             <height>41</height>
            </rect>
           </property>
@@ -129,10 +121,10 @@ border: None;</string>
            <string notr="true">border-radius: 10px;
 border: none;
 font: 24px;
-</string>
+background-color: white;</string>
           </property>
           <property name="maxLength">
-           <number>6</number>
+           <number>8</number>
           </property>
           <property name="echoMode">
            <enum>QLineEdit::Password</enum>
@@ -144,47 +136,70 @@ font: 24px;
          <widget class="QLabel" name="label_2">
           <property name="geometry">
            <rect>
-            <x>40</x>
-            <y>70</y>
-            <width>271</width>
+            <x>500</x>
+            <y>130</y>
+            <width>81</width>
             <height>41</height>
            </rect>
           </property>
           <property name="styleSheet">
            <string notr="true">font: 24pt &quot;MS shell Dlg 2&quot;;
-
-</string>
+background-color: none;
+color: white;</string>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Código de Ingreso:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Contraseña&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
-        </widget>
-       </item>
-       <item>
-        <widget class="QFrame" name="frame_5">
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
+         <widget class="QLineEdit" name="loginCode_2">
+          <property name="geometry">
+           <rect>
+            <x>440</x>
+            <y>60</y>
+            <width>211</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+border: none;
+font: 24px;
+background-color: white;</string>
+          </property>
+          <property name="maxLength">
+           <number>6</number>
+          </property>
+          <property name="echoMode">
+           <enum>QLineEdit::Normal</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_3">
+          <property name="geometry">
+           <rect>
+            <x>470</x>
+            <y>20</y>
+            <width>141</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 24pt &quot;MS shell Dlg 2&quot;;
+background-color: none;
+color: white;</string>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Nombre de usuario&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
         </widget>
        </item>
       </layout>
      </widget>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1115</width>
-     <height>26</height>
-    </rect>
-   </property>
   </widget>
  </widget>
  <resources/>

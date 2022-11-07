@@ -1,7 +1,6 @@
 from Controladores.usuarios_controlador import UsuarioControlador
 from interfaces.SITHome_Home import Ui_MainWindow
 from PyQt5.QtWidgets import *
-from PyQt5 import QtWidgets, QtGui, QtCore
 from Vistas.dispositivos_vista import DispositivosUi
 from Vistas.usuarios_vista import UsuariosUi
 
@@ -22,10 +21,14 @@ class LoginVista(QMainWindow):
         self.home.login.clicked.connect(lambda: self.SITHome_Login())
 
     def SITHome_Login(self):
-        code = self.home.loginCode.text()
-        usuario = self.usuarioC.buscarUsuario(code)
+        usuario = self.home.loginCode_2.text()
+        print(usuario)
+        contrasena = self.home.loginCode.text()
+        print(contrasena)
+
+        usuario = self.usuarioC.buscarUsuario(usuario,contrasena)
         if usuario:
-            if usuario[3] == 1:
+            if usuario[3] == "Administrador":
                 self.close()
                 self.loginAdmin.show()
                 self.loginAdmin.showUsers()
