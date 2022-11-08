@@ -25,7 +25,8 @@
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: none;
-border-radius: 15px;</string>
+border-radius: 15px;
+</string>
     </property>
     <property name="gridStyle">
      <enum>Qt::NoPen</enum>
@@ -37,22 +38,14 @@ border-radius: 15px;</string>
     </column>
     <column>
      <property name="text">
-      <string>Tipo</string>
+      <string/>
      </property>
     </column>
-   </widget>
-   <widget class="QPushButton" name="boton">
-    <property name="geometry">
-     <rect>
-      <x>600</x>
-      <y>190</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
+    <column>
+     <property name="text">
+      <string/>
+     </property>
+    </column>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

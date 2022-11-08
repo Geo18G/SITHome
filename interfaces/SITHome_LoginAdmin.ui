@@ -78,9 +78,18 @@ font : black;</string>
         <string notr="true">background-color: none;
 border-radius: 15px;</string>
        </property>
+       <property name="alternatingRowColors">
+        <bool>true</bool>
+       </property>
+       <property name="showGrid">
+        <bool>true</bool>
+       </property>
        <property name="gridStyle">
         <enum>Qt::NoPen</enum>
        </property>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>120</number>
+       </attribute>
        <column>
         <property name="text">
          <string>Nombre</string>
@@ -88,17 +97,17 @@ border-radius: 15px;</string>
        </column>
        <column>
         <property name="text">
-         <string>comboBox</string>
+         <string>Rol</string>
         </property>
        </column>
        <column>
         <property name="text">
-         <string>Editar</string>
+         <string/>
         </property>
        </column>
        <column>
         <property name="text">
-         <string>Borrar</string>
+         <string/>
         </property>
        </column>
       </widget>

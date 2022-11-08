@@ -35,10 +35,12 @@ class UsuariosUi(QMainWindow):
                         column = 0
                         self.loginAdmin.userTable.removeRow(row)
                         self.loginAdmin.userTable.insertRow(row)
-                        for element in user:
-                                cell = QtWidgets.QTableWidgetItem(element)
-                                self.loginAdmin.userTable.setItem(row, column, cell)
-                                column +=1
+                        cell = QtWidgets.QTableWidgetItem(user[1])
+                        self.loginAdmin.userTable.setItem(row, column, cell)
+                        column +=1
+                        cell = QtWidgets.QTableWidgetItem(user[2])
+                        self.loginAdmin.userTable.setItem(row, column, cell)
+                        self.agregarBtn(self.loginAdmin.userTable, row)
                         row +=1
 
         def SITHome_register(self):
@@ -63,7 +65,21 @@ class UsuariosUi(QMainWindow):
                 UsuariosUi().hide()
                 self.dispositivos.show()
         def habilitarBtn(self):
-                if (len(self.loginAdmin.codeRegister.text()) != 0 and len(self.loginAdmin.nameRegister.text()) != 0):
+                if (len(self.loginAdmin.codeRegister.text()) >=4 and len(self.loginAdmin.nameRegister.text()) !=0):
                         self.loginAdmin.registerButton.setEnabled(True)
                 else:
                         self.loginAdmin.registerButton.setEnabled(False)
+        
+        def agregarBtn(self, tabla, fila):
+                BtnBorrar = QtWidgets.QPushButton()
+                BtnEditar = QtWidgets.QPushButton()
+                tabla.setCellWidget(fila, 2, BtnEditar)
+                tabla.setCellWidget(fila, 3, BtnBorrar)
+                BtnEditar.setMaximumSize(32, 32)
+                BtnBorrar.setMaximumSize(32, 32)                
+                BtnEditar.setIcon(QtGui.QIcon("assets\\btnEditar.png"))
+                BtnBorrar.setIcon(QtGui.QIcon("assets\\btnBorrar.png"))
+                BtnEditar.setIconSize(QtCore.QSize(32, 32))
+                BtnBorrar.setIconSize(QtCore.QSize(32, 32))
+                BtnEditar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+                BtnBorrar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))

@@ -17,8 +17,9 @@ class LoginVista(QMainWindow):
         self.inicialize()
 
     def inicialize(self):
-        # botones SIT--------------------------------------------------------------------------
+
         self.home.login.clicked.connect(lambda: self.SITHome_Login())
+        #self.home.login.
 
     def SITHome_Login(self):
         usuario = self.home.loginCode_2.text()
@@ -28,12 +29,13 @@ class LoginVista(QMainWindow):
 
         usuario = self.usuarioC.buscarUsuario(usuario,contrasena)
         if usuario:
-            if usuario[3] == "Administrador":
+            if usuario[3] == 1:
                 self.close()
                 self.loginAdmin.show()
                 self.loginAdmin.showUsers()
             else:
                 self.close()
+
                 self.dispositivos.show()
         else:
             self.home.loginCode.setStyleSheet("border-radius: 10px; border: 2px solid red; font: 24px;")
