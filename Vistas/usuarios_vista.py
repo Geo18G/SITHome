@@ -5,6 +5,8 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 from interfaces.SITHome_LoginAdmin import Ui_MainWindow as Admin
 from Vistas.dispositivos_vista import DispositivosUi
 
+
+
 class UsuariosUi(QMainWindow):
         def __init__(self):
                 super(UsuariosUi, self).__init__()
@@ -28,6 +30,8 @@ class UsuariosUi(QMainWindow):
 
 
         def showUsers(self):
+                global idUsuario
+                print(idUsuario)
                 self.loginAdmin.userTable.clearContents()
                 registredUsers = self.usuarioC.mostrarUsuario()
                 row = 0

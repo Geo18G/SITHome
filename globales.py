@@ -1,0 +1,3 @@
+
+global idUsuario
+global idHabitaciones

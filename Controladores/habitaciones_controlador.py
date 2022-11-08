@@ -20,6 +20,15 @@ class HabitacionControlador:
         sql = f"DELETE FROM habitaciones WHERE idhabitaciones = '{id}'"
         return self.__conexion.delete(sql)
 
+    def obtener_ids(self):
+        sql = f"SELECT idhabitaciones FROM habitaciones"
+        retorno = self.__conexion.selectAll(sql)
+        listaIds = list()
+        for i in retorno:
+            for j in i:
+                listaIds.append(j)
+        return listaIds
+
     def mostrarHabitacion(self,idU,idH):
         sql = f"SELECT h.* FROM habitacione h INNER JOIN permisos p ON h.idhabitaciones = p.habitaciones_idhabitaciones  INNER JOIN  usuarios u ON u.idusuarios = p.usuarios_idusuarios " \
               f"WHERE p.usuarios_idusuarios = '{idU}' AND p.habitaciones_idhabitaciones = '{idH}' AND p.permiso = 1"
