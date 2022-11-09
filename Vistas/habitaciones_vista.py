@@ -17,6 +17,7 @@ class HabitacionesUi(QMainWindow):
 
     def inicialize(self):
         pass
+        # self.showRooms()
         # self.habitaciones.registerButton.setEnabled(False)
         # self.habitaciones.registerButton.clicked.connect(lambda: self.SITHome_register())
         # self.habitaciones.viewPass.clicked.connect(lambda: self.viewPass())
@@ -28,29 +29,26 @@ class HabitacionesUi(QMainWindow):
         # self.dispositivos.listaDispositivos.back.clicked.connect(lambda: UsuariosUi().show())
 
     def showRooms(self):
-        # global idUsuario, idHabitaciones
-        print(globales.idUsuario)
-        print(globales.idHabitaciones)
-
-        # self.habitaciones.Habitaciones.clearContents()
+        self.habitaciones.Habitaciones.clearContents()
         listaHabitaciones = list()
         for hab in globales.idHabitaciones:
-            print(hab)
             listaHabitaciones.append(self.habitacionC.mostrarHabitacion(globales.idUsuario,hab))
         print(listaHabitaciones)
-
-        # row = 0
-        # for hab in listaHabitaciones:
-        #     column = 0
-        #     self.habitaciones.Habitaciones.removeRow(row)
-        #     self.habitaciones.Habitaciones.insertRow(row)
-        #     cell = QtWidgets.QTableWidgetItem(hab[1])
-        #     self.habitaciones.Habitaciones.setItem(row, column, cell)
-        #     # column += 1
-        #     # cell = QtWidgets.QTableWidgetItem(hab[2])
-        #     # self.habitaciones.Habitaciones.setItem(row, column, cell)
-        #     self.agregarBtn(self.habitaciones.Habitaciones, row)
-        #     row += 1
+        if listaHabitaciones[0][0] == None:
+            pass
+        else:
+            row = 0
+            for hab in listaHabitaciones:
+                column = 0
+                self.habitaciones.Habitaciones.removeRow(row)
+                self.habitaciones.Habitaciones.insertRow(row)
+                cell = QtWidgets.QTableWidgetItem(hab[1])
+                self.habitaciones.Habitaciones.setItem(row, column, cell)
+                column += 1
+                # cell = QtWidgets.QTableWidgetItem(hab[2])
+                self.habitaciones.Habitaciones.setItem(row, column, cell)
+                self.agregarBtn(self.habitaciones.Habitaciones, row)
+                row += 1
 
     # def SITHome_register(self):
     #     newUsuario = UsuarioModelo()
@@ -70,9 +68,9 @@ class HabitacionesUi(QMainWindow):
     # def viewPass(self):
     #     self.loginAdmin.codeRegister.setEchoMode(0)
 
-    def allDevs(self):
-        UsuariosUi().hide()
-        self.dispositivos.show()
+    # def allDevs(self):
+    #     UsuariosUi().hide()
+    #     self.dispositivos.show()
 
     # def habilitarBtn(self):
     #     if (len(self.loginAdmin.codeRegister.text()) >= 4 and len(self.loginAdmin.nameRegister.text()) != 0):
@@ -83,8 +81,8 @@ class HabitacionesUi(QMainWindow):
     def agregarBtn(self, tabla, fila):
         BtnBorrar = QtWidgets.QPushButton()
         BtnEditar = QtWidgets.QPushButton()
-        tabla.setCellWidget(fila, 2, BtnEditar)
-        tabla.setCellWidget(fila, 3, BtnBorrar)
+        tabla.setCellWidget(fila, 1, BtnEditar)
+        tabla.setCellWidget(fila, 2, BtnBorrar)
         BtnEditar.setMaximumSize(32, 32)
         BtnBorrar.setMaximumSize(32, 32)
         BtnEditar.setIcon(QtGui.QIcon("assets\\btnEditar.png"))

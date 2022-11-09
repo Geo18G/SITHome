@@ -31,6 +31,14 @@ class UsuarioControlador:
             registred_users.append((f'{id}', f'{name}', f'{typpe}'))
         return registred_users
 
+    def obtener_ids(self):
+        sql = f"SELECT idusuarios FROM usuarios"
+        retorno = self.__conexion.selectAll(sql)
+        listaIds = list()
+        for i in retorno:
+            for j in i:
+                listaIds.append(j)
+        return listaIds
 
     def buscarUsuario(self, nombre, contrasena):
         sql = f"SELECT * FROM usuarios WHERE contrasena = '{contrasena}' AND nombreUsuario = '{nombre}'"

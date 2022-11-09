@@ -19,31 +19,30 @@ class LoginVista(QMainWindow):
         self.inicialize()
 
     def inicialize(self):
-
         self.home.login.clicked.connect(lambda: self.SITHome_Login())
-        # global idUsuario, idHabitaciones
         globales.idUsuario = 0
         globales.idHabitaciones = None
-        #self.home.login.
+        # globales.idUsuarios = None
 
     def SITHome_Login(self):
         usuario = self.home.loginCode_2.text()
-        print(usuario)
         contrasena = self.home.loginCode.text()
-        print(contrasena)
         usuario = self.usuarioC.buscarUsuario(usuario,contrasena)
         if usuario:
-            # global idUsuario, idHabitaciones
             globales.idUsuario = usuario[0]
             globales.idHabitaciones = self.habitacionC.obtener_ids()
             if usuario[3] == 1:
+                # globales.idUsuarios= self.usuarioC.obtener_ids()
                 self.close()
                 self.loginAdmin.show()
                 self.loginAdmin.showUsers()
             else:
                 self.close()
                 self.habitaciones.show()
-                self.habitaciones.showRooms()
+                try:
+                    self.habitaciones.showRooms()
+                except:
+                    pass
         else:
             self.home.loginCode.setStyleSheet("border-radius: 10px; border: 2px solid red; font: 24px;")
 

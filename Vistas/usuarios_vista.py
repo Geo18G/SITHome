@@ -1,3 +1,4 @@
+import globales
 from Controladores.usuarios_controlador import UsuarioControlador
 from Modelos.usuario_modelo import UsuarioModelo
 from PyQt5.QtWidgets import *
@@ -138,9 +139,14 @@ class UsuariosUi(QMainWindow):
         def borrarUsuario(self, usuario):
                 reply = QtWidgets.QMessageBox.warning(self, "Atención", f"¿Está seguro que desea eliminar a {usuario[1]}?", QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
                 if reply == QtWidgets.QMessageBox.Yes:
-                        self.usuarioC.eliminarUsuario(usuario[0])
-                        self.showUsers()
-                        self.loginAdmin.userTable.removeRow(int(usuario[0])+1)
+                        for i in globales.idUsuarios:
+
+                                if int((usuario[0]) == i):
+                                        print(i)
+                                        self.usuarioC.eliminarUsuario(i)
+                                        self.loginAdmin.userTable.removeRow(self.loginAdmin.userTable.currentRow())
+                                        self.showUsers()
+                        # self.loginAdmin.userTable.removeRow(int(usuario[0])+1)
                 else:
                         pass
 
