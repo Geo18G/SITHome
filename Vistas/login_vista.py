@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import *
 from Vistas.habitaciones_vista import HabitacionesUi
 from Vistas.usuarios_vista import UsuariosUi
 from Controladores.habitaciones_controlador import HabitacionControlador
-
+import globales
 
 class LoginVista(QMainWindow):
 
@@ -21,9 +21,9 @@ class LoginVista(QMainWindow):
     def inicialize(self):
 
         self.home.login.clicked.connect(lambda: self.SITHome_Login())
-        global idUsuario, idHabitaciones
-        idUsuario = 0
-        idHabitaciones = None
+        # global idUsuario, idHabitaciones
+        globales.idUsuario = 0
+        globales.idHabitaciones = None
         #self.home.login.
 
     def SITHome_Login(self):
@@ -31,12 +31,11 @@ class LoginVista(QMainWindow):
         print(usuario)
         contrasena = self.home.loginCode.text()
         print(contrasena)
-
         usuario = self.usuarioC.buscarUsuario(usuario,contrasena)
         if usuario:
-            global idUsuario, idHabitaciones
-            idUsuario = usuario[0]
-            idHabitaciones = self.habitacionC.obtener_ids()
+            # global idUsuario, idHabitaciones
+            globales.idUsuario = usuario[0]
+            globales.idHabitaciones = self.habitacionC.obtener_ids()
             if usuario[3] == 1:
                 self.close()
                 self.loginAdmin.show()

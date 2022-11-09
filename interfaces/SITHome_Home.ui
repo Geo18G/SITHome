@@ -132,6 +132,9 @@ background-color: white;</string>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
+          <property name="placeholderText">
+           <string>******</string>
+          </property>
          </widget>
          <widget class="QLabel" name="label_2">
           <property name="geometry">
@@ -166,14 +169,14 @@ border: none;
 font: 24px;
 background-color: white;</string>
           </property>
-          <property name="maxLength">
-           <number>6</number>
-          </property>
           <property name="echoMode">
            <enum>QLineEdit::Normal</enum>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
+          </property>
+          <property name="placeholderText">
+           <string>Usuario</string>
           </property>
          </widget>
          <widget class="QLabel" name="label_3">

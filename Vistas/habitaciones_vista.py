@@ -28,14 +28,15 @@ class HabitacionesUi(QMainWindow):
         # self.dispositivos.listaDispositivos.back.clicked.connect(lambda: UsuariosUi().show())
 
     def showRooms(self):
-        global idUsuario, idHabitaciones
-        print(idUsuario)
-        print(idHabitaciones)
+        # global idUsuario, idHabitaciones
+        print(globales.idUsuario)
+        print(globales.idHabitaciones)
+
         # self.habitaciones.Habitaciones.clearContents()
         listaHabitaciones = list()
-        for hab in idHabitaciones:
+        for hab in globales.idHabitaciones:
             print(hab)
-            listaHabitaciones.append(self.habitacionC.mostrarHabitacion(idUsuario,hab))
+            listaHabitaciones.append(self.habitacionC.mostrarHabitacion(globales.idUsuario,hab))
         print(listaHabitaciones)
 
         # row = 0
