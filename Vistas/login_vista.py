@@ -20,7 +20,7 @@ class LoginVista(QMainWindow):
 
     def inicialize(self):
         self.home.login.clicked.connect(lambda: self.SITHome_Login())
-        globales.idUsuario = 0
+        globales.Usuario = None
         globales.idHabitaciones = None
         # globales.idUsuarios = None
 
@@ -29,7 +29,7 @@ class LoginVista(QMainWindow):
         contrasena = self.home.loginCode.text()
         usuario = self.usuarioC.buscarUsuario(usuario,contrasena)
         if usuario:
-            globales.idUsuario = usuario[0]
+            globales.Usuario = usuario
             globales.idHabitaciones = self.habitacionC.obtener_ids()
             if usuario[3] == 1:
                 # globales.idUsuarios= self.usuarioC.obtener_ids()

@@ -1,4 +1,3 @@
-import globales
 from Controladores.usuarios_controlador import UsuarioControlador
 from Modelos.usuario_modelo import UsuarioModelo
 from PyQt5.QtWidgets import *
@@ -26,8 +25,10 @@ class UsuariosUi(QMainWindow):
                 self.loginAdmin.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.loginAdmin.btnGuardar))
                 self.loginAdmin.codeRegister.textChanged.connect(lambda: self.habilitarBtn(self.loginAdmin.btnGuardar))
                 self.loginAdmin.btnGuardar.clicked.connect(self.editarUsuario)
+                self.loginAdmin.addUser.hide()
+                self.loginAdmin.addUser.clicked.connect(self.ventanaUsuarioNormal)
                 self.loginAdmin.btnGuardar.hide()
-                
+
                 self.dispositivos.listaDispositivos.back.clicked.connect(lambda: self.dispositivos.hide())
                 self.dispositivos.listaDispositivos.back.clicked.connect(lambda: UsuariosUi().show())
 
@@ -90,7 +91,7 @@ class UsuariosUi(QMainWindow):
                 BtnEditar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
                 BtnBorrar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
                 BtnEditar.clicked.connect(lambda: self.ventanaUsuarioEditar(usuario))
-                BtnBorrar.clicked.connect(lambda: self.borrarUsuario(usuario))
+                BtnBorrar.clicked.connect(lambda: self.borrarUsuario())
                
         def editarUsuario(self):
                 newUsuario = UsuarioModelo()
@@ -103,11 +104,15 @@ class UsuariosUi(QMainWindow):
                 newUsuario.setRolU(typpe)
                 self.loginAdmin.nameRegister.setText("")
                 self.loginAdmin.codeRegister.setText("")
-                self.usuarioC.actualizarUsuario(newUsuario, 5)
+                usuariosRegistrados = self.usuarioC.mostrarUsuario()
+                for usuario in usuariosRegistrados:
+                        if usuario[1] == self.loginAdmin.userTable.item(self.loginAdmin.userTable.currentRow(), 0).text():
+                                self.usuarioC.actualizarUsuario(newUsuario, usuario[0])
                 self.loginAdmin.btnGuardar.hide()
                 self.loginAdmin.registerButton.show()
                 self.habilitarBtn(self.loginAdmin.registerButton)
                 self.showUsers()
+                
                 self.ventanaUsuarioNormal()
 
         def ventanaUsuarioEditar(self, usuario):
@@ -123,8 +128,11 @@ class UsuariosUi(QMainWindow):
                         self.loginAdmin.adminCheck.setChecked(False)
                 self.loginAdmin.registerButton.hide()
                 self.loginAdmin.btnGuardar.show()
-        
+                self.loginAdmin.addUser.show()
+
         def ventanaUsuarioNormal(self):
+                self.loginAdmin.label_2.setText("Agregar Nuevo Usuario")
+                self.loginAdmin.label_2.setStyleSheet("color: white;")
                 self.loginAdmin.frame_3.setStyleSheet("background-color: qlineargradient(spread:pad, \
                         x1:0.493, y1:0, x2:0.502, y2:1, stop:0 rgba(0, 166, 255, 255), stop:1 \
                         rgba(162, 254, 255, 0));\n""border-radius: 15px;\n""\n""\n""")
@@ -135,20 +143,19 @@ class UsuariosUi(QMainWindow):
                 self.loginAdmin.adminCheck.setChecked(False)
                 self.loginAdmin.registerButton.show()
                 self.loginAdmin.btnGuardar.hide()
+                self.loginAdmin.addUser.hide()
 
-        def borrarUsuario(self, usuario):
-                reply = QtWidgets.QMessageBox.warning(self, "Atención", f"¿Está seguro que desea eliminar a {usuario[1]}?", QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-                if reply == QtWidgets.QMessageBox.Yes:
-                        for i in globales.idUsuarios:
-
-                                if int((usuario[0]) == i):
-                                        print(i)
-                                        self.usuarioC.eliminarUsuario(i)
+        def borrarUsuario(self):
+                usuariosRegistrados = self.usuarioC.mostrarUsuario()
+                for usuar in usuariosRegistrados:
+                        if usuar[1] == self.loginAdmin.userTable.item(self.loginAdmin.userTable.currentRow(), 0).text():
+                                reply = QtWidgets.QMessageBox.warning(self, "Atención", f"¿Está seguro que desea eliminar a {usuar[1]}?", QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+                                if reply == QtWidgets.QMessageBox.Yes:
+                                        self.usuarioC.eliminarUsuario(1)
                                         self.loginAdmin.userTable.removeRow(self.loginAdmin.userTable.currentRow())
                                         self.showUsers()
-                        # self.loginAdmin.userTable.removeRow(int(usuario[0])+1)
-                else:
-                        pass
+                        else:
+                                pass
 
 
 

@@ -3,20 +3,28 @@ from Modelos.habitacion_modelo import HabitacionModelo
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui, QtCore
 from interfaces.SITHome_Devices import Ui_SITHome_Dispositivos as Habitaciones
+from interfaces.SITHome_HabForm import Ui_Dialog as FormH
 import globales
 
-
+class Formulario(QDialog):
+    def __init__(self):
+        super(Formulario, self).__init__()
+        self.uiForm  = FormH()
+        self.uiForm.setupUi(self)
 
 class HabitacionesUi(QMainWindow):
     def __init__(self):
         super(HabitacionesUi, self).__init__()
         self.habitaciones = Habitaciones()
+        self.addH  = Formulario()
         self.habitaciones.setupUi(self)
         self.habitacionC = HabitacionControlador()
         self.inicialize()
+        
 
     def inicialize(self):
-        pass
+        self.habitaciones.addHabitacion.clicked.connect(lambda: self.addH.show())
+        
         # self.showRooms()
         # self.habitaciones.registerButton.setEnabled(False)
         # self.habitaciones.registerButton.clicked.connect(lambda: self.SITHome_register())
@@ -32,7 +40,7 @@ class HabitacionesUi(QMainWindow):
         self.habitaciones.Habitaciones.clearContents()
         listaHabitaciones = list()
         for hab in globales.idHabitaciones:
-            listaHabitaciones.append(self.habitacionC.mostrarHabitacion(globales.idUsuario,hab))
+            listaHabitaciones.append(self.habitacionC.mostrarHabitacion(globales.Usuario[0],hab))
         print(listaHabitaciones)
         if listaHabitaciones[0][0] == None:
             pass
@@ -49,6 +57,9 @@ class HabitacionesUi(QMainWindow):
                 self.habitaciones.Habitaciones.setItem(row, column, cell)
                 self.agregarBtn(self.habitaciones.Habitaciones, row)
                 row += 1
+    
+    def EditarH(self):
+        pass
 
     # def SITHome_register(self):
     #     newUsuario = UsuarioModelo()
@@ -91,3 +102,15 @@ class HabitacionesUi(QMainWindow):
         BtnBorrar.setIconSize(QtCore.QSize(32, 32))
         BtnEditar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         BtnBorrar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        
+    def editarH(self):
+        pass
+    
+    def addRoom(self):
+        pass
+    
+    def mostrarAH(self):
+        if globales.Usuario[3] != 1:
+            self.habitaciones.addHabitacion.hide()
+        else:
+            pass

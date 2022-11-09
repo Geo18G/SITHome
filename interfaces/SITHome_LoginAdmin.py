@@ -20,6 +20,7 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet("background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0.386364 rgba(162, 254, 255, 255), stop:1 rgba(255, 255, 255, 255));")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setMinimumSize(QtCore.QSize(1115, 715))
+        self.centralwidget.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -58,6 +59,16 @@ class Ui_MainWindow(object):
         self.label_5.setStyleSheet("background-color: none;\n"
 "color: white;")
         self.label_5.setObjectName("label_5")
+        self.addUser = QtWidgets.QPushButton(self.frame)
+        self.addUser.setEnabled(True)
+        self.addUser.setGeometry(QtCore.QRect(470, 130, 40, 40))
+        self.addUser.setMinimumSize(QtCore.QSize(40, 40))
+        self.addUser.setMaximumSize(QtCore.QSize(40, 40))
+        self.addUser.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.addUser.setStyleSheet("background-color: rgb(0, 255, 0);\n"
+"border-radius: 15px;\n"
+"font: 10pt;")
+        self.addUser.setObjectName("addUser")
         self.horizontalLayout.addWidget(self.frame)
         self.frame_2 = QtWidgets.QFrame(self.centralwidget)
         self.frame_2.setStyleSheet("background-color: None;")
@@ -68,6 +79,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.frame_3 = QtWidgets.QFrame(self.frame_2)
         self.frame_3.setMinimumSize(QtCore.QSize(500, 320))
+        self.frame_3.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.frame_3.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0.493, y1:0, x2:0.502, y2:1, stop:0 rgba(0, 166, 255, 255), stop:1 rgba(162, 254, 255, 0));\n"
 "border-radius: 15px;\n"
 "\n"
@@ -179,13 +191,13 @@ class Ui_MainWindow(object):
         self.btnGuardar = QtWidgets.QPushButton(self.frame_8)
         self.btnGuardar.setEnabled(True)
         self.btnGuardar.setGeometry(QtCore.QRect(270, 20, 101, 41))
-        #font = QtGui.QFont()
-        # font.setPointSize(11)
-        # font.setBold(False)
-        # font.setItalic(False)
-        # font.setWeight(50)
-        # font.setKerning(True)
-        #self.registerButton_2.setFont(font)
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        font.setKerning(True)
+        self.btnGuardar.setFont(font)
         self.btnGuardar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btnGuardar.setStyleSheet("background-color: rgb(82, 255, 56);\n"
 "border-radius: 15px;\n"
@@ -244,11 +256,12 @@ class Ui_MainWindow(object):
         item = self.userTable.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "Rol"))
         self.label_5.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Usuarios Registrados</span></p></body></html>"))
+        self.addUser.setText(_translate("MainWindow", "+"))
         self.label_2.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; color:#ffffff;\">Agregar nuevo usuario</span></p></body></html>"))
         self.label_3.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Nombre:</span></p></body></html>"))
         self.nameRegister.setPlaceholderText(_translate("MainWindow", "Nombre"))
         self.label_4.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Código:</span></p></body></html>"))
-        self.codeRegister.setPlaceholderText(_translate("MainWindow", "(4-6 carácteres)"))
+        self.codeRegister.setPlaceholderText(_translate("MainWindow", "(Máximo 6 carácteres) "))
         self.viewPass.setText(_translate("MainWindow", "ver"))
         self.adminCheck.setText(_translate("MainWindow", "Administrador"))
         self.registerButton.setText(_translate("MainWindow", "Registrar"))

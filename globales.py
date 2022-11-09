@@ -1,5 +1,5 @@
 
-global idUsuario
+global Usuario
 
 global idHabitaciones
 
