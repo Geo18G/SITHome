@@ -24,6 +24,8 @@ class HabitacionesUi(QMainWindow):
 
     def inicialize(self):
         self.habitaciones.addHabitacion.clicked.connect(lambda: self.addH.show())
+        self.addH.uiForm.pushButton.clicked.connect(self.editarH)
+       
         
         # self.showRooms()
         # self.habitaciones.registerButton.setEnabled(False)
@@ -102,10 +104,18 @@ class HabitacionesUi(QMainWindow):
         BtnBorrar.setIconSize(QtCore.QSize(32, 32))
         BtnEditar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         BtnBorrar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        BtnEditar.clicked.connect(lambda: self.addH.show())
         
     def editarH(self):
-        pass
-    
+        self.addH.show()  
+        newHabitacion = HabitacionModelo()
+        newHabitacion.setNombreH(self.addH.uiForm.nameRegister.text())
+        HRegistradas = self.habitacionC.mostrarHabitacion( )
+        for id in globales.idHabitaciones:
+            if id == self.habitacionC.obtener_ids():
+                self.habitacionC.actualizarHabitacion(newHabitacion, id)
+        self.addH.close()  
+        
     def addRoom(self):
         pass
     
