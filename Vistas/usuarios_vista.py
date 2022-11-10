@@ -3,35 +3,32 @@ from Modelos.usuario_modelo import UsuarioModelo
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui, QtCore
 from interfaces.SITHome_LoginAdmin import Ui_MainWindow as Admin
-from Vistas.dispositivos_vista import DispositivosUi
+from Vistas.habitaciones_vista import HabitacionesUi
 
 class UsuariosUi(QMainWindow):
         def __init__(self):
                 super(UsuariosUi, self).__init__()
                 self.loginAdmin = Admin()
                 self.loginAdmin.setupUi(self)
-                self.dispositivos = DispositivosUi()
+                self.habitaciones = HabitacionesUi()
                 self.usuarioC = UsuarioControlador()
                 self.inicialize()
 
         def inicialize(self):
-                
-                self.loginAdmin.registerButton.setEnabled(False)
+                #buttons-------------
                 self.loginAdmin.registerButton.clicked.connect(lambda: self.SITHome_register())
                 self.loginAdmin.viewPass.clicked.connect(lambda: self.viewPass())
-                self.loginAdmin.dispButton.clicked.connect(lambda: UsuariosUi().allDevs())
+                self.loginAdmin.btnGuardar.clicked.connect(self.editarUsuario)
+                self.loginAdmin.addUser.clicked.connect(self.ventanaUsuarioNormal)
+                self.loginAdmin.dispButton.clicked.connect(self.goToHabitacionesVista)
+                #elements & functions----------------
+                self.loginAdmin.registerButton.setEnabled(False)
                 self.loginAdmin.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.loginAdmin.registerButton))
                 self.loginAdmin.codeRegister.textChanged.connect(lambda: self.habilitarBtn(self.loginAdmin.registerButton))
                 self.loginAdmin.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.loginAdmin.btnGuardar))
                 self.loginAdmin.codeRegister.textChanged.connect(lambda: self.habilitarBtn(self.loginAdmin.btnGuardar))
-                self.loginAdmin.btnGuardar.clicked.connect(self.editarUsuario)
                 self.loginAdmin.addUser.hide()
-                self.loginAdmin.addUser.clicked.connect(self.ventanaUsuarioNormal)
                 self.loginAdmin.btnGuardar.hide()
-
-                self.dispositivos.listaDispositivos.back.clicked.connect(lambda: self.dispositivos.hide())
-                self.dispositivos.listaDispositivos.back.clicked.connect(lambda: UsuariosUi().show())
-
 
         def showUsers(self):
                 self.loginAdmin.userTable.clearContents()
@@ -67,9 +64,9 @@ class UsuariosUi(QMainWindow):
         def viewPass(self):
                 self.loginAdmin.codeRegister.setEchoMode(0)
 
-        def allDevs(self):
-                UsuariosUi().hide()
-                self.dispositivos.show()
+        def goToHabitacionesVista(self):
+                UsuariosUi().close()
+                self.habitaciones.show()
 
         def habilitarBtn(self, btn):
                 if (len(self.loginAdmin.codeRegister.text()) >=4 and len(self.loginAdmin.nameRegister.text()) !=0):

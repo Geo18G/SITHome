@@ -39,7 +39,6 @@ class HabitacionesUi(QMainWindow):
         # self.dispositivos.listaDispositivos.back.clicked.connect(lambda: UsuariosUi().show())
 
     def showRooms(self):
-        self.habitaciones.Habitaciones.clearContents()
         listaHabitaciones = list()
         for hab in globales.idHabitaciones:
             listaHabitaciones.append(self.habitacionC.mostrarHabitacion(globales.Usuario[0],hab))
@@ -48,16 +47,14 @@ class HabitacionesUi(QMainWindow):
             pass
         else:
             row = 0
+            column = 0
+            self.habitaciones.tablaHabitaciones.removeRow(row)
             for hab in listaHabitaciones:
-                column = 0
-                self.habitaciones.Habitaciones.removeRow(row)
-                self.habitaciones.Habitaciones.insertRow(row)
-                cell = QtWidgets.QTableWidgetItem(hab[1])
-                self.habitaciones.Habitaciones.setItem(row, column, cell)
-                column += 1
-                # cell = QtWidgets.QTableWidgetItem(hab[2])
-                self.habitaciones.Habitaciones.setItem(row, column, cell)
-                self.agregarBtn(self.habitaciones.Habitaciones, row)
+                self.habitaciones.tablaHabitaciones.insertRow(row)
+                btnHabitacion = QtWidgets.QPushButton(text=f"{hab[1]}")
+                btnHabitacion.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+                self.habitaciones.tablaHabitaciones.setCellWidget(row, column, btnHabitacion)
+                self.agregarBtn(self.habitaciones.tablaHabitaciones, row)
                 row += 1
     
     def EditarH(self):
