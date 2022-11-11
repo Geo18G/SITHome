@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui, QtCore
 from interfaces.SITHome_LoginAdmin import Ui_MainWindow as Admin
 from Vistas.habitaciones_vista import HabitacionesUi
+import globales
 
 class UsuariosUi(QMainWindow):
         def __init__(self):
@@ -31,6 +32,7 @@ class UsuariosUi(QMainWindow):
                 self.loginAdmin.btnGuardar.hide()
 
         def showUsers(self):
+                self.ocultar_btn_borrar()
                 self.loginAdmin.userTable.clearContents()
                 registredUsers = self.usuarioC.mostrarUsuario()
                 row = 0
@@ -65,8 +67,10 @@ class UsuariosUi(QMainWindow):
                 self.loginAdmin.codeRegister.setEchoMode(0)
 
         def goToHabitacionesVista(self):
-                UsuariosUi().close()
+                self.close()
                 self.habitaciones.show()
+                self.habitaciones.showRooms()
+
 
         def habilitarBtn(self, btn):
                 if (len(self.loginAdmin.codeRegister.text()) >=4 and len(self.loginAdmin.nameRegister.text()) !=0):
@@ -89,6 +93,9 @@ class UsuariosUi(QMainWindow):
                 BtnBorrar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
                 BtnEditar.clicked.connect(lambda: self.ventanaUsuarioEditar(usuario))
                 BtnBorrar.clicked.connect(lambda: self.borrarUsuario())
+
+        def ocultar_btn_borrar(self):
+                pass
                
         def editarUsuario(self):
                 newUsuario = UsuarioModelo()
@@ -148,7 +155,7 @@ class UsuariosUi(QMainWindow):
                         if usuar[1] == self.loginAdmin.userTable.item(self.loginAdmin.userTable.currentRow(), 0).text():
                                 reply = QtWidgets.QMessageBox.warning(self, "Atención", f"¿Está seguro que desea eliminar a {usuar[1]}?", QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
                                 if reply == QtWidgets.QMessageBox.Yes:
-                                        self.usuarioC.eliminarUsuario(1)
+                                        self.usuarioC.eliminarUsuario(usuar[0])
                                         self.loginAdmin.userTable.removeRow(self.loginAdmin.userTable.currentRow())
                                         self.showUsers()
                         else:

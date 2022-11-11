@@ -62,24 +62,24 @@ class Ui_Dialog(object):
         self.nameRegister.setText("")
         self.nameRegister.setAlignment(QtCore.Qt.AlignCenter)
         self.nameRegister.setObjectName("nameRegister")
-        self.pushButton = QtWidgets.QPushButton(self.frame_4)
-        self.pushButton.setGeometry(QtCore.QRect(260, 140, 80, 35))
-        self.pushButton.setMinimumSize(QtCore.QSize(80, 35))
-        self.pushButton.setMaximumSize(QtCore.QSize(80, 35))
-        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton.setStyleSheet("background-color: rgb(0, 255, 0);\n"
+        self.btn_ok = QtWidgets.QPushButton(self.frame_4)
+        self.btn_ok.setGeometry(QtCore.QRect(260, 140, 80, 35))
+        self.btn_ok.setMinimumSize(QtCore.QSize(80, 35))
+        self.btn_ok.setMaximumSize(QtCore.QSize(80, 35))
+        self.btn_ok.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_ok.setStyleSheet("background-color: rgb(0, 255, 0);\n"
 "border-radius: 15px;\n"
 "font: 10pt;")
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self.frame_4)
-        self.pushButton_2.setGeometry(QtCore.QRect(170, 140, 80, 35))
-        self.pushButton_2.setMinimumSize(QtCore.QSize(80, 35))
-        self.pushButton_2.setMaximumSize(QtCore.QSize(80, 35))
-        self.pushButton_2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton_2.setStyleSheet("background-color: white;\n"
+        self.btn_ok.setObjectName("btn_ok")
+        self.btn_cancelar = QtWidgets.QPushButton(self.frame_4)
+        self.btn_cancelar.setGeometry(QtCore.QRect(170, 140, 80, 35))
+        self.btn_cancelar.setMinimumSize(QtCore.QSize(80, 35))
+        self.btn_cancelar.setMaximumSize(QtCore.QSize(80, 35))
+        self.btn_cancelar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_cancelar.setStyleSheet("background-color: white;\n"
 "border-radius: 15px;\n"
 "font: 10pt;")
-        self.pushButton_2.setObjectName("pushButton_2")
+        self.btn_cancelar.setObjectName("btn_cancelar")
         self.label_2 = QtWidgets.QLabel(self.frame_4)
         self.label_2.setGeometry(QtCore.QRect(10, 70, 81, 21))
         self.label_2.setStyleSheet("")
@@ -114,10 +114,20 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.nombreHab.setText(_translate("Dialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:22pt; color:#ffffff;\">Agregar o editar Habitación</span></p></body></html>"))
         self.nameRegister.setPlaceholderText(_translate("Dialog", "\"Sala principal\""))
-        self.pushButton.setText(_translate("Dialog", "OK"))
-        self.pushButton_2.setText(_translate("Dialog", "Cancelar"))
+        self.btn_ok.setText(_translate("Dialog", "OK"))
+        self.btn_cancelar.setText(_translate("Dialog", "Cancelar"))
         self.label_2.setText(_translate("Dialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; color:#ffffff;\">Nombre:</span></p></body></html>"))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("Dialog", "Usuarios"))
         item = self.tableWidget.horizontalHeaderItem(1)
         item.setText(_translate("Dialog", "Permitido"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Dialog = QtWidgets.QDialog()
+    ui = Ui_Dialog()
+    ui.setupUi(Dialog)
+    Dialog.show()
+    sys.exit(app.exec_())

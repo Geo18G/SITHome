@@ -1,15 +1,15 @@
 
 
-from PyQt5.QtWidgets import *
-from interfaces.SITHome_Devices import Ui_SITHome_Dispositivos
+# from PyQt5.QtWidgets import *
+# from interfaces.SITHome_Devices import Ui_SITHome_Dispositivos
 
 
 
-class DispositivosUi(QMainWindow):
-    def __init__(self):
-        super(DispositivosUi, self).__init__()
-        self.listaDispositivos = Ui_SITHome_Dispositivos()
-        self.listaDispositivos.setupUi(self)
+# class DispositivosUi(QMainWindow):
+#     def __init__(self):
+#         super(DispositivosUi, self).__init__()
+#         self.listaDispositivos = Ui_SITHome_Dispositivos()
+#         self.listaDispositivos.setupUi(self)
         # self.loginAdmin = UsuariosUi()
     #     self.inicialize()
     #

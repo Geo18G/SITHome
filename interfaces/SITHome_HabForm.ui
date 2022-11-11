@@ -124,7 +124,7 @@ font: 12pt;</string>
              <string>&quot;Sala principal&quot;</string>
             </property>
            </widget>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="btn_ok">
             <property name="geometry">
              <rect>
               <x>260</x>
@@ -157,7 +157,7 @@ font: 10pt;</string>
              <string>OK</string>
             </property>
            </widget>
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="btn_cancelar">
             <property name="geometry">
              <rect>
               <x>170</x>

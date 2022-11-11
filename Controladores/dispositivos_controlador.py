@@ -20,8 +20,8 @@ class DispositivoControlador:
         sql = f"DELETE FROM dispositivos WHERE iddispositivos = '{id}'"
         return self.__conexion.delete(sql)
 
-    def mostrarDispositivo(self,idH):
-        sql = f"SELECT * FROM dispositivos WHERE habitaciones_idhabitaciones = '{idH}'"
+    def mostrarDispositivos(self,idH):
+        sql = f"SELECT nombre, estado FROM dispositivos WHERE habitaciones_idhabitaciones = '{idH}'"
         return self.__conexion.selectAll(sql)
 
 
