@@ -83,7 +83,8 @@ class UsuariosUi(QMainWindow):
                 BtnBorrar = QtWidgets.QPushButton()
                 BtnEditar = QtWidgets.QPushButton()
                 tabla.setCellWidget(fila, 2, BtnEditar)
-                tabla.setCellWidget(fila, 3, BtnBorrar)
+                if int(usuario[0]) != int(globales.Usuario[0]):
+                        tabla.setCellWidget(fila, 3, BtnBorrar)
                 BtnEditar.setMaximumSize(28, 28)
                 BtnBorrar.setMaximumSize(28, 28)                
                 BtnEditar.setIcon(QtGui.QIcon("assets\\btnEditar.png"))
