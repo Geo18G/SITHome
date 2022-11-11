@@ -41,6 +41,7 @@ class HabitacionesUi(QMainWindow):
         # self.dispositivos.listaDispositivos.back.clicked.connect(lambda: UsuariosUi().show())
 
     def showRooms(self):
+        globales.idHabitaciones = self.habitacionC.obtener_ids()
         listaHabitaciones = list()
         for hab in globales.idHabitaciones:
             retorno = self.habitacionC.mostrarHabitacion(globales.Usuario[0],hab)
@@ -48,6 +49,8 @@ class HabitacionesUi(QMainWindow):
                 listaHabitaciones.append(retorno)
             else:
                 pass
+        self.mostrar_btnAH(globales.Usuario[2])
+        
         row = 0
         column = 0
         self.habitaciones.tablaHabitaciones.removeRow(row)
@@ -136,11 +139,12 @@ class HabitacionesUi(QMainWindow):
         newHabitacion.setNombreH(self.addH.uiForm.nameRegister.text())
         self.habitacionC.crearHabitacion(newHabitacion)
     
-    def mostrarAH(self):
-        if globales.Usuario[3] != 1:
-            self.habitaciones.addHabitacion.hide()
+    def mostrar_btnAH(self,tipo):
+        if tipo == "Administrador":
+            self.habitaciones.addHabitacion.show()
         else:
-            pass
+            self.habitaciones.addHabitacion.hide()
+        
         
     def showDevices(self):
         

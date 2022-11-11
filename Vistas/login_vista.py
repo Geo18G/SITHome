@@ -30,8 +30,8 @@ class LoginVista(QMainWindow):
         usuario = self.usuarioC.buscarUsuario(usuario,contrasena)
         if usuario:
             globales.Usuario = usuario
-            globales.idHabitaciones = self.habitacionC.obtener_ids()
-            if usuario[3] == 1:
+            # globales.idHabitaciones = self.habitacionC.obtener_ids()
+            if usuario[2] == "Administrador":
                 # globales.idUsuarios= self.usuarioC.obtener_ids()
                 self.close()
                 self.loginAdmin.show()

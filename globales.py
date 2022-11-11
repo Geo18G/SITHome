@@ -3,4 +3,4 @@ global Usuario
 
 global idHabitaciones
 
-global idUsuarios
+global Usuarios

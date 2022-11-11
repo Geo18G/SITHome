@@ -21,16 +21,10 @@ class UsuarioControlador:
         return self.__conexion.delete(sql)
 
     def mostrarUsuario(self):
-        sql = 'SELECT u.idusuarios, u.nombreUsuario, u.contrasena, r.tipo  FROM usuarios u INNER JOIN  roles r on u.roles_idroles = r.idroles'
+        sql = 'SELECT u.idusuarios, u.nombreUsuario, r.tipo  FROM usuarios u INNER JOIN  roles r on u.roles_idroles = r.idroles'
         registred_users = list()
-        users = self.__conexion.selectAll(sql)
-        for user in users:
-            id = user[0]
-            name = user[1]
-            typpe = user[3]
-            registred_users.append((f'{id}', f'{name}', f'{typpe}'))
-        return registred_users
-
+        return self.__conexion.selectAll(sql)
+        
     def obtener_ids(self):
         sql = f"SELECT idusuarios FROM usuarios"
         retorno = self.__conexion.selectAll(sql)
@@ -41,7 +35,8 @@ class UsuarioControlador:
         return listaIds
 
     def buscarUsuario(self, nombre, contrasena):
-        sql = f"SELECT * FROM usuarios WHERE contrasena = '{contrasena}' AND nombreUsuario = '{nombre}'"
+        #sql = f"SELECT * FROM usuarios WHERE contrasena = '{contrasena}' AND nombreUsuario = '{nombre}'"
+        sql = f"SELECT u.idusuarios, u.nombreUsuario, r.tipo  FROM usuarios u INNER JOIN  roles r on u.roles_idroles = r.idroles WHERE u.contrasena = '{contrasena}' AND u.nombreUsuario = '{nombre}'"
         return self.__conexion.select(sql)
 
 # prueba = UsuarioControlador()

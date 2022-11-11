@@ -34,9 +34,10 @@ class UsuariosUi(QMainWindow):
         def showUsers(self):
                 self.ocultar_btn_borrar()
                 self.loginAdmin.userTable.clearContents()
-                registredUsers = self.usuarioC.mostrarUsuario()
+                self.usuarioC.mostrarUsuario()
+                globales.Usuarios = self.usuarioC.mostrarUsuario()
                 row = 0
-                for user in registredUsers:
+                for user in globales.Usuarios:
                         column = 0
                         self.loginAdmin.userTable.removeRow(row)
                         self.loginAdmin.userTable.insertRow(row)
