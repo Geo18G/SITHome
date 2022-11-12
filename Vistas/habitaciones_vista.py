@@ -1,16 +1,18 @@
 from Controladores.habitaciones_controlador import HabitacionControlador
 from Controladores.dispositivos_controlador import DispositivoControlador
+from Controladores.usuarios_controlador import UsuarioControlador
+from Controladores.permisos_controlador import PermisosControlador
 from Modelos.habitacion_modelo import HabitacionModelo
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui, QtCore
 from interfaces.SITHome_Devices import Ui_SITHome_Dispositivos as Habitaciones
-from interfaces.SITHome_HabForm import Ui_Dialog as FormH
+from interfaces.SITHome_HabForm import Ui_Dialog 
 import globales
 
 class Formulario(QDialog):
     def __init__(self):
         super(Formulario, self).__init__()
-        self.uiForm  = FormH()
+        self.uiForm  = Ui_Dialog()
         self.uiForm.setupUi(self)
 
 class HabitacionesUi(QMainWindow):
@@ -21,14 +23,16 @@ class HabitacionesUi(QMainWindow):
         self.habitaciones.setupUi(self)
         self.habitacionC = HabitacionControlador()
         self.dispositivosC = DispositivoControlador()
+        self.usuarioC = UsuarioControlador()
+        self.permisosC = PermisosControlador()
         self.inicialize()
         
 
     def inicialize(self):
         self.habitaciones.addHabitacion.clicked.connect(lambda: self.addH.show())
         self.addH.uiForm.btn_ok.clicked.connect(self.editarH)
-       
-        
+        #self.addH.uiForm.btn_ok.clicked.connect(self.actualizarPermisos)
+    
         # self.showRooms()
         # self.habitaciones.registerButton.setEnabled(False)
         # self.habitaciones.registerButton.clicked.connect(lambda: self.SITHome_register())
@@ -65,21 +69,23 @@ class HabitacionesUi(QMainWindow):
             
     
     def editarH(self):
-        self.addH.show()  
+        #self.addH.show()  
         newHabitacion = HabitacionModelo()
         newHabitacion.setNombreH(self.addH.uiForm.nameRegister.text())
-        listahab = list()
-        for hab in globales.idHabitaciones:
-            retorno = self.habitacionC.mostrarHabitacion(globales.Usuario[0], hab)
-            if retorno != None:
-                listahab.append(retorno)
-                print(listahab)
-        for x in listahab:
-            if x[1] == self.habitaciones.tablaHabitaciones.cellWidget(self.habitaciones.tablaHabitaciones.currentRow(), 0).text():
-                print("entra al if")
-                self.habitacionC.actualizarHabitacion(newHabitacion, x[0])
-        self.showRooms()
-        self.addH.close()
+        # listahab = list()
+        # for hab in globales.idHabitaciones:
+        #     retorno = self.habitacionC.mostrarHabitacion(globales.Usuario[0], hab)
+        #     if retorno != None:
+        #         listahab.append(retorno)
+        #         print(listahab)
+        # for x in listahab:
+        #     if x[1] == self.habitaciones.tablaHabitaciones.cellWidget(self.habitaciones.tablaHabitaciones.currentRow(), 0).text():
+        #         print("entra al if")
+        #         self.habitacionC.actualizarHabitacion(newHabitacion, x[0])
+        nombre = newHabitacion.getNombreH()
+        self.actualizarPermisos(nombre)
+        # self.showRooms()
+        # self.addH.close()
 
     # def SITHome_register(self):
     #     newUsuario = UsuarioModelo()
@@ -123,6 +129,7 @@ class HabitacionesUi(QMainWindow):
         BtnEditar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         BtnBorrar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         BtnEditar.clicked.connect(lambda: self.addH.show())
+        BtnEditar.clicked.connect(self.mostrarUsuariosHab)
         
     def agregarBtnStatus(self, tabla, fila):
         BtnStatus = QtWidgets.QPushButton()
@@ -164,3 +171,39 @@ class HabitacionesUi(QMainWindow):
             row += 1
             
     # self.habitaciones.tablaHabitaciones.cellWidget(self.habitaciones.tablaHabitaciones.currentRow(), 0).text()
+
+    def mostrarUsuariosHab(self):
+        tabla = self.addH.uiForm.tableWidget
+        tabla.clearContents()
+        self.usuarioC.mostrarUsuario()
+        globales.Usuarios = self.usuarioC.mostrarUsuario()
+        row = 0
+        for user in globales.Usuarios:
+            tabla.removeRow(row)
+            tabla.insertRow(row)
+            cell = QtWidgets.QTableWidgetItem(user[1])
+            tabla.setItem(row, 0, cell)
+            self.agregarCheckBox(tabla, row, user)
+            row +=1
+
+    def agregarCheckBox(self, tabla, fila, usuario):
+        check = QtWidgets.QCheckBox()
+        if usuario[2] != 'Administrador':
+            tabla.setCellWidget(fila, 1, check)
+
+    def actualizarPermisos(self, habitacion):
+        tabla = self.addH.uiForm.tableWidget
+        for user in globales.Usuarios:
+            if user[2] == 'Usuario':
+                for row in range(tabla.rowCount()):
+                    if tabla.item(row, 0).text() == user[1]:
+                        if tabla.cellWidget(row, 1).isChecked():
+                            self.permisosC.actualizarPermisos(user[0], self.habitacionC.idHabitacionEspecifica(habitacion)[0], 1)
+                            print(f"permiso actualizado: SI para {user[1]} en habitación {habitacion}.")
+                        else:
+                            self.permisosC.actualizarPermisos(user[0], self.habitacionC.idHabitacionEspecifica(habitacion)[0], 0)
+                            print(f"permiso actualizado: NO para {user[1]} en habitación {habitacion}.")
+
+
+
+        

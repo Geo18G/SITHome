@@ -1,4 +1,6 @@
 from Controladores.usuarios_controlador import UsuarioControlador
+from Controladores.habitaciones_controlador import HabitacionControlador
+from Controladores.permisos_controlador import PermisosControlador
 from Modelos.usuario_modelo import UsuarioModelo
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui, QtCore
@@ -13,6 +15,8 @@ class UsuariosUi(QMainWindow):
                 self.loginAdmin.setupUi(self)
                 self.habitaciones = HabitacionesUi()
                 self.usuarioC = UsuarioControlador()
+                self.habitacionC = HabitacionControlador()
+                self.permisosC = PermisosControlador()
                 self.inicialize()
 
         def inicialize(self):
@@ -32,7 +36,6 @@ class UsuariosUi(QMainWindow):
                 self.loginAdmin.btnGuardar.hide()
 
         def showUsers(self):
-                self.ocultar_btn_borrar()
                 self.loginAdmin.userTable.clearContents()
                 self.usuarioC.mostrarUsuario()
                 globales.Usuarios = self.usuarioC.mostrarUsuario()
@@ -48,8 +51,10 @@ class UsuariosUi(QMainWindow):
                         self.loginAdmin.userTable.setItem(row, column, cell)
                         self.agregarBtn(self.loginAdmin.userTable, row, user)
                         row +=1
+                        
 
         def SITHome_register(self):
+                globales.idHabitaciones = self.habitacionC.obtener_ids()
                 newUsuario = UsuarioModelo()
                 newUsuario.setNombreU(self.loginAdmin.nameRegister.text())
                 newUsuario.setContrasenaU(self.loginAdmin.codeRegister.text())
@@ -63,6 +68,12 @@ class UsuariosUi(QMainWindow):
                 self.usuarioC.crearUsuario(newUsuario)
                 self.showUsers()
                 self.habilitarBtn(self.loginAdmin.registerButton)
+                # try:
+                #         for hab in globales.idHabitaciones:
+                #                 self.permisosC.nuevoUsuarioPermisos(newUsuario.getNombreU(), hab)
+                #         print("permiso automatico agregado")
+                # except:
+                #         print("no se pudo agregar permiso automatico al usuario")
 
         def viewPass(self):
                 self.loginAdmin.codeRegister.setEchoMode(0)

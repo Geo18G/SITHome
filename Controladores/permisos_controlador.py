@@ -1,7 +1,7 @@
 from conexion import Conexion
 
 
-class DispositivosControlador:
+class PermisosControlador:
     def __init__(self):
         self.__conexion = Conexion()
 
@@ -10,8 +10,8 @@ class DispositivosControlador:
               f"VALUES ('{permiso.getIdUsuarioP()}','{permiso.getIdHabitacionP()}','{permiso.getPermiso()}')"
         return self.__conexion.insert(sql)
 
-    def actualizarDispositivos(self,permiso, idU, idH):
-        sql = f"UPDATE habitaciones SET permiso ='{permiso.getPermiso()}'" \
+    def actualizarPermisos(self, idU, idH, permiso):
+        sql = f"UPDATE permisos SET permiso ='{permiso}'" \
               f" WHERE usuarios_idusuarios = '{idU}' AND  habitaciones_idhabitaciones = '{idH}'"
         return self.__conexion.update(sql)
 
@@ -22,3 +22,6 @@ class DispositivosControlador:
     def mostrarDispositivos(self):
         sql = f"SELECT * FROM permisos"
         return self.__conexion.selectAll(sql)
+
+    def nuevoUsuarioPermisos(self, nombreU, idH):
+        pass
