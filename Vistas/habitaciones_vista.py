@@ -5,20 +5,21 @@ from Controladores.permisos_controlador import PermisosControlador
 from Modelos.habitacion_modelo import HabitacionModelo
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui, QtCore
-from interfaces.SITHome_Devices import Ui_SITHome_Dispositivos as Habitaciones
-from interfaces.SITHome_HabForm import Ui_Dialog 
+from interfaces.SITHome_Devices import Ui_SITHome_Dispositivos
+from interfaces.SITHome_HabForm import Ui_Dialog
 import globales
 
 class Formulario(QDialog):
     def __init__(self):
         super(Formulario, self).__init__()
-        self.uiForm  = Ui_Dialog()
+        self.uiForm = Ui_Dialog()
         self.uiForm.setupUi(self)
+
 
 class HabitacionesUi(QMainWindow):
     def __init__(self):
         super(HabitacionesUi, self).__init__()
-        self.habitaciones = Habitaciones()
+        self.habitaciones = Ui_SITHome_Dispositivos()
         self.addH  = Formulario()
         self.habitaciones.setupUi(self)
         self.habitacionC = HabitacionControlador()
@@ -29,9 +30,18 @@ class HabitacionesUi(QMainWindow):
         
 
     def inicialize(self):
-        self.habitaciones.addHabitacion.clicked.connect(lambda: self.addH.show())
-        self.addH.uiForm.btn_ok.clicked.connect(self.editarH)
+        self.habitaciones.addHabitacion.clicked.connect(lambda: self.mostrar_ventana_crear())
+        self.addH.uiForm.btn_cancelar.clicked.connect(lambda: self.addH.close())
+        self.addH.uiForm.btn_crear.setEnabled(False)
+        self.addH.uiForm.btn_guardar.setEnabled(False)
+        self.addH.uiForm.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.addH.uiForm.btn_crear))
+        self.addH.uiForm.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.addH.uiForm.btn_guardar))
+        self.addH.uiForm.btn_guardar.clicked.connect(lambda: self.editarH())
+        self.addH.uiForm.btn_crear.clicked.connect(lambda: self.addRoom())
+
+        # self.habitaciones.btn_salir.clicked.connect(lambda: self.salir_login())
         #self.addH.uiForm.btn_ok.clicked.connect(self.actualizarPermisos)
+        # self.habitaciones.btn_usuarios.clicked.connect(lambda: self.usuarios_regresar())
     
         # self.showRooms()
         # self.habitaciones.registerButton.setEnabled(False)
@@ -44,76 +54,72 @@ class HabitacionesUi(QMainWindow):
         # self.dispositivos.listaDispositivos.back.clicked.connect(lambda: self.dispositivos.hide())
         # self.dispositivos.listaDispositivos.back.clicked.connect(lambda: UsuariosUi().show())
 
+    def mostrar_ventana_crear(self):
+        self.addH.uiForm.nameRegister.setText("")
+        self.addH.show()
+        self.addH.uiForm.btn_guardar.hide()
+        self.addH.uiForm.btn_crear.show()
+
+    def mostrar_ventana_editar(self):
+        self.addH.uiForm.nameRegister.setText(self.habitaciones.Habitaciones.cellWidget(self.habitaciones.Habitaciones.currentRow(), 0).text())
+        self.addH.show()
+        self.addH.uiForm.btn_guardar.show()
+        self.addH.uiForm.btn_crear.hide()
+
+    def habilitarBtn(self, btn):
+        if (len(self.addH.uiForm.nameRegister.text()) >= 4 and len(self.addH.uiForm.nameRegister.text()) != 0):
+            btn.setEnabled(True)
+        else:
+            btn.setEnabled(False)
+
     def showRooms(self):
-        globales.idHabitaciones = self.habitacionC.obtener_ids()
-        listaHabitaciones = list()
-        for hab in globales.idHabitaciones:
-            retorno = self.habitacionC.mostrarHabitacion(globales.Usuario[0],hab)
+        globales.Habitaciones = self.habitacionC.obtener_Habitaciones()
+        listaHabitaciones = []
+        for hab in globales.Habitaciones:
+            retorno = self.habitacionC.mostrarHabitacion(globales.Usuario[0],hab[0])
             if retorno != None:
                 listaHabitaciones.append(retorno)
             else:
                 pass
         self.mostrar_btnAH(globales.Usuario[2])
-        
+        self.habitaciones.Habitaciones.clearContents()
         row = 0
         column = 0
-        self.habitaciones.tablaHabitaciones.removeRow(row)
         for hab in listaHabitaciones:
-            self.habitaciones.tablaHabitaciones.insertRow(row)
+            self.habitaciones.Habitaciones.removeRow(row)
+            self.habitaciones.Habitaciones.insertRow(row)
             btnHabitacion = QtWidgets.QPushButton(text=f"{hab[1]}")
             btnHabitacion.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-            self.habitaciones.tablaHabitaciones.setCellWidget(row, column, btnHabitacion)
+            self.habitaciones.Habitaciones.setCellWidget(row, column, btnHabitacion)
             btnHabitacion.clicked.connect(lambda: self.showDevices())
-            self.agregarBtn(self.habitaciones.tablaHabitaciones, row)
+            self.agregarBtn(self.habitaciones.Habitaciones, row)
             row += 1
-            
-    
+
+
     def editarH(self):
-        #self.addH.show()  
         newHabitacion = HabitacionModelo()
         newHabitacion.setNombreH(self.addH.uiForm.nameRegister.text())
-        # listahab = list()
-        # for hab in globales.idHabitaciones:
-        #     retorno = self.habitacionC.mostrarHabitacion(globales.Usuario[0], hab)
-        #     if retorno != None:
-        #         listahab.append(retorno)
-        #         print(listahab)
-        # for x in listahab:
-        #     if x[1] == self.habitaciones.tablaHabitaciones.cellWidget(self.habitaciones.tablaHabitaciones.currentRow(), 0).text():
-        #         print("entra al if")
-        #         self.habitacionC.actualizarHabitacion(newHabitacion, x[0])
-        nombre = newHabitacion.getNombreH()
-        self.actualizarPermisos(nombre)
-        # self.showRooms()
-        # self.addH.close()
+        for hab in globales.Habitaciones:
+            if hab[1] == self.habitaciones.Habitaciones.cellWidget(self.habitaciones.Habitaciones.currentRow(), 0).text():
+                self.habitacionC.actualizarHabitacion(newHabitacion,hab[0])
+        self.addH.uiForm.nameRegister.setText("")
+        self.addH.close()
+        self.showRooms()
 
-    # def SITHome_register(self):
-    #     newUsuario = UsuarioModelo()
-    #     newUsuario.setNombreU(self.loginAdmin.nameRegister.text())
-    #     newUsuario.setContrasenaU(self.loginAdmin.codeRegister.text())
-    #     if self.loginAdmin.adminCheck.isChecked():
-    #         typpe = 1
-    #     else:
-    #         typpe = 2
-    #     newUsuario.setRolU(typpe)
-    #     self.loginAdmin.nameRegister.setText("")
-    #     self.loginAdmin.codeRegister.setText("")
-    #     self.usuarioC.crearUsuario(newUsuario)
-    #     self.showUsers()
-    #     self.habilitarBtn()
-    #
-    # def viewPass(self):
-    #     self.loginAdmin.codeRegister.setEchoMode(0)
+    def borrarH(self):
+        for hab in globales.Habitaciones:
+            if hab[1] == self.habitaciones.Habitaciones.cellWidget(self.habitaciones.Habitaciones.currentRow(), 0).text():
+                reply = QtWidgets.QMessageBox.warning(self, "Atención",
+                                                      f"¿Está seguro que desea eliminar la habitación con el nombre"
+                                                      f" {hab[1]}?",
+                                                      QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+                if reply == QtWidgets.QMessageBox.Yes:
+                    for usuario in globales.Usuarios:
+                        self.permisosC.eliminarPermisos(usuario[0],hab[0])
+                    self.habitacionC.eliminarHabitacion(hab[0])
+                    self.habitaciones.Habitaciones.removeRow(self.habitaciones.Habitaciones.currentRow())
+                    self.showRooms()
 
-    # def allDevs(self):
-    #     UsuariosUi().hide()
-    #     self.dispositivos.show()
-
-    # def habilitarBtn(self):
-    #     if (len(self.loginAdmin.codeRegister.text()) >= 4 and len(self.loginAdmin.nameRegister.text()) != 0):
-    #         self.loginAdmin.registerButton.setEnabled(True)
-    #     else:
-    #         self.loginAdmin.registerButton.setEnabled(False)
 
     def agregarBtn(self, tabla, fila):
         BtnBorrar = QtWidgets.QPushButton()
@@ -128,23 +134,51 @@ class HabitacionesUi(QMainWindow):
         BtnBorrar.setIconSize(QtCore.QSize(32, 32))
         BtnEditar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         BtnBorrar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        BtnEditar.clicked.connect(lambda: self.addH.show())
+        BtnEditar.clicked.connect(lambda: self.mostrar_ventana_editar())
         BtnEditar.clicked.connect(self.mostrarUsuariosHab)
-        
-    def agregarBtnStatus(self, tabla, fila):
+        BtnBorrar.clicked.connect(self.borrarH)
+
+    def agregarBtnDis(self, tabla, fila, status):
+        BtnBorrar = QtWidgets.QPushButton()
+        BtnEditar = QtWidgets.QPushButton()
         BtnStatus = QtWidgets.QPushButton()
         tabla.setCellWidget(fila, 1, BtnStatus)
+        tabla.setCellWidget(fila, 2, BtnEditar)
+        tabla.setCellWidget(fila, 3, BtnBorrar)
+        BtnEditar.setMaximumSize(32, 32)
+        BtnBorrar.setMaximumSize(32, 32)
         BtnStatus.setMaximumSize(32, 32)
-        BtnStatus.setIcon(QtGui.QIcon("assets\\interruptor-off.png"))
+        if status == "1":
+            BtnStatus.setIcon(QtGui.QIcon("assets\\interruptor-on.png"))
+        else:
+            BtnStatus.setIcon(QtGui.QIcon("assets\\interruptor-off.png"))
+        BtnEditar.setIcon(QtGui.QIcon("assets\\btnEditar.png"))
+        BtnBorrar.setIcon(QtGui.QIcon("assets\\btnBorrar.png"))
+        BtnEditar.setIconSize(QtCore.QSize(32, 32))
+        BtnBorrar.setIconSize(QtCore.QSize(32, 32))
         BtnStatus.setIconSize(QtCore.QSize(32, 32))
+        BtnEditar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        BtnBorrar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         BtnStatus.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+
+        
+    # def agregarBtnStatus(self, tabla, fila):
+    #     BtnStatus = QtWidgets.QPushButton()
+    #     tabla.setCellWidget(fila, 1, BtnStatus)
+    #     BtnStatus.setMaximumSize(32, 32)
+    #     BtnStatus.setIcon(QtGui.QIcon("assets\\interruptor-off.png"))
+    #     BtnStatus.setIconSize(QtCore.QSize(32, 32))
+    #     BtnStatus.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         
         
     def addRoom(self):
-        # self.addH.show()
         newHabitacion = HabitacionModelo()
         newHabitacion.setNombreH(self.addH.uiForm.nameRegister.text())
         self.habitacionC.crearHabitacion(newHabitacion)
+        self.addH.uiForm.nameRegister.setText("")
+        self.addH.close()
+        self.showRooms()
+
     
     def mostrar_btnAH(self,tipo):
         if tipo == "Administrador":
@@ -154,23 +188,20 @@ class HabitacionesUi(QMainWindow):
         
         
     def showDevices(self):
-        
-        print(self.habitaciones.tablaHabitaciones.cellWidget(self.habitaciones.tablaHabitaciones.currentRow(), 0).text())
-        listaDispositivos = list()
-        listaDispositivos = self.dispositivosC.mostrarDispositivos(1)
-        # print(listaDispositivos)
-        
+        for hab in globales.Habitaciones:
+            if hab[1] == self.habitaciones.Habitaciones.cellWidget(self.habitaciones.Habitaciones.currentRow(), 0).text():
+                       listaDispositivos = self.dispositivosC.mostrarDispositivos(hab[0])
+        self.habitaciones.Dispositivos.clearContents()
         row = 0
-        column = 0
-        self.habitaciones.Dispositivos.removeRow(row)
         for dis in listaDispositivos:
+            column = 0
+            self.habitaciones.Dispositivos.removeRow(row)
             self.habitaciones.Dispositivos.insertRow(row)
-            cell = QtWidgets.QTableWidgetItem(dis[0])
+            cell = QtWidgets.QTableWidgetItem(dis[1])
             self.habitaciones.Dispositivos.setItem(row, column, cell)
-            self.agregarBtnStatus(self.habitaciones.Dispositivos, row)
+            self.agregarBtnDis(self.habitaciones.Dispositivos, row, dis[2])
             row += 1
-            
-    # self.habitaciones.tablaHabitaciones.cellWidget(self.habitaciones.tablaHabitaciones.currentRow(), 0).text()
+
 
     def mostrarUsuariosHab(self):
         tabla = self.addH.uiForm.tableWidget
@@ -203,6 +234,18 @@ class HabitacionesUi(QMainWindow):
                         else:
                             self.permisosC.actualizarPermisos(user[0], self.habitacionC.idHabitacionEspecifica(habitacion)[0], 0)
                             print(f"permiso actualizado: NO para {user[1]} en habitación {habitacion}.")
+
+    # def salir_login(self):
+    #     self.close()
+    #
+    #     login = LoginVista()
+    #     login.show()
+
+    # def usuarios_regresar(self):
+    #     self.close()
+    #     main.myapp.show()
+
+
 
 
 

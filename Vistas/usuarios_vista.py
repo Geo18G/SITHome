@@ -54,7 +54,7 @@ class UsuariosUi(QMainWindow):
                         
 
         def SITHome_register(self):
-                globales.idHabitaciones = self.habitacionC.obtener_ids()
+                # globales.idHabitaciones = self.habitacionC.obtener_ids()
                 newUsuario = UsuarioModelo()
                 newUsuario.setNombreU(self.loginAdmin.nameRegister.text())
                 newUsuario.setContrasenaU(self.loginAdmin.codeRegister.text())

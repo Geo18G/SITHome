@@ -1,6 +1,10 @@
 
 global Usuario
 
-global idHabitaciones
+global Habitaciones
 
 global Usuarios
+
+
+
+

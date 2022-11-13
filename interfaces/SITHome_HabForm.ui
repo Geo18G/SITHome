@@ -124,11 +124,11 @@ font: 12pt;</string>
              <string>&quot;Sala principal&quot;</string>
             </property>
            </widget>
-           <widget class="QPushButton" name="btn_ok">
+           <widget class="QPushButton" name="btn_crear">
             <property name="geometry">
              <rect>
-              <x>260</x>
-              <y>140</y>
+              <x>150</x>
+              <y>130</y>
               <width>80</width>
               <height>35</height>
              </rect>
@@ -154,14 +154,14 @@ border-radius: 15px;
 font: 10pt;</string>
             </property>
             <property name="text">
-             <string>OK</string>
+             <string>Crear</string>
             </property>
            </widget>
            <widget class="QPushButton" name="btn_cancelar">
             <property name="geometry">
              <rect>
-              <x>170</x>
-              <y>140</y>
+              <x>250</x>
+              <y>130</y>
               <width>80</width>
               <height>35</height>
              </rect>
@@ -204,6 +204,39 @@ font: 10pt;</string>
             </property>
             <property name="text">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#ffffff;&quot;&gt;Nombre:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="btn_guardar">
+            <property name="geometry">
+             <rect>
+              <x>50</x>
+              <y>130</y>
+              <width>80</width>
+              <height>35</height>
+             </rect>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>35</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>80</width>
+              <height>35</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(0, 255, 0);
+border-radius: 15px;
+font: 10pt;</string>
+            </property>
+            <property name="text">
+             <string>Guardar</string>
             </property>
            </widget>
           </widget>

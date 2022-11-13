@@ -22,7 +22,13 @@ class LoginVista(QMainWindow):
         self.home.login.clicked.connect(lambda: self.SITHome_Login())
         globales.Usuario = None
         globales.idHabitaciones = None
+        # self.habitaciones.habitaciones.btn_salir.clicked.connect(lambda: print(1))
         # globales.idUsuarios = None
+
+    def regresarLogin(self):
+        print(1)
+        self.habitaciones.close()
+        self.show()
 
     def SITHome_Login(self):
         usuario = self.home.loginCode_2.text()
@@ -45,4 +51,4 @@ class LoginVista(QMainWindow):
                     pass
         else:
             self.home.loginCode.setStyleSheet("border-radius: 10px; border: 2px solid red; font: 24px;")
-
+            self.home.loginCode_2.setStyleSheet("border-radius: 10px; border: 2px solid red; font: 24px;")

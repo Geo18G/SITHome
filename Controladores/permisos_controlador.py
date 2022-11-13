@@ -5,7 +5,7 @@ class PermisosControlador:
     def __init__(self):
         self.__conexion = Conexion()
 
-    def crearDispositivos(self,permiso):
+    def crearPermisos(self,permiso):
         sql = f"INSERT INTO permisos (usuarios_idusuarios,habitaciones_idhabitaciones,permiso) " \
               f"VALUES ('{permiso.getIdUsuarioP()}','{permiso.getIdHabitacionP()}','{permiso.getPermiso()}')"
         return self.__conexion.insert(sql)
@@ -15,11 +15,11 @@ class PermisosControlador:
               f" WHERE usuarios_idusuarios = '{idU}' AND  habitaciones_idhabitaciones = '{idH}'"
         return self.__conexion.update(sql)
 
-    def eliminarDispositivos(self,idU, idH):
-        sql = f"DELETE FROM dispositivos WHERE usuarios_idusuarios = '{idU}' AND  habitaciones_idhabitaciones = '{idH}'"
+    def eliminarPermisos(self,idU, idH):
+        sql = f"DELETE FROM permisos WHERE usuarios_idusuarios = '{idU}' AND  habitaciones_idhabitaciones = '{idH}'"
         return self.__conexion.delete(sql)
 
-    def mostrarDispositivos(self):
+    def mostrarPermisos(self):
         sql = f"SELECT * FROM permisos"
         return self.__conexion.selectAll(sql)
 
