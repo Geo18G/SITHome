@@ -39,6 +39,7 @@ class Ui_MainWindow(object):
         self.userTable.setGeometry(QtCore.QRect(20, 180, 501, 501))
         self.userTable.setStyleSheet("background-color: none;\n"
 "border-radius: 15px;")
+        self.userTable.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.userTable.setAlternatingRowColors(True)
         self.userTable.setShowGrid(True)
         self.userTable.setGridStyle(QtCore.Qt.NoPen)
@@ -268,3 +269,13 @@ class Ui_MainWindow(object):
         self.btnGuardar.setText(_translate("MainWindow", "Guardar"))
         self.label_6.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; color:#ffffff;\">Administrar Dispositivos</span></p></body></html>"))
         self.dispButton.setText(_translate("MainWindow", "Entrar"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())

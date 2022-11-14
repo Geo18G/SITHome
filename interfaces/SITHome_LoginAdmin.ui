@@ -81,6 +81,9 @@ font : black;</string>
         <string notr="true">background-color: none;
 border-radius: 15px;</string>
        </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
        <property name="alternatingRowColors">
         <bool>true</bool>
        </property>
@@ -131,7 +134,7 @@ color: white;</string>
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Usuarios Registrados&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="addHabitacion">
+      <widget class="QPushButton" name="addUser">
        <property name="enabled">
         <bool>true</bool>
        </property>

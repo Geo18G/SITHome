@@ -229,6 +229,9 @@ font: 10pt;</string>
             <property name="styleSheet">
              <string notr="true">background-color: white;</string>
             </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
             <attribute name="horizontalHeaderVisible">
              <bool>true</bool>
             </attribute>
@@ -379,6 +382,9 @@ font: 10pt;</string>
             <property name="styleSheet">
              <string notr="true">background-color: white;
 </string>
+            </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
             </property>
             <attribute name="horizontalHeaderDefaultSectionSize">
              <number>150</number>

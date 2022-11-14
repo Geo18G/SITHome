@@ -19,6 +19,15 @@ class PermisosControlador:
         sql = f"DELETE FROM permisos WHERE usuarios_idusuarios = '{idU}' AND  habitaciones_idhabitaciones = '{idH}'"
         return self.__conexion.delete(sql)
 
+    def eliminarPermisosPorHab(self, idH):
+        sql = f"DELETE FROM permisos WHERE  habitaciones_idhabitaciones = '{idH}'"
+        return self.__conexion.delete(sql)
+
+    def eliminarPermisosPorUs(self, idU):
+        sql = f"DELETE FROM permisos WHERE  usuarios_idusuarios= '{idU}'"
+        return self.__conexion.delete(sql)
+
+
     def mostrarPermisos(self):
         sql = f"SELECT * FROM permisos"
         return self.__conexion.selectAll(sql)

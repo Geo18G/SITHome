@@ -37,7 +37,6 @@ class UsuariosUi(QMainWindow):
 
         def showUsers(self):
                 self.loginAdmin.userTable.clearContents()
-                self.usuarioC.mostrarUsuario()
                 globales.Usuarios = self.usuarioC.mostrarUsuario()
                 row = 0
                 for user in globales.Usuarios:
@@ -163,11 +162,12 @@ class UsuariosUi(QMainWindow):
                 self.loginAdmin.addUser.hide()
 
         def borrarUsuario(self):
-                usuariosRegistrados = self.usuarioC.mostrarUsuario()
-                for usuar in usuariosRegistrados:
+                # usuariosRegistrados = self.usuarioC.mostrarUsuario()
+                for usuar in globales.Usuarios:
                         if usuar[1] == self.loginAdmin.userTable.item(self.loginAdmin.userTable.currentRow(), 0).text():
                                 reply = QtWidgets.QMessageBox.warning(self, "Atención", f"¿Está seguro que desea eliminar a {usuar[1]}?", QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
                                 if reply == QtWidgets.QMessageBox.Yes:
+                                        self.permisosC.eliminarPermisosPorUs(usuar[0])
                                         self.usuarioC.eliminarUsuario(usuar[0])
                                         self.loginAdmin.userTable.removeRow(self.loginAdmin.userTable.currentRow())
                                         self.showUsers()

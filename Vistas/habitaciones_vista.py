@@ -114,8 +114,8 @@ class HabitacionesUi(QMainWindow):
                                                       f" {hab[1]}?",
                                                       QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
                 if reply == QtWidgets.QMessageBox.Yes:
-                    for usuario in globales.Usuarios:
-                        self.permisosC.eliminarPermisos(usuario[0],hab[0])
+                    # for usuario in globales.Usuarios:
+                    self.permisosC.eliminarPermisosPorHab(hab[0])
                     self.habitacionC.eliminarHabitacion(hab[0])
                     self.habitaciones.Habitaciones.removeRow(self.habitaciones.Habitaciones.currentRow())
                     self.showRooms()
