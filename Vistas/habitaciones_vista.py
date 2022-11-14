@@ -62,6 +62,9 @@ class HabitacionesUi(QMainWindow):
 
     def mostrar_ventana_editar(self):
         self.addH.uiForm.nameRegister.setText(self.habitaciones.Habitaciones.cellWidget(self.habitaciones.Habitaciones.currentRow(), 0).text())
+        for hab in globales.Habitaciones:
+            if hab[1] == self.habitaciones.Habitaciones.cellWidget(self.habitaciones.Habitaciones.currentRow(), 0).text():
+                self.mostrarUsuariosHab(hab[0])
         self.addH.show()
         self.addH.uiForm.btn_guardar.show()
         self.addH.uiForm.btn_crear.hide()
@@ -103,9 +106,23 @@ class HabitacionesUi(QMainWindow):
         for hab in globales.Habitaciones:
             if hab[1] == self.habitaciones.Habitaciones.cellWidget(self.habitaciones.Habitaciones.currentRow(), 0).text():
                 self.habitacionC.actualizarHabitacion(newHabitacion,hab[0])
+                self.actualizarPermisos(hab[0])
         self.addH.uiForm.nameRegister.setText("")
         self.addH.close()
         self.showRooms()
+
+    def actualizarPermisos(self, habitacion):
+        tabla = self.addH.uiForm.tableWidget
+        for user in globales.Usuarios:
+            if user[2] == 'Usuario':
+                for row in range(tabla.rowCount()):
+                    if tabla.item(row, 0).text() == user[1]:
+                        if tabla.cellWidget(row, 1).isChecked():
+                            self.permisosC.actualizarPermisos(user[0],habitacion, 1)
+                            # print(f"permiso actualizado: SI para {user[1]} en habitación {habitacion}.")
+                        else:
+                            self.permisosC.actualizarPermisos(user[0],habitacion, 0)
+                            # print(f"permiso actualizado: NO para {user[1]} en habitación {habitacion}.")
 
     def borrarH(self):
         for hab in globales.Habitaciones:
@@ -136,7 +153,7 @@ class HabitacionesUi(QMainWindow):
         BtnEditar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         BtnBorrar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         BtnEditar.clicked.connect(lambda: self.mostrar_ventana_editar())
-        BtnEditar.clicked.connect(self.mostrarUsuariosHab)
+        # BtnEditar.clicked.connect(self.mostrarUsuariosHab)
         BtnBorrar.clicked.connect(self.borrarH)
 
     def agregarBtnDis(self, tabla, fila, status):
@@ -205,37 +222,32 @@ class HabitacionesUi(QMainWindow):
             row += 1
 
 
-    def mostrarUsuariosHab(self):
+    def mostrarUsuariosHab(self,idH):
         tabla = self.addH.uiForm.tableWidget
         tabla.clearContents()
-        self.usuarioC.mostrarUsuario()
-        globales.Usuarios = self.usuarioC.mostrarUsuario()
+        # self.usuarioC.mostrarUsuario()
         row = 0
         for user in globales.Usuarios:
             tabla.removeRow(row)
             tabla.insertRow(row)
             cell = QtWidgets.QTableWidgetItem(user[1])
             tabla.setItem(row, 0, cell)
-            self.agregarCheckBox(tabla, row, user)
+            self.agregarCheckBox(tabla, row, user, idH)
             row +=1
 
-    def agregarCheckBox(self, tabla, fila, usuario):
+    def agregarCheckBox(self, tabla, fila, usuario, habitacion):
         check = QtWidgets.QCheckBox()
-        if usuario[2] != 'Administrador':
+        permiso = self.permisosC.mostrarPermisos(usuario[0], habitacion)
+        if permiso[0] == 1 and usuario[2] != "Administrador":
+            check.setChecked(True)
             tabla.setCellWidget(fila, 1, check)
+        if permiso[0] == 0 and usuario[2] != "Administrador":
+            check.setChecked(False)
+            tabla.setCellwidget(fila, 1, check)
+        else:
+            pass
 
-    def actualizarPermisos(self, habitacion):
-        tabla = self.addH.uiForm.tableWidget
-        for user in globales.Usuarios:
-            if user[2] == 'Usuario':
-                for row in range(tabla.rowCount()):
-                    if tabla.item(row, 0).text() == user[1]:
-                        if tabla.cellWidget(row, 1).isChecked():
-                            self.permisosC.actualizarPermisos(user[0], self.habitacionC.idHabitacionEspecifica(habitacion)[0], 1)
-                            print(f"permiso actualizado: SI para {user[1]} en habitación {habitacion}.")
-                        else:
-                            self.permisosC.actualizarPermisos(user[0], self.habitacionC.idHabitacionEspecifica(habitacion)[0], 0)
-                            print(f"permiso actualizado: NO para {user[1]} en habitación {habitacion}.")
+
 
     # def salir_login(self):
     #     self.close()

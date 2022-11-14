@@ -2,6 +2,7 @@ from Controladores.usuarios_controlador import UsuarioControlador
 from Controladores.habitaciones_controlador import HabitacionControlador
 from Controladores.permisos_controlador import PermisosControlador
 from Modelos.usuario_modelo import UsuarioModelo
+from Modelos.permisos_modelo import PermisoModelo
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui, QtCore
 from interfaces.SITHome_LoginAdmin import Ui_MainWindow as Admin
@@ -62,11 +63,33 @@ class UsuariosUi(QMainWindow):
                 else:
                         typpe = 2
                 newUsuario.setRolU(typpe)
-                self.loginAdmin.nameRegister.setText("")
-                self.loginAdmin.codeRegister.setText("")
-                self.usuarioC.crearUsuario(newUsuario)
-                self.showUsers()
-                self.habilitarBtn(self.loginAdmin.registerButton)
+                for user in globales.Usuarios:
+                        if user[1] == newUsuario.getNombreU():
+                                self.loginAdmin.nameRegister.setStyleSheet(
+                                        "border-radius: 10px; border: 2px solid red;")
+                                self.loginAdmin.codeRegister.setStyleSheet(
+                                        "border-radius: 10px; border: 2px solid red;")
+                        else:
+                                self.usuarioC.crearUsuario(newUsuario)
+                                self.loginAdmin.nameRegister.setText("")
+                                self.loginAdmin.codeRegister.setText("")
+                                self.showUsers()
+                                self.habilitarBtn(self.loginAdmin.registerButton)
+                                for user in globales.Usuarios:
+                                        if user[1] == newUsuario.getNombreU():
+
+                                                for hab in globales.Habitaciones:
+                                                        if user[2] == "Administrador":
+                                                                self.permisosC.crearPermisos(user[0], hab[0], 1)
+                                                        else:
+                                                                self.permisosC.crearPermisos(user[0], hab[0], 0)
+
+
+
+
+
+
+
                 # try:
                 #         for hab in globales.idHabitaciones:
                 #                 self.permisosC.nuevoUsuarioPermisos(newUsuario.getNombreU(), hab)

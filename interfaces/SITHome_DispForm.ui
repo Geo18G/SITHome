@@ -132,7 +132,7 @@ font: 12pt;</string>
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="btn_ok">
          <property name="geometry">
           <rect>
            <x>320</x>
@@ -165,7 +165,7 @@ font: 10pt;</string>
           <string>OK</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="btn_cancelar">
          <property name="geometry">
           <rect>
            <x>410</x>

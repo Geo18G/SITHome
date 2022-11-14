@@ -35,9 +35,9 @@ class HabitacionControlador:
               f"WHERE p.usuarios_idusuarios = '{idU}' AND p.habitaciones_idhabitaciones = '{idH}' AND p.permiso = 1"
         return self.__conexion.select(sql)
 
-    def idHabitacionEspecifica(self, nombre):
-        sql = f"SELECT idhabitaciones FROM habitaciones WHERE nombre = '{nombre}'"
-        return self.__conexion.select(sql)
+    # def idHabitacionEspecifica(self, nombre):
+    #     sql = f"SELECT idhabitaciones FROM habitaciones WHERE nombre = '{nombre}'"
+    #     return self.__conexion.select(sql)
 
 #
 # prueba = HabitacionControlador()
