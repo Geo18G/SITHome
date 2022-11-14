@@ -92,7 +92,8 @@ class HabitacionesUi(QMainWindow):
             btnHabitacion.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
             self.habitaciones.Habitaciones.setCellWidget(row, column, btnHabitacion)
             btnHabitacion.clicked.connect(lambda: self.showDevices())
-            self.agregarBtn(self.habitaciones.Habitaciones, row)
+            if globales.Usuario[2] == "Administrador":
+                self.agregarBtn(self.habitaciones.Habitaciones, row)
             row += 1
 
 
@@ -188,12 +189,13 @@ class HabitacionesUi(QMainWindow):
         
         
     def showDevices(self):
+        globales.Dispositivos = []
         for hab in globales.Habitaciones:
             if hab[1] == self.habitaciones.Habitaciones.cellWidget(self.habitaciones.Habitaciones.currentRow(), 0).text():
-                       listaDispositivos = self.dispositivosC.mostrarDispositivos(hab[0])
+                globales.Dispositivos = self.dispositivosC.mostrarDispositivos(hab[0])
         self.habitaciones.Dispositivos.clearContents()
         row = 0
-        for dis in listaDispositivos:
+        for dis in globales.Dispositivos:
             column = 0
             self.habitaciones.Dispositivos.removeRow(row)
             self.habitaciones.Dispositivos.insertRow(row)

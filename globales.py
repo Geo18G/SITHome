@@ -5,6 +5,8 @@ global Habitaciones
 
 global Usuarios
 
+global Dispositivos
+
 
 
 
