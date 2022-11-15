@@ -56,6 +56,9 @@ border-radius: 15px;</string>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QLabel" name="label">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
            <property name="text">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; color:#ffffff;&quot;&gt;Agregar Nuevo Dispositivo&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
@@ -79,7 +82,7 @@ border-radius: 15px;</string>
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>30</y>
+           <y>0</y>
            <width>131</width>
            <height>41</height>
           </rect>
@@ -94,8 +97,8 @@ border-radius: 15px;</string>
         <widget class="QLineEdit" name="nameRegister">
          <property name="geometry">
           <rect>
-           <x>140</x>
-           <y>30</y>
+           <x>160</x>
+           <y>10</y>
            <width>341</width>
            <height>41</height>
           </rect>
@@ -119,6 +122,49 @@ font: 12pt;</string>
           <string>&quot;Foco Inteligente&quot;</string>
          </property>
         </widget>
+        <widget class="QComboBox" name="comboBoxH">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>60</y>
+           <width>231</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 15px;
+border : none;
+font: 12pt;</string>
+         </property>
+         <property name="currentText">
+          <string>           --SELECCIONE--</string>
+         </property>
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <item>
+          <property name="text">
+           <string>           --SELECCIONE--</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QLabel" name="label_3">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>50</y>
+           <width>131</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; color:#ffffff;&quot;&gt;Habitación:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
        </widget>
       </item>
       <item>
@@ -132,7 +178,7 @@ font: 12pt;</string>
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QPushButton" name="btn_ok">
+        <widget class="QPushButton" name="btn_guardar">
          <property name="geometry">
           <rect>
            <x>320</x>
@@ -162,7 +208,7 @@ border-radius: 15px;
 font: 10pt;</string>
          </property>
          <property name="text">
-          <string>OK</string>
+          <string>Guardar</string>
          </property>
         </widget>
         <widget class="QPushButton" name="btn_cancelar">
@@ -196,6 +242,39 @@ font: 10pt;</string>
          </property>
          <property name="text">
           <string>Cancelar</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_registrar">
+         <property name="geometry">
+          <rect>
+           <x>230</x>
+           <y>30</y>
+           <width>80</width>
+           <height>35</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(0, 255, 0);
+border-radius: 15px;
+font: 10pt;</string>
+         </property>
+         <property name="text">
+          <string>Registrar</string>
          </property>
         </widget>
        </widget>

@@ -3,24 +3,33 @@ from Controladores.dispositivos_controlador import DispositivoControlador
 from Controladores.usuarios_controlador import UsuarioControlador
 from Controladores.permisos_controlador import PermisosControlador
 from Modelos.habitacion_modelo import HabitacionModelo
+from Modelos.dispositivos_modelo import DispositivoModelo
 from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui, QtCore
 from interfaces.SITHome_Devices import Ui_SITHome_Dispositivos
 from interfaces.SITHome_HabForm import Ui_Dialog
+from interfaces.SITHome_DispForm import Ui_DialogD
 import globales
 
-class Formulario(QDialog):
+class FormularioH(QDialog):
     def __init__(self):
-        super(Formulario, self).__init__()
+        super(FormularioH, self).__init__()
         self.uiForm = Ui_Dialog()
         self.uiForm.setupUi(self)
+
+class FormularioD(QDialog):
+    def __init__(self):
+        super(FormularioD, self).__init__()
+        self.uiFormD = Ui_DialogD()
+        self.uiFormD.setupUi(self)
 
 
 class HabitacionesUi(QMainWindow):
     def __init__(self):
         super(HabitacionesUi, self).__init__()
         self.habitaciones = Ui_SITHome_Dispositivos()
-        self.addH  = Formulario()
+        self.addH = FormularioH()
+        self.addD = FormularioD()
         self.habitaciones.setupUi(self)
         self.habitacionC = HabitacionControlador()
         self.dispositivosC = DispositivoControlador()
@@ -32,13 +41,19 @@ class HabitacionesUi(QMainWindow):
     def inicialize(self):
         self.habitaciones.addHabitacion.clicked.connect(lambda: self.mostrar_ventana_crear())
         self.addH.uiForm.btn_cancelar.clicked.connect(lambda: self.addH.close())
+        self.addD.uiFormD.btn_cancelar.clicked.connect(lambda: self.addD.close())
         self.addH.uiForm.btn_crear.setEnabled(False)
         self.addH.uiForm.btn_guardar.setEnabled(False)
-        self.addH.uiForm.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.addH.uiForm.btn_crear))
-        self.addH.uiForm.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.addH.uiForm.btn_guardar))
+        self.addD.uiFormD.btn_registrar.setEnabled(False)
+        self.addD.uiFormD.btn_guardar.setEnabled(False)
+        self.addH.uiForm.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.addH.uiForm.btn_crear, self.addH.uiForm.nameRegister))
+        self.addH.uiForm.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.addH.uiForm.btn_guardar, self.addH.uiForm.nameRegister))
+        self.addD.uiFormD.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.addD.uiFormD.btn_registrar, self.addD.uiFormD.nameRegister))
+        self.addD.uiFormD.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.addD.uiFormD.btn_guardar, self.addD.uiFormD.nameRegister))
         self.addH.uiForm.btn_guardar.clicked.connect(lambda: self.editarH())
         self.addH.uiForm.btn_crear.clicked.connect(lambda: self.addRoom())
-
+        self.addD.uiFormD.btn_registrar.clicked.connect(lambda: self.addDevice())
+        self.habitaciones.addDispositivo.clicked.connect(lambda: self.mostrar_ventana_crearD())
         # self.habitaciones.btn_salir.clicked.connect(lambda: self.salir_login())
         #self.addH.uiForm.btn_ok.clicked.connect(self.actualizarPermisos)
         # self.habitaciones.btn_usuarios.clicked.connect(lambda: self.usuarios_regresar())
@@ -56,6 +71,8 @@ class HabitacionesUi(QMainWindow):
 
     def mostrar_ventana_crear(self):
         self.addH.uiForm.nameRegister.setText("")
+
+        # self.mostrarUsuariosHab(hab[0])
         self.addH.show()
         self.addH.uiForm.btn_guardar.hide()
         self.addH.uiForm.btn_crear.show()
@@ -69,14 +86,15 @@ class HabitacionesUi(QMainWindow):
         self.addH.uiForm.btn_guardar.show()
         self.addH.uiForm.btn_crear.hide()
 
-    def habilitarBtn(self, btn):
-        if (len(self.addH.uiForm.nameRegister.text()) >= 4 and len(self.addH.uiForm.nameRegister.text()) != 0):
+    def habilitarBtn(self, btn, form):
+        if len(form.text()) >= 4 and len(form.text()) != 0:
             btn.setEnabled(True)
         else:
             btn.setEnabled(False)
 
     def showRooms(self):
         globales.Habitaciones = self.habitacionC.obtener_Habitaciones()
+        self.addD.uiFormD.comboBoxH.clear()
         listaHabitaciones = []
         for hab in globales.Habitaciones:
             retorno = self.habitacionC.mostrarHabitacion(globales.Usuario[0],hab[0])
@@ -89,6 +107,7 @@ class HabitacionesUi(QMainWindow):
         row = 0
         column = 0
         for hab in listaHabitaciones:
+
             self.habitaciones.Habitaciones.removeRow(row)
             self.habitaciones.Habitaciones.insertRow(row)
             btnHabitacion = QtWidgets.QPushButton(text=f"{hab[1]}")
@@ -98,6 +117,7 @@ class HabitacionesUi(QMainWindow):
             if globales.Usuario[2] == "Administrador":
                 self.agregarBtn(self.habitaciones.Habitaciones, row)
             row += 1
+            self.addD.uiFormD.comboBoxH.addItem(hab[1])
 
 
     def editarH(self):
@@ -190,12 +210,32 @@ class HabitacionesUi(QMainWindow):
         
         
     def addRoom(self):
-        newHabitacion = HabitacionModelo()
-        newHabitacion.setNombreH(self.addH.uiForm.nameRegister.text())
-        self.habitacionC.crearHabitacion(newHabitacion)
+        newRoom = HabitacionModelo()
+        newRoom.setNombreH(self.addH.uiForm.nameRegister.text())
+        self.habitacionC.crearHabitacion(newRoom)
         self.addH.uiForm.nameRegister.setText("")
         self.addH.close()
         self.showRooms()
+
+    def addDevice(self):
+        newDevice = DispositivoModelo()
+        newDevice.setNombreD(self.addD.uiFormD.nameRegister.text())
+        newDevice.setStatusD(0)
+        for hab in globales.Habitaciones:
+            if hab[1] == self.addD.uiFormD.comboBoxH.currentText():
+                newDevice.setHabitacionD(hab[0])
+        self.dispositivosC.crearDispositivo(newDevice)
+        self.addD.uiFormD.nameRegister.setText("")
+        self.addD.close()
+        self.showRooms()
+
+
+    def mostrar_ventana_crearD(self):
+        self.addD.uiFormD.comboBoxH.setCurrentIndex(0)
+        self.addD.uiFormD.nameRegister.setText("")
+        self.addD.show()
+        self.addD.uiFormD.btn_guardar.hide()
+        self.addD.uiFormD.btn_registrar.show()
 
     
     def mostrar_btnAH(self,tipo):
@@ -206,7 +246,7 @@ class HabitacionesUi(QMainWindow):
         
         
     def showDevices(self):
-        globales.Dispositivos = []
+        # globales.Dispositivos = []
         for hab in globales.Habitaciones:
             if hab[1] == self.habitaciones.Habitaciones.cellWidget(self.habitaciones.Habitaciones.currentRow(), 0).text():
                 globales.Dispositivos = self.dispositivosC.mostrarDispositivos(hab[0])
@@ -223,6 +263,7 @@ class HabitacionesUi(QMainWindow):
 
 
     def mostrarUsuariosHab(self,idH):
+
         tabla = self.addH.uiForm.tableWidget
         tabla.clearContents()
         # self.usuarioC.mostrarUsuario()
@@ -237,13 +278,15 @@ class HabitacionesUi(QMainWindow):
 
     def agregarCheckBox(self, tabla, fila, usuario, habitacion):
         check = QtWidgets.QCheckBox()
+        # print(tabla,fila,usuario,habitacion)
         permiso = self.permisosC.mostrarPermisos(usuario[0], habitacion)
-        if permiso[0] == 1 and usuario[2] != "Administrador":
-            check.setChecked(True)
+
+        if usuario[2] == "Usuario":
             tabla.setCellWidget(fila, 1, check)
-        if permiso[0] == 0 and usuario[2] != "Administrador":
-            check.setChecked(False)
-            tabla.setCellwidget(fila, 1, check)
+            if permiso[0] == 1:
+                check.setChecked(True)
+            elif permiso[0] == 0:
+                check.setChecked(False)
         else:
             pass
 

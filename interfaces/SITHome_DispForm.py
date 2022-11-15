@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Dialog(object):
+class Ui_DialogD(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(555, 320)
@@ -36,6 +36,7 @@ class Ui_Dialog(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frame_2)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.label = QtWidgets.QLabel(self.frame_2)
+        self.label.setEnabled(True)
         self.label.setObjectName("label")
         self.verticalLayout_2.addWidget(self.label)
         self.verticalLayout_3.addWidget(self.frame_2)
@@ -45,11 +46,11 @@ class Ui_Dialog(object):
         self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_3.setObjectName("frame_3")
         self.label_2 = QtWidgets.QLabel(self.frame_3)
-        self.label_2.setGeometry(QtCore.QRect(10, 30, 131, 41))
+        self.label_2.setGeometry(QtCore.QRect(10, 0, 131, 41))
         self.label_2.setStyleSheet("")
         self.label_2.setObjectName("label_2")
         self.nameRegister = QtWidgets.QLineEdit(self.frame_3)
-        self.nameRegister.setGeometry(QtCore.QRect(140, 30, 341, 41))
+        self.nameRegister.setGeometry(QtCore.QRect(160, 10, 341, 41))
         self.nameRegister.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.nameRegister.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-radius: 15px;\n"
@@ -58,21 +59,33 @@ class Ui_Dialog(object):
         self.nameRegister.setText("")
         self.nameRegister.setAlignment(QtCore.Qt.AlignCenter)
         self.nameRegister.setObjectName("nameRegister")
+        self.comboBoxH = QtWidgets.QComboBox(self.frame_3)
+        self.comboBoxH.setGeometry(QtCore.QRect(160, 60, 231, 22))
+        self.comboBoxH.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-radius: 15px;\n"
+"border : none;\n"
+"font: 12pt;")
+        self.comboBoxH.setObjectName("comboBoxH")
+        self.comboBoxH.addItem("")
+        self.label_3 = QtWidgets.QLabel(self.frame_3)
+        self.label_3.setGeometry(QtCore.QRect(10, 50, 131, 41))
+        self.label_3.setStyleSheet("")
+        self.label_3.setObjectName("label_3")
         self.verticalLayout_3.addWidget(self.frame_3)
         self.frame_4 = QtWidgets.QFrame(self.frame)
         self.frame_4.setStyleSheet("background: none;")
         self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
-        self.btn_ok = QtWidgets.QPushButton(self.frame_4)
-        self.btn_ok.setGeometry(QtCore.QRect(320, 30, 80, 35))
-        self.btn_ok.setMinimumSize(QtCore.QSize(80, 35))
-        self.btn_ok.setMaximumSize(QtCore.QSize(80, 35))
-        self.btn_ok.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.btn_ok.setStyleSheet("background-color: rgb(0, 255, 0);\n"
+        self.btn_guardar = QtWidgets.QPushButton(self.frame_4)
+        self.btn_guardar.setGeometry(QtCore.QRect(320, 30, 80, 35))
+        self.btn_guardar.setMinimumSize(QtCore.QSize(80, 35))
+        self.btn_guardar.setMaximumSize(QtCore.QSize(80, 35))
+        self.btn_guardar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_guardar.setStyleSheet("background-color: rgb(0, 255, 0);\n"
 "border-radius: 15px;\n"
 "font: 10pt;")
-        self.btn_ok.setObjectName("btn_ok")
+        self.btn_guardar.setObjectName("btn_guardar")
         self.btn_cancelar = QtWidgets.QPushButton(self.frame_4)
         self.btn_cancelar.setGeometry(QtCore.QRect(410, 30, 80, 35))
         self.btn_cancelar.setMinimumSize(QtCore.QSize(80, 35))
@@ -82,10 +95,20 @@ class Ui_Dialog(object):
 "border-radius: 15px;\n"
 "font: 10pt;")
         self.btn_cancelar.setObjectName("btn_cancelar")
+        self.btn_registrar = QtWidgets.QPushButton(self.frame_4)
+        self.btn_registrar.setGeometry(QtCore.QRect(230, 30, 80, 35))
+        self.btn_registrar.setMinimumSize(QtCore.QSize(80, 35))
+        self.btn_registrar.setMaximumSize(QtCore.QSize(80, 35))
+        self.btn_registrar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_registrar.setStyleSheet("background-color: rgb(0, 255, 0);\n"
+"border-radius: 15px;\n"
+"font: 10pt;")
+        self.btn_registrar.setObjectName("btn_registrar")
         self.verticalLayout_3.addWidget(self.frame_4)
         self.verticalLayout.addWidget(self.frame)
 
         self.retranslateUi(Dialog)
+        self.comboBoxH.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
@@ -94,15 +117,19 @@ class Ui_Dialog(object):
         self.label.setText(_translate("Dialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:22pt; color:#ffffff;\">Agregar Nuevo Dispositivo</span></p></body></html>"))
         self.label_2.setText(_translate("Dialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; color:#ffffff;\">Nombre:</span></p></body></html>"))
         self.nameRegister.setPlaceholderText(_translate("Dialog", "\"Foco Inteligente\""))
-        self.btn_ok.setText(_translate("Dialog", "OK"))
+        self.comboBoxH.setCurrentText(_translate("Dialog", "           --SELECCIONE--"))
+        self.comboBoxH.setItemText(0, _translate("Dialog", "           --SELECCIONE--"))
+        self.label_3.setText(_translate("Dialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; color:#ffffff;\">Habitación:</span></p></body></html>"))
+        self.btn_guardar.setText(_translate("Dialog", "Guardar"))
         self.btn_cancelar.setText(_translate("Dialog", "Cancelar"))
+        self.btn_registrar.setText(_translate("Dialog", "Registrar"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
+    ui = Ui_DialogD()
     ui.setupUi(Dialog)
     Dialog.show()
     sys.exit(app.exec_())
