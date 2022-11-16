@@ -247,24 +247,39 @@ font: 10pt;</string>
             <attribute name="horizontalHeaderStretchLastSection">
              <bool>true</bool>
             </attribute>
+            <attribute name="verticalHeaderDefaultSectionSize">
+             <number>50</number>
+            </attribute>
             <column>
              <property name="text">
               <string>Nombre</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignLeading|AlignVCenter</set>
              </property>
             </column>
             <column>
              <property name="text">
               <string>Estado</string>
              </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>editar</string>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
              </property>
             </column>
             <column>
              <property name="text">
-              <string>eliminar</string>
+              <string>Editar</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Eliminar</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
              </property>
             </column>
            </widget>
@@ -398,10 +413,16 @@ font: 10pt;</string>
              <property name="text">
               <string>Editar</string>
              </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
+             </property>
             </column>
             <column>
              <property name="text">
               <string>Eliminar</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
              </property>
             </column>
            </widget>

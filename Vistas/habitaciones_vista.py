@@ -71,7 +71,7 @@ class HabitacionesUi(QMainWindow):
 
     def mostrar_ventana_crear(self):
         self.addH.uiForm.nameRegister.setText("")
-
+        self.mostrarUsuariosHab(None, "crear")
         # self.mostrarUsuariosHab(hab[0])
         self.addH.show()
         self.addH.uiForm.btn_guardar.hide()
@@ -81,7 +81,7 @@ class HabitacionesUi(QMainWindow):
         self.addH.uiForm.nameRegister.setText(self.habitaciones.Habitaciones.cellWidget(self.habitaciones.Habitaciones.currentRow(), 0).text())
         for hab in globales.Habitaciones:
             if hab[1] == self.habitaciones.Habitaciones.cellWidget(self.habitaciones.Habitaciones.currentRow(), 0).text():
-                self.mostrarUsuariosHab(hab[0])
+                self.mostrarUsuariosHab(hab[0], "editar")
         self.addH.show()
         self.addH.uiForm.btn_guardar.show()
         self.addH.uiForm.btn_crear.hide()
@@ -262,7 +262,7 @@ class HabitacionesUi(QMainWindow):
             row += 1
 
 
-    def mostrarUsuariosHab(self,idH):
+    def mostrarUsuariosHab(self,idH, caso):
 
         tabla = self.addH.uiForm.tableWidget
         tabla.clearContents()
@@ -273,7 +273,7 @@ class HabitacionesUi(QMainWindow):
             tabla.insertRow(row)
             cell = QtWidgets.QTableWidgetItem(user[1])
             tabla.setItem(row, 0, cell)
-            self.agregarCheckBox(tabla, row, user, idH)
+            self.agregarCheckBox(tabla, row, user, idH, caso)
             row +=1
 
     def agregarCheckBox(self, tabla, fila, usuario, habitacion, caso):
