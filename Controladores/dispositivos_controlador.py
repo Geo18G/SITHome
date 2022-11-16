@@ -32,6 +32,9 @@ class DispositivoControlador:
         sql = f"SELECT estado FROM dispositivos WHERE iddispositivos = '{id}'"
         return self.__conexion.select(sql)
 
+    def cambiarStatus(self, id, estado):
+        sql = f"UPDATE dispositivos SET estado = '{estado}' WHERE iddispositivos = '{id}'"
+        return self.__conexion.update(sql)
 
 # prueba = DispositivoControlador()
 # disp = DispositivoModelo()

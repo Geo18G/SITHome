@@ -107,7 +107,6 @@ class HabitacionesUi(QMainWindow):
         row = 0
         column = 0
         for hab in listaHabitaciones:
-
             self.habitaciones.Habitaciones.removeRow(row)
             self.habitaciones.Habitaciones.insertRow(row)
             btnHabitacion = QtWidgets.QPushButton(text=f"{hab[1]}")
@@ -176,7 +175,7 @@ class HabitacionesUi(QMainWindow):
         # BtnEditar.clicked.connect(self.mostrarUsuariosHab)
         BtnBorrar.clicked.connect(self.borrarH)
 
-    def agregarBtnDis(self, tabla, fila, status):
+    def agregarBtnDis(self, tabla, fila, status, id):
         BtnBorrar = QtWidgets.QPushButton()
         BtnEditar = QtWidgets.QPushButton()
         BtnStatus = QtWidgets.QPushButton()
@@ -198,6 +197,7 @@ class HabitacionesUi(QMainWindow):
         BtnEditar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         BtnBorrar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         BtnStatus.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        BtnStatus.clicked.connect(lambda: self.changeStatus(id, BtnStatus))
 
         
     # def agregarBtnStatus(self, tabla, fila):
@@ -227,8 +227,7 @@ class HabitacionesUi(QMainWindow):
         self.dispositivosC.crearDispositivo(newDevice)
         self.addD.uiFormD.nameRegister.setText("")
         self.addD.close()
-        self.showRooms()
-
+        self.showDevices()
 
     def mostrar_ventana_crearD(self):
         self.addD.uiFormD.comboBoxH.setCurrentIndex(0)
@@ -250,7 +249,8 @@ class HabitacionesUi(QMainWindow):
         for hab in globales.Habitaciones:
             if hab[1] == self.habitaciones.Habitaciones.cellWidget(self.habitaciones.Habitaciones.currentRow(), 0).text():
                 globales.Dispositivos = self.dispositivosC.mostrarDispositivos(hab[0])
-        self.habitaciones.Dispositivos.clearContents()
+        for row in range(self.habitaciones.Dispositivos.rowCount()):
+            self.habitaciones.Dispositivos.removeRow(row)
         row = 0
         for dis in globales.Dispositivos:
             column = 0
@@ -258,7 +258,7 @@ class HabitacionesUi(QMainWindow):
             self.habitaciones.Dispositivos.insertRow(row)
             cell = QtWidgets.QTableWidgetItem(dis[1])
             self.habitaciones.Dispositivos.setItem(row, column, cell)
-            self.agregarBtnDis(self.habitaciones.Dispositivos, row, dis[2])
+            self.agregarBtnDis(self.habitaciones.Dispositivos, row, dis[2], dis[0])
             row += 1
 
 
@@ -290,8 +290,16 @@ class HabitacionesUi(QMainWindow):
         else:
             pass
 
+    def changeStatus(self, idD, btn):
+        estado = (self.dispositivosC.obtenerStatus(idD))
+        if estado[0] == '0':
+            self.dispositivosC.cambiarStatus(idD, '1')
+            btn.setIcon(QtGui.QIcon("assets\\interruptor-on.png"))
+        else:
+            self.dispositivosC.cambiarStatus(idD, '0')
+            btn.setIcon(QtGui.QIcon("assets\\interruptor-off.png"))
 
-
+    
     # def salir_login(self):
     #     self.close()
     #
