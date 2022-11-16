@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 07-11-2022 a las 21:30:46
+-- Tiempo de generación: 16-11-2022 a las 17:42:38
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.20
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `dispositivos` (
   `iddispositivos` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
-  `estado` varchar(1) DEFAULT '0',
+  `estado` int(1) DEFAULT '0',
   `habitaciones_idhabitaciones` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -40,8 +40,14 @@ CREATE TABLE `dispositivos` (
 --
 
 INSERT INTO `dispositivos` (`iddispositivos`, `nombre`, `estado`, `habitaciones_idhabitaciones`) VALUES
-(1, 'foco', '0', 1),
-(2, 'tele', '0', 2);
+(1, 'foco', 0, 1),
+(2, 'tele', 0, 2),
+(3, 'tabla', 0, 1),
+(4, 'radio', 0, 1),
+(5, 'licuadora', 0, 2),
+(6, 'xbox', 0, 1),
+(7, 'estufa', 0, 2),
+(8, 'dddd', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -60,7 +66,8 @@ CREATE TABLE `habitaciones` (
 
 INSERT INTO `habitaciones` (`idhabitaciones`, `nombre`) VALUES
 (1, 'sala'),
-(2, 'cocina');
+(2, 'cocina'),
+(3, 'fggg');
 
 -- --------------------------------------------------------
 
@@ -71,7 +78,7 @@ INSERT INTO `habitaciones` (`idhabitaciones`, `nombre`) VALUES
 CREATE TABLE `permisos` (
   `usuarios_idusuarios` int(11) NOT NULL,
   `habitaciones_idhabitaciones` int(11) NOT NULL,
-  `permiso` int(1) DEFAULT NULL
+  `permiso` int(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -79,9 +86,14 @@ CREATE TABLE `permisos` (
 --
 
 INSERT INTO `permisos` (`usuarios_idusuarios`, `habitaciones_idhabitaciones`, `permiso`) VALUES
-(1, 1, 1),
-(1, 2, 0),
-(4, 1, 1);
+(4, 1, 1),
+(4, 2, 1),
+(36, 1, 1),
+(36, 2, 1),
+(37, 1, 1),
+(37, 2, 1),
+(39, 1, 1),
+(39, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -120,8 +132,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idusuarios`, `nombreUsuario`, `contrasena`, `roles_idroles`) VALUES
-(1, 'Geo', '111', 1),
-(4, 'nacho', '123', 1);
+(4, 'nacho', '123', 1),
+(36, 'pepe', '1234', 2),
+(37, 'a', '1234', 2),
+(39, 'b', '1234', 1);
 
 --
 -- Índices para tablas volcadas
@@ -170,13 +184,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `dispositivos`
 --
 ALTER TABLE `dispositivos`
-  MODIFY `iddispositivos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `iddispositivos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  MODIFY `idhabitaciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idhabitaciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -188,7 +202,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idusuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Restricciones para tablas volcadas

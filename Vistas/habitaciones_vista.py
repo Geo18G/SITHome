@@ -276,27 +276,32 @@ class HabitacionesUi(QMainWindow):
             self.agregarCheckBox(tabla, row, user, idH)
             row +=1
 
-    def agregarCheckBox(self, tabla, fila, usuario, habitacion):
+    def agregarCheckBox(self, tabla, fila, usuario, habitacion, caso):
         check = QtWidgets.QCheckBox()
         # print(tabla,fila,usuario,habitacion)
         permiso = self.permisosC.mostrarPermisos(usuario[0], habitacion)
-
-        if usuario[2] == "Usuario":
-            tabla.setCellWidget(fila, 1, check)
-            if permiso[0] == 1:
-                check.setChecked(True)
-            elif permiso[0] == 0:
-                check.setChecked(False)
+        if caso == "editar":
+            if usuario[2] == "Usuario":
+                tabla.setCellWidget(fila, 1, check)
+                if permiso[0] == 1:
+                    check.setChecked(True)
+                elif permiso[0] == 0:
+                    check.setChecked(False)
+            else:
+                pass
         else:
-            pass
+            if usuario[2] == "Usuario":
+                tabla.setCellWidget(fila, 1, check)
+            else:
+                pass
 
     def changeStatus(self, idD, btn):
         estado = (self.dispositivosC.obtenerStatus(idD))
-        if estado[0] == '0':
-            self.dispositivosC.cambiarStatus(idD, '1')
+        if estado[0] == 0:
+            self.dispositivosC.cambiarStatus(idD, 1)
             btn.setIcon(QtGui.QIcon("assets\\interruptor-on.png"))
         else:
-            self.dispositivosC.cambiarStatus(idD, '0')
+            self.dispositivosC.cambiarStatus(idD, 0)
             btn.setIcon(QtGui.QIcon("assets\\interruptor-off.png"))
 
     
