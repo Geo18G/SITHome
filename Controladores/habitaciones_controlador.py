@@ -8,6 +8,7 @@ class HabitacionControlador:
     def crearHabitacion(self,habitacion):
         sql = f"INSERT INTO habitaciones (idhabitaciones, nombre) " \
               f"VALUES (NULL, '{habitacion.getNombreH()}')"
+        print(2)
         return self.__conexion.insert(sql)
 
 

@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import *
-from Vistas.login_vista import LoginVista
+# from Vistas.login_vista import LoginVista
 import sys
-
+from Vistas.login_vista import LoginVista
 # class DevicesUi(QMainWindow):
 #         def __init__(self):
 #                 super(DevicesUi, self).__init__()
@@ -125,5 +125,5 @@ import sys
 if __name__=="__main__":
         app = QApplication([])
         myapp = LoginVista()
-        myapp.show()
+        myapp.home.show()
         sys.exit(app.exec_())

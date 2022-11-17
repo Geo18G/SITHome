@@ -1,56 +1,69 @@
 from Controladores.usuarios_controlador import UsuarioControlador
-from interfaces.SITHome_Home import Ui_MainWindow
+# from interfaces.SITHome_Home import Ui_MainWindow
 from PyQt5.QtWidgets import *
-from Vistas.habitaciones_vista import HabitacionesUi
-from Vistas.usuarios_vista import UsuariosUi
+from Vistas.habitaciones_vista import HabitacionesVista
+from Vistas.usuarios_vista import UsuariosVista
 from Controladores.habitaciones_controlador import HabitacionControlador
 import globales
+from plantilla import Plantilla
+import sys
 
-class LoginVista(QMainWindow):
-
+class LoginVista(Plantilla):
     def __init__(self):
         super(LoginVista, self).__init__()
-        self.home = Ui_MainWindow()
-        self.home.setupUi(self)
-        self.loginAdmin = UsuariosUi()
-        self.habitaciones = HabitacionesUi()
         self.habitacionC = HabitacionControlador()
         self.usuarioC = UsuarioControlador()
+        # self.habitacion = HabitacionesVista()
+        # self.usuarios = UsuariosVista()
         self.inicialize()
 
     def inicialize(self):
-        self.home.login.clicked.connect(lambda: self.SITHome_Login())
+        self.home.home.login.clicked.connect(lambda: self.SITHome_Login())
         globales.Usuario = None
         globales.idHabitaciones = None
+
         # self.habitaciones.habitaciones.btn_salir.clicked.connect(lambda: print(1))
         # globales.idUsuarios = None
 
-    def regresarLogin(self):
-        print(1)
-        self.habitaciones.close()
-        self.show()
+    # def regresarLogin(self):
+    #     print(1)
+    #     self.habitaciones.close()
+    #     self.show()
 
     def SITHome_Login(self):
-        usuario = self.home.loginCode_2.text()
-        contrasena = self.home.loginCode.text()
+        usuario = self.home.home.loginCode_2.text()
+        contrasena = self.home.home.loginCode.text()
         usuario = self.usuarioC.buscarUsuario(usuario,contrasena)
         if usuario:
             globales.Usuario = usuario
-
-            # globales.idHabitaciones = self.habitacionC.obtener_ids()
             if usuario[2] == "Administrador":
-                # globales.idUsuarios= self.usuarioC.obtener_ids()
-                self.close()
-                self.loginAdmin.show()
+                goToUser = UsuariosVista()
+                print(0)
+                self.home.close()
+                goToUser.usuarios.show()
+                print(1)
                 globales.Habitaciones = self.habitacionC.obtener_Habitaciones()
-                self.loginAdmin.showUsers()
+                print(2)
+                goToUser.showUsers()
+                print(3)
+
             else:
-                self.close()
-                self.habitaciones.show()
+                goToHab = HabitacionesVista()
+                self.home.close()
+                goToHab.habitaciones.show()
                 try:
-                    self.habitaciones.showRooms()
+                    goToHab.showRooms()
                 except:
                     pass
+
+
         else:
-            self.home.loginCode.setStyleSheet("border-radius: 10px; border: 2px solid red; font: 24px;")
-            self.home.loginCode_2.setStyleSheet("border-radius: 10px; border: 2px solid red; font: 24px;")
+            self.home.loginCode.setStyleSheet("border-radius: 10px; border: 2px solid red; font: 24px; background-color: white;")
+            self.home.loginCode_2.setStyleSheet("border-radius: 10px; border: 2px solid red; font: 24px; background-color: white;")
+
+
+if __name__=="__main__":
+        app = QApplication([])
+        myapp = UsuariosVista()
+        myapp.usuarios.show()
+        sys.exit(app.exec_())

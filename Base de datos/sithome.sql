@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 16-11-2022 a las 17:42:38
+-- Tiempo de generación: 16-11-2022 a las 18:52:28
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.20
 
@@ -47,7 +47,8 @@ INSERT INTO `dispositivos` (`iddispositivos`, `nombre`, `estado`, `habitaciones_
 (5, 'licuadora', 0, 2),
 (6, 'xbox', 0, 1),
 (7, 'estufa', 0, 2),
-(8, 'dddd', 0, 1);
+(8, 'dddd', 0, 1),
+(9, 'tele2', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -65,9 +66,8 @@ CREATE TABLE `habitaciones` (
 --
 
 INSERT INTO `habitaciones` (`idhabitaciones`, `nombre`) VALUES
-(1, 'sala'),
 (2, 'cocina'),
-(3, 'fggg');
+(1, 'sala');
 
 -- --------------------------------------------------------
 
@@ -89,11 +89,7 @@ INSERT INTO `permisos` (`usuarios_idusuarios`, `habitaciones_idhabitaciones`, `p
 (4, 1, 1),
 (4, 2, 1),
 (36, 1, 1),
-(36, 2, 1),
-(37, 1, 1),
-(37, 2, 1),
-(39, 1, 1),
-(39, 2, 1);
+(36, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -133,9 +129,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`idusuarios`, `nombreUsuario`, `contrasena`, `roles_idroles`) VALUES
 (4, 'nacho', '123', 1),
-(36, 'pepe', '1234', 2),
-(37, 'a', '1234', 2),
-(39, 'b', '1234', 1);
+(36, 'pepe', '1234', 2);
 
 --
 -- Índices para tablas volcadas
@@ -146,13 +140,15 @@ INSERT INTO `usuarios` (`idusuarios`, `nombreUsuario`, `contrasena`, `roles_idro
 --
 ALTER TABLE `dispositivos`
   ADD PRIMARY KEY (`iddispositivos`),
+  ADD UNIQUE KEY `nombre` (`nombre`),
   ADD KEY `fk_dispositivos_habitaciones1_idx` (`habitaciones_idhabitaciones`);
 
 --
 -- Indices de la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  ADD PRIMARY KEY (`idhabitaciones`);
+  ADD PRIMARY KEY (`idhabitaciones`),
+  ADD UNIQUE KEY `nombre` (`nombre`);
 
 --
 -- Indices de la tabla `permisos`
@@ -184,13 +180,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `dispositivos`
 --
 ALTER TABLE `dispositivos`
-  MODIFY `iddispositivos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `iddispositivos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  MODIFY `idhabitaciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idhabitaciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -202,7 +198,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `idusuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Restricciones para tablas volcadas

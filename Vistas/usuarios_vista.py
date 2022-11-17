@@ -3,86 +3,87 @@ from Controladores.habitaciones_controlador import HabitacionControlador
 from Controladores.permisos_controlador import PermisosControlador
 from Modelos.usuario_modelo import UsuarioModelo
 from Modelos.permisos_modelo import PermisoModelo
-from PyQt5.QtWidgets import *
+# from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui, QtCore
-from interfaces.SITHome_LoginAdmin import Ui_MainWindow as Admin
-from Vistas.habitaciones_vista import HabitacionesUi
+# from interfaces.SITHome_LoginAdmin import Ui_MainWindow as Admin
+from Vistas.habitaciones_vista import HabitacionesVista
 import globales
+from plantilla import Programa
 
-class UsuariosUi(QMainWindow):
+class UsuariosVista(Programa):
         def __init__(self):
-                super(UsuariosUi, self).__init__()
-                self.loginAdmin = Admin()
-                self.loginAdmin.setupUi(self)
-                self.habitaciones = HabitacionesUi()
+                super(UsuariosVista).__init__()
                 self.usuarioC = UsuarioControlador()
                 self.habitacionC = HabitacionControlador()
                 self.permisosC = PermisosControlador()
-                self.inicialize()
+                # self.inicialize()
 
         def inicialize(self):
                 #buttons-------------
-                self.loginAdmin.registerButton.clicked.connect(lambda: self.SITHome_register())
-                self.loginAdmin.viewPass.clicked.connect(lambda: self.viewPass())
-                self.loginAdmin.btnGuardar.clicked.connect(self.editarUsuario)
-                self.loginAdmin.addUser.clicked.connect(self.ventanaUsuarioNormal)
-                self.loginAdmin.dispButton.clicked.connect(self.goToHabitacionesVista)
+                self.usuarios.usuarios.registerButton.clicked.connect(lambda: self.SITHome_register())
+                self.usuarios.usuarios.viewPass.clicked.connect(lambda: self.viewPass())
+                self.usuarios.usuarios.btnGuardar.clicked.connect(self.editarUsuario)
+                self.usuarios.usuarios.addUser.clicked.connect(self.ventanaUsuarioNormal)
+                self.usuarios.usuarios.dispButton.clicked.connect(self.goToHabitacionesVista)
                 #elements & functions----------------
-                self.loginAdmin.registerButton.setEnabled(False)
-                self.loginAdmin.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.loginAdmin.registerButton))
-                self.loginAdmin.codeRegister.textChanged.connect(lambda: self.habilitarBtn(self.loginAdmin.registerButton))
-                self.loginAdmin.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.loginAdmin.btnGuardar))
-                self.loginAdmin.codeRegister.textChanged.connect(lambda: self.habilitarBtn(self.loginAdmin.btnGuardar))
-                self.loginAdmin.addUser.hide()
-                self.loginAdmin.btnGuardar.hide()
+                self.usuarios.usuarios.registerButton.setEnabled(False)
+                self.usuarios.usuarios.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.usuarios.usuarios.registerButton))
+                self.usuarios.usuarios.codeRegister.textChanged.connect(lambda: self.habilitarBtn(self.usuarios.usuarios.registerButton))
+                self.usuarios.usuarios.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.usuarios.usuarios.btnGuardar))
+                self.usuarios.usuarios.codeRegister.textChanged.connect(lambda: self.habilitarBtn(self.usuarios.usuarios.btnGuardar))
+                self.usuarios.usuarios.addUser.hide()
+                self.usuarios.usuarios.btnGuardar.hide()
 
         def showUsers(self):
-                self.loginAdmin.userTable.clearContents()
+                self.usuarios.usuarios.userTable.clearContents()
                 globales.Usuarios = self.usuarioC.mostrarUsuario()
                 row = 0
                 for user in globales.Usuarios:
                         column = 0
-                        self.loginAdmin.userTable.removeRow(row)
-                        self.loginAdmin.userTable.insertRow(row)
+                        self.usuarios.usuarios.userTable.removeRow(row)
+                        self.usuarios.usuarios.userTable.insertRow(row)
                         cell = QtWidgets.QTableWidgetItem(user[1])
-                        self.loginAdmin.userTable.setItem(row, column, cell)
+                        self.usuarios.usuarios.userTable.setItem(row, column, cell)
                         column +=1
                         cell = QtWidgets.QTableWidgetItem(user[2])
-                        self.loginAdmin.userTable.setItem(row, column, cell)
-                        self.agregarBtn(self.loginAdmin.userTable, row, user)
+                        self.usuarios.usuarios.userTable.setItem(row, column, cell)
+                        self.agregarBtn(self.usuarios.usuarios.userTable, row, user)
                         row +=1
                         
 
         def SITHome_register(self):
                 # globales.idHabitaciones = self.habitacionC.obtener_ids()
                 newUsuario = UsuarioModelo()
-                newUsuario.setNombreU(self.loginAdmin.nameRegister.text())
-                newUsuario.setContrasenaU(self.loginAdmin.codeRegister.text())
-                if self.loginAdmin.adminCheck.isChecked():
+                newUsuario.setNombreU(self.usuarios.usuarios.nameRegister.text())
+                newUsuario.setContrasenaU(self.usuarios.usuarios.codeRegister.text())
+                if self.usuarios.usuarios.adminCheck.isChecked():
                         typpe = 1
                 else:
                         typpe = 2
                 newUsuario.setRolU(typpe)
-                for user in globales.Usuarios:
-                        if user[1] == newUsuario.getNombreU():
-                                self.loginAdmin.nameRegister.setStyleSheet(
-                                        "border-radius: 10px; border: 2px solid red;")
-                                self.loginAdmin.codeRegister.setStyleSheet(
-                                        "border-radius: 10px; border: 2px solid red;")
-                        else:
-                                self.usuarioC.crearUsuario(newUsuario)
-                                self.loginAdmin.nameRegister.setText("")
-                                self.loginAdmin.codeRegister.setText("")
-                                self.showUsers()
-                                self.habilitarBtn(self.loginAdmin.registerButton)
-                                for user in globales.Usuarios:
-                                        if user[1] == newUsuario.getNombreU():
-
-                                                for hab in globales.Habitaciones:
-                                                        if user[2] == "Administrador":
-                                                                self.permisosC.crearPermisos(user[0], hab[0], 1)
-                                                        else:
-                                                                self.permisosC.crearPermisos(user[0], hab[0], 0)
+                retorno =  self.usuarioC.crearUsuario(newUsuario)
+                if retorno == False:
+                        self.usuarios.usuarios.nameRegister.setStyleSheet(
+                                "border-radius: 10px; border: 2px solid red; font: 24px")
+                        self.usuarios.usuarios.codeRegister.setStyleSheet(
+                                "border-radius: 10px; border: 2px solid red; font: 24px")
+                else:
+                        self.usuarios.usuarios.nameRegister.setText("")
+                        self.usuarios.usuarios.codeRegister.setText("")
+                        self.showUsers()
+                        self.habilitarBtn(self.usuarios.usuarios.registerButton)
+                        for user in globales.Usuarios:
+                                if user[1] == newUsuario.getNombreU():
+                                        permiso = PermisoModelo()
+                                        permiso.setIdUsuarioP(user[0])
+                                        for hab in globales.Habitaciones:
+                                                permiso.setIdHabitacionP(hab[0])
+                                                if user[2] == "Administrador":
+                                                        permiso.setPermiso(1)
+                                                        self.permisosC.crearPermisos(permiso)
+                                                else:
+                                                        permiso.setPermiso(0)
+                                                        self.permisosC.crearPermisos(permiso)
 
 
 
@@ -98,16 +99,17 @@ class UsuariosUi(QMainWindow):
                 #         print("no se pudo agregar permiso automatico al usuario")
 
         def viewPass(self):
-                self.loginAdmin.codeRegister.setEchoMode(0)
+                self.usuarios.usuarios.codeRegister.setEchoMode(0)
 
         def goToHabitacionesVista(self):
-                self.close()
-                self.habitaciones.show()
-                self.habitaciones.showRooms()
+                goToHa = HabitacionesVista()
+                self.usuarios.close()
+                goToHa.habitaciones.show()
+                goToHa.showRooms()
 
 
         def habilitarBtn(self, btn):
-                if (len(self.loginAdmin.codeRegister.text()) >=4 and len(self.loginAdmin.nameRegister.text()) !=0):
+                if (len(self.usuarios.usuarios.codeRegister.text()) >=4 and len(self.usuarios.usuarios.nameRegister.text()) !=0):
                         btn.setEnabled(True)
                 else:
                         btn.setEnabled(False)
@@ -134,68 +136,69 @@ class UsuariosUi(QMainWindow):
                
         def editarUsuario(self):
                 newUsuario = UsuarioModelo()
-                newUsuario.setNombreU(self.loginAdmin.nameRegister.text())
-                newUsuario.setContrasenaU(self.loginAdmin.codeRegister.text())
-                if self.loginAdmin.adminCheck.isChecked():
+                newUsuario.setNombreU(self.usuarios.usuarios.nameRegister.text())
+                newUsuario.setContrasenaU(self.usuarios.usuarios.codeRegister.text())
+                if self.usuarios.usuarios.adminCheck.isChecked():
                         typpe = 1
                 else:
                         typpe = 2
                 newUsuario.setRolU(typpe)
-                self.loginAdmin.nameRegister.setText("")
-                self.loginAdmin.codeRegister.setText("")
+                self.usuarios.usuarios.nameRegister.setText("")
+                self.usuarios.usuarios.codeRegister.setText("")
                 usuariosRegistrados = self.usuarioC.mostrarUsuario()
                 for usuario in usuariosRegistrados:
-                        if usuario[1] == self.loginAdmin.userTable.item(self.loginAdmin.userTable.currentRow(), 0).text():
+                        if usuario[1] == self.usuarios.usuarios.userTable.item(self.usuarios.usuarios.userTable.currentRow(), 0).text():
                                 self.usuarioC.actualizarUsuario(newUsuario, usuario[0])
-                self.loginAdmin.btnGuardar.hide()
-                self.loginAdmin.registerButton.show()
-                self.habilitarBtn(self.loginAdmin.registerButton)
+                self.usuarios.usuarios.btnGuardar.hide()
+                self.usuarios.usuarios.registerButton.show()
+                self.habilitarBtn(self.usuarios.usuarios.registerButton)
                 self.showUsers()
                 
                 self.ventanaUsuarioNormal()
 
         def ventanaUsuarioEditar(self, usuario):
-                self.loginAdmin.frame_3.setStyleSheet("border-radius: 15px; \
+                self.usuarios.usuarios.frame_3.setStyleSheet("border-radius: 15px; \
                 background-color: qlineargradient(spread:pad, x1:0.517, y1:0, \
                 x2:0.506, y2:1, stop:0 rgba(251, 144, 8, 255), stop:1 rgba(255, 255, 255, 255));")
-                self.loginAdmin.nameRegister.setText(f"{usuario[1]}")
-                self.loginAdmin.label_2.setText("Editar Usuario")
-                self.loginAdmin.label_2.setStyleSheet("color: white;")
+                self.usuarios.usuarios.nameRegister.setText(f"{usuario[1]}")
+                self.usuarios.usuarios.label_2.setText("Editar Usuario")
+                self.usuarios.usuarios.label_2.setStyleSheet("color: white;")
                 if usuario[2] == 'Administrador':
-                        self.loginAdmin.adminCheck.setChecked(True)
+                        self.usuarios.usuarios.adminCheck.setChecked(True)
                 else:
-                        self.loginAdmin.adminCheck.setChecked(False)
-                self.loginAdmin.registerButton.hide()
-                self.loginAdmin.btnGuardar.show()
-                self.loginAdmin.addUser.show()
+                        self.usuarios.usuarios.adminCheck.setChecked(False)
+                self.usuarios.usuarios.registerButton.hide()
+                self.usuarios.usuarios.btnGuardar.show()
+                self.usuarios.usuarios.addUser.show()
 
         def ventanaUsuarioNormal(self):
-                self.loginAdmin.label_2.setText("Agregar Nuevo Usuario")
-                self.loginAdmin.label_2.setStyleSheet("color: white;")
-                self.loginAdmin.frame_3.setStyleSheet("background-color: qlineargradient(spread:pad, \
+                self.usuarios.usuarios.label_2.setText("Agregar Nuevo Usuario")
+                self.usuarios.usuarios.label_2.setStyleSheet("color: white;")
+                self.usuarios.usuarioss.frame_3.setStyleSheet("background-color: qlineargradient(spread:pad, \
                         x1:0.493, y1:0, x2:0.502, y2:1, stop:0 rgba(0, 166, 255, 255), stop:1 \
                         rgba(162, 254, 255, 0));\n""border-radius: 15px;\n""\n""\n""")
-                self.loginAdmin.nameRegister.setText("")
-                self.loginAdmin.nameRegister.setPlaceholderText("Nombre")
-                self.loginAdmin.codeRegister.setText("")
-                self.loginAdmin.codeRegister.setPlaceholderText("(4-6 carácteres)")
-                self.loginAdmin.adminCheck.setChecked(False)
-                self.loginAdmin.registerButton.show()
-                self.loginAdmin.btnGuardar.hide()
-                self.loginAdmin.addUser.hide()
+                self.usuarios.usuarios.nameRegister.setText("")
+                self.usuarios.usuarios.nameRegister.setPlaceholderText("Nombre")
+                self.usuarios.usuarios.codeRegister.setText("")
+                self.usuarios.usuarios.codeRegister.setPlaceholderText("(4-6 carácteres)")
+                self.usuarios.usuarios.adminCheck.setChecked(False)
+                self.usuarios.usuarios.registerButton.show()
+                self.usuarios.usuarios.btnGuardar.hide()
+                self.usuarios.usuarios.addUser.hide()
 
         def borrarUsuario(self):
                 # usuariosRegistrados = self.usuarioC.mostrarUsuario()
                 for usuar in globales.Usuarios:
-                        if usuar[1] == self.loginAdmin.userTable.item(self.loginAdmin.userTable.currentRow(), 0).text():
+                        if usuar[1] == self.usuarios.usuarios.userTable.item(self.usuarios.usuarios.userTable.currentRow(), 0).text():
                                 reply = QtWidgets.QMessageBox.warning(self, "Atención", f"¿Está seguro que desea eliminar a {usuar[1]}?", QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
                                 if reply == QtWidgets.QMessageBox.Yes:
                                         self.permisosC.eliminarPermisosPorUs(usuar[0])
                                         self.usuarioC.eliminarUsuario(usuar[0])
-                                        self.loginAdmin.userTable.removeRow(self.loginAdmin.userTable.currentRow())
-                                        self.showUsers()
+                                        self.usuarios.usuarios.userTable.removeRow(self.usuarios.usuarios.userTable.currentRow())
+
                         else:
                                 pass
+                self.showUsers()
 
 
 

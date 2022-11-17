@@ -5,9 +5,9 @@ class PermisosControlador:
     def __init__(self):
         self.__conexion = Conexion()
 
-    def crearPermisos(self,idU, idH, permiso):
+    def crearPermisos(self, permiso):
         sql = f"INSERT INTO permisos (usuarios_idusuarios,habitaciones_idhabitaciones,permiso) " \
-              f"VALUES ('{idU}','{idH}','{permiso}')"
+              f"VALUES ('{permiso.getIdUsuarioP()}','{permiso.getIdHabitacionP()}','{permiso.getPermiso()}')"
         return self.__conexion.insert(sql)
 
     def actualizarPermisos(self, idU, idH, permiso):
