@@ -3,16 +3,15 @@ from Controladores.habitaciones_controlador import HabitacionControlador
 from Controladores.permisos_controlador import PermisosControlador
 from Modelos.usuario_modelo import UsuarioModelo
 from Modelos.permisos_modelo import PermisoModelo
-# from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui, QtCore
-# from interfaces.SITHome_LoginAdmin import Ui_MainWindow as Admin
-from Vistas.habitaciones_vista import HabitacionesVista
 import globales
 from plantilla import Plantilla
+from PyQt5.QtWidgets import *
+import sys
 
 class UsuariosVista(Plantilla):
         def __init__(self):
-                super(UsuariosVista).__init__()
+                super(UsuariosVista, self).__init__()
                 self.usuarioC = UsuarioControlador()
                 self.habitacionC = HabitacionControlador()
                 self.permisosC = PermisosControlador()
@@ -61,7 +60,7 @@ class UsuariosVista(Plantilla):
                 else:
                         typpe = 2
                 newUsuario.setRolU(typpe)
-                retorno =  self.usuarioC.crearUsuario(newUsuario)
+                retorno = self.usuarioC.crearUsuario(newUsuario)
                 if retorno == False:
                         self.usuarios.usuarios.nameRegister.setStyleSheet(
                                 "border-radius: 10px; border: 2px solid red; font: 24px")
@@ -202,4 +201,8 @@ class UsuariosVista(Plantilla):
 
 
 
-                
+# if __name__=="__main__":
+#         app = QApplication([])
+#         myapp = UsuariosVista()
+#         myapp.usuarios.show()
+#         sys.exit(app.exec_())

@@ -11,14 +11,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1115, 715)
-        MainWindow.setMinimumSize(QtCore.QSize(1115, 715))
-        MainWindow.setMaximumSize(QtCore.QSize(1115, 715))
-        MainWindow.setStyleSheet("background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0.386364 rgba(162, 254, 255, 255), stop:1 rgba(255, 255, 255, 255));")
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+class Ui_SITHome_Usuarios(object):
+    def setupUi(self, SITHome_Usuarios):
+        SITHome_Usuarios.setObjectName("SITHome_Usuarios")
+        SITHome_Usuarios.resize(1115, 715)
+        SITHome_Usuarios.setMinimumSize(QtCore.QSize(1115, 715))
+        SITHome_Usuarios.setMaximumSize(QtCore.QSize(1115, 715))
+        SITHome_Usuarios.setStyleSheet("background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0.386364 rgba(162, 254, 255, 255), stop:1 rgba(255, 255, 255, 255));")
+        self.centralwidget = QtWidgets.QWidget(SITHome_Usuarios)
         self.centralwidget.setMinimumSize(QtCore.QSize(1115, 715))
         self.centralwidget.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.centralwidget.setObjectName("centralwidget")
@@ -243,39 +243,39 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addWidget(self.frame_10)
         self.verticalLayout.addWidget(self.frame_5)
         self.horizontalLayout.addWidget(self.frame_2)
-        MainWindow.setCentralWidget(self.centralwidget)
+        SITHome_Usuarios.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(SITHome_Usuarios)
+        QtCore.QMetaObject.connectSlotsByName(SITHome_Usuarios)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, SITHome_Usuarios):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:24pt; color:#ffffff;\">SITHome Administrador</span></p></body></html>"))
+        SITHome_Usuarios.setWindowTitle(_translate("SITHome_Usuarios", "MainWindow"))
+        self.label.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-size:24pt; color:#ffffff;\">SITHome Administrador</span></p></body></html>"))
         item = self.userTable.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "Nombre"))
+        item.setText(_translate("SITHome_Usuarios", "Nombre"))
         item = self.userTable.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Rol"))
-        self.label_5.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Usuarios Registrados</span></p></body></html>"))
-        self.addUser.setText(_translate("MainWindow", "+"))
-        self.label_2.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; color:#ffffff;\">Agregar nuevo usuario</span></p></body></html>"))
-        self.label_3.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Nombre:</span></p></body></html>"))
-        self.nameRegister.setPlaceholderText(_translate("MainWindow", "Nombre"))
-        self.label_4.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Código:</span></p></body></html>"))
-        self.codeRegister.setPlaceholderText(_translate("MainWindow", "(Máximo 6 carácteres) "))
-        self.viewPass.setText(_translate("MainWindow", "ver"))
-        self.adminCheck.setText(_translate("MainWindow", "Administrador"))
-        self.registerButton.setText(_translate("MainWindow", "Registrar"))
-        self.btnGuardar.setText(_translate("MainWindow", "Guardar"))
-        self.label_6.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; color:#ffffff;\">Administrar Dispositivos</span></p></body></html>"))
-        self.dispButton.setText(_translate("MainWindow", "Entrar"))
+        item.setText(_translate("SITHome_Usuarios", "Rol"))
+        self.label_5.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Usuarios Registrados</span></p></body></html>"))
+        self.addUser.setText(_translate("SITHome_Usuarios", "+"))
+        self.label_2.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; color:#ffffff;\">Agregar nuevo usuario</span></p></body></html>"))
+        self.label_3.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Nombre:</span></p></body></html>"))
+        self.nameRegister.setPlaceholderText(_translate("SITHome_Usuarios", "Nombre"))
+        self.label_4.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Código:</span></p></body></html>"))
+        self.codeRegister.setPlaceholderText(_translate("SITHome_Usuarios", "(Máximo 6 carácteres) "))
+        self.viewPass.setText(_translate("SITHome_Usuarios", "ver"))
+        self.adminCheck.setText(_translate("SITHome_Usuarios", "Administrador"))
+        self.registerButton.setText(_translate("SITHome_Usuarios", "Registrar"))
+        self.btnGuardar.setText(_translate("SITHome_Usuarios", "Guardar"))
+        self.label_6.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; color:#ffffff;\">Administrar Dispositivos</span></p></body></html>"))
+        self.dispButton.setText(_translate("SITHome_Usuarios", "Entrar"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    SITHome_Usuarios = QtWidgets.QMainWindow()
+    ui = Ui_SITHome_Usuarios()
+    ui.setupUi(SITHome_Usuarios)
+    SITHome_Usuarios.show()
     sys.exit(app.exec_())

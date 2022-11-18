@@ -2,9 +2,9 @@ from interfaces.SITHome_HabForm import Ui_Dialog
 from interfaces.SITHome_DispForm import Ui_DialogD
 from interfaces.SITHome_Devices import Ui_SITHome_Dispositivos
 from interfaces.SITHome_Home import Ui_MainWindow
-from interfaces.SITHome_LoginAdmin import Ui_MainWindow as Admin
+from interfaces.SITHome_LoginAdmin import Ui_SITHome_Usuarios
 from PyQt5.QtWidgets import *
-
+import sys
 
 # def singleton(clase):
 #     instancias = dict()
@@ -38,7 +38,7 @@ class LoginUi(QMainWindow):
 class UsuariosUi(QMainWindow):
     def __init__(self):
         super(UsuariosUi, self).__init__()
-        self.usuarios = Admin()
+        self.usuarios = Ui_SITHome_Usuarios()
         self.usuarios.setupUi(self)
 
 class HabitacionesUi(QMainWindow):
@@ -52,5 +52,8 @@ class Plantilla():
         self.home = LoginUi()
         self.usuarios = UsuariosUi()
         self.habitaciones = HabitacionesUi()
-        self.formularioH = FormularioH()
-        self.formularioD = FormularioD()
+        self.addH = FormularioH()
+        self.addD = FormularioD()
+
+
+
