@@ -32,23 +32,23 @@ class Acciones():
 
 
 
-        self.habitacionesVista.habitaciones.addHabitacion.clicked.connect(lambda: self.habitacionesVista.mostrar_ventana_crear())
-        self.addH.uiForm.btn_cancelar.clicked.connect(lambda: self.addH.close())
-        self.addD.uiFormD.btn_cancelar.clicked.connect(lambda: self.addD.close())
-        self.addH.uiForm.btn_crear.setEnabled(False)
-        self.addH.uiForm.btn_guardar.setEnabled(False)
-        self.addD.uiFormD.btn_registrar.setEnabled(False)
-        self.addD.uiFormD.btn_guardar.setEnabled(False)
-        self.addH.uiForm.nameRegister.textChanged.connect(
-            lambda: self.habilitarBtn(self.addH.uiForm.btn_crear, self.addH.uiForm.nameRegister))
-        self.addH.uiForm.nameRegister.textChanged.connect(
-            lambda: self.habilitarBtn(self.addH.uiForm.btn_guardar, self.addH.uiForm.nameRegister))
-        self.addD.uiFormD.nameRegister.textChanged.connect(
-            lambda: self.habilitarBtn(self.addD.uiFormD.btn_registrar, self.addD.uiFormD.nameRegister))
-        self.addD.uiFormD.nameRegister.textChanged.connect(
-            lambda: self.habilitarBtn(self.addD.uiFormD.btn_guardar, self.addD.uiFormD.nameRegister))
-        self.addH.uiForm.btn_guardar.clicked.connect(lambda: self.editarH())
-        self.addH.uiForm.btn_crear.clicked.connect(lambda: self.addRoom())
-        self.addD.uiFormD.btn_registrar.clicked.connect(lambda: self.addDevice())
-        self.addD.uiFormD.btn_guardar.clicked.connect(lambda: self.editarD())
-        self.habitacion.habitaciones.addDispositivo.clicked.connect(lambda: self.mostrar_ventana_crearD())
+        self.habitacionesVista.habitaciones.habitaciones.addHabitacion.clicked.connect(lambda: self.habitacionesVista.mostrar_ventana_crear())
+        self.habitacionesVista.addH.uiForm.btn_cancelar.clicked.connect(lambda: self.habitacionesVista.addH.close())
+        self.habitacionesVista.addD.uiFormD.btn_cancelar.clicked.connect(lambda: self.habitacionesVista.addD.close())
+        self.habitacionesVista.addH.uiForm.btn_crear.setEnabled(False)
+        self.habitacionesVista.addH.uiForm.btn_guardar.setEnabled(False)
+        self.habitacionesVista.addD.uiFormD.btn_registrar.setEnabled(False)
+        self.habitacionesVista.addD.uiFormD.btn_guardar.setEnabled(False)
+        self.habitacionesVista.addH.uiForm.nameRegister.textChanged.connect(
+            lambda: self.habitacionesVista.habilitarBtn(self.habitacionesVista.addH.uiForm.btn_crear, self.habitacionesVista.addH.uiForm.nameRegister))
+        self.habitacionesVista.addH.uiForm.nameRegister.textChanged.connect(
+            lambda: self.habitacionesVista.habilitarBtn(self.habitacionesVista.addH.uiForm.btn_guardar, self.habitacionesVista.addH.uiForm.nameRegister))
+        self.habitacionesVista.addD.uiFormD.nameRegister.textChanged.connect(
+            lambda: self.habitacionesVista.habilitarBtn(self.habitacionesVista.addD.uiFormD.btn_registrar, self.habitacionesVista.addD.uiFormD.nameRegister))
+        self.habitacionesVista.addD.uiFormD.nameRegister.textChanged.connect(
+            lambda: self.habitacionesVista.habilitarBtn(self.habitacionesVista.addD.uiFormD.btn_guardar, self.habitacionesVista.addD.uiFormD.nameRegister))
+        self.habitacionesVista.addH.uiForm.btn_guardar.clicked.connect(lambda: self.habitacionesVista.editarH())
+        self.habitacionesVista.addH.uiForm.btn_crear.clicked.connect(lambda: self.habitacionesVista.addRoom())
+        self.habitacionesVista.addD.uiFormD.btn_registrar.clicked.connect(lambda: self.habitacionesVista.addDevice())
+        self.habitacionesVista.addD.uiFormD.btn_guardar.clicked.connect(lambda: self.habitacionesVista.editarD())
+        self.habitacionesVista.habitaciones.habitaciones.addDispositivo.clicked.connect(lambda: self.habitacionesVista.mostrar_ventana_crearD())
