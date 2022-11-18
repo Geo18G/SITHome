@@ -6,7 +6,16 @@ from interfaces.SITHome_LoginAdmin import Ui_MainWindow as Admin
 from PyQt5.QtWidgets import *
 
 
+# def singleton(clase):
+#     instancias = dict()
+    
+#     def getInstancia(*args, **kwargs):
+#         if clase not in instancias:
+#             instancias[clase] = clase(*args, **kwargs)
+#         return instancias[clase]
+#     return getInstancia
 
+# @singleton
 
 class FormularioH(QDialog):
     def __init__(self):
