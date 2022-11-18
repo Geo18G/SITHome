@@ -11,7 +11,7 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 # from interfaces.SITHome_HabForm import Ui_Dialog
 # from interfaces.SITHome_DispForm import Ui_DialogD
 import globales
-from plantilla import Programa
+from plantilla import Plantilla
 
 # class FormularioH(QDialog):
 #     def __init__(self):
@@ -27,7 +27,7 @@ from plantilla import Programa
 
 #
 # class HabitacionesUi(QMainWindow):
-class HabitacionesVista(Programa):
+class HabitacionesVista(Plantilla):
     def __init__(self):
         super(HabitacionesVista, self).__init__()
         # self.addH = plantilla.FormularioH()

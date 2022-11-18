@@ -5,6 +5,7 @@ class Rutas(Acciones):
     def __init__(self):
         super(Rutas, self).__init__()
         
+        
     def asignarRutas(self):
         self.loginVista.home.home.login.clicked.connect(lambda: self.ingresar())
     
@@ -15,3 +16,4 @@ class Rutas(Acciones):
             pass
         else:
             pass
+        

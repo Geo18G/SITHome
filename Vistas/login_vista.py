@@ -1,8 +1,8 @@
 from Controladores.usuarios_controlador import UsuarioControlador
 # from interfaces.SITHome_Home import Ui_MainWindow
 from PyQt5.QtWidgets import *
-from Vistas.habitaciones_vista import HabitacionesVista
-from Vistas.usuarios_vista import UsuariosVista
+# from Vistas.habitaciones_vista import HabitacionesVista
+# from Vistas.usuarios_vista import UsuariosVista
 from Controladores.habitaciones_controlador import HabitacionControlador
 import globales
 from plantilla import Plantilla

@@ -8,9 +8,9 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 # from interfaces.SITHome_LoginAdmin import Ui_MainWindow as Admin
 from Vistas.habitaciones_vista import HabitacionesVista
 import globales
-from plantilla import Programa
+from plantilla import Plantilla
 
-class UsuariosVista(Programa):
+class UsuariosVista(Plantilla):
         def __init__(self):
                 super(UsuariosVista).__init__()
                 self.usuarioC = UsuarioControlador()
@@ -18,21 +18,21 @@ class UsuariosVista(Programa):
                 self.permisosC = PermisosControlador()
                 # self.inicialize()
 
-        def inicialize(self):
-                #buttons-------------
-                self.usuarios.usuarios.registerButton.clicked.connect(lambda: self.SITHome_register())
-                self.usuarios.usuarios.viewPass.clicked.connect(lambda: self.viewPass())
-                self.usuarios.usuarios.btnGuardar.clicked.connect(self.editarUsuario)
-                self.usuarios.usuarios.addUser.clicked.connect(self.ventanaUsuarioNormal)
-                self.usuarios.usuarios.dispButton.clicked.connect(self.goToHabitacionesVista)
-                #elements & functions----------------
-                self.usuarios.usuarios.registerButton.setEnabled(False)
-                self.usuarios.usuarios.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.usuarios.usuarios.registerButton))
-                self.usuarios.usuarios.codeRegister.textChanged.connect(lambda: self.habilitarBtn(self.usuarios.usuarios.registerButton))
-                self.usuarios.usuarios.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.usuarios.usuarios.btnGuardar))
-                self.usuarios.usuarios.codeRegister.textChanged.connect(lambda: self.habilitarBtn(self.usuarios.usuarios.btnGuardar))
-                self.usuarios.usuarios.addUser.hide()
-                self.usuarios.usuarios.btnGuardar.hide()
+        # def inicialize(self):
+        #         #buttons-------------
+        #         self.usuarios.usuarios.registerButton.clicked.connect(lambda: self.SITHome_register())
+        #         self.usuarios.usuarios.viewPass.clicked.connect(lambda: self.viewPass())
+        #         self.usuarios.usuarios.btnGuardar.clicked.connect(self.editarUsuario)
+        #         self.usuarios.usuarios.addUser.clicked.connect(self.ventanaUsuarioNormal)
+        #         self.usuarios.usuarios.dispButton.clicked.connect(self.goToHabitacionesVista)
+        #         #elements & functions----------------
+        #         self.usuarios.usuarios.registerButton.setEnabled(False)
+        #         self.usuarios.usuarios.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.usuarios.usuarios.registerButton))
+        #         self.usuarios.usuarios.codeRegister.textChanged.connect(lambda: self.habilitarBtn(self.usuarios.usuarios.registerButton))
+        #         self.usuarios.usuarios.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.usuarios.usuarios.btnGuardar))
+        #         self.usuarios.usuarios.codeRegister.textChanged.connect(lambda: self.habilitarBtn(self.usuarios.usuarios.btnGuardar))
+        #         self.usuarios.usuarios.addUser.hide()
+        #         self.usuarios.usuarios.btnGuardar.hide()
 
         def showUsers(self):
                 self.usuarios.usuarios.userTable.clearContents()
@@ -101,11 +101,11 @@ class UsuariosVista(Programa):
         def viewPass(self):
                 self.usuarios.usuarios.codeRegister.setEchoMode(0)
 
-        def goToHabitacionesVista(self):
-                goToHa = HabitacionesVista()
-                self.usuarios.close()
-                goToHa.habitaciones.show()
-                goToHa.showRooms()
+        # def goToHabitacionesVista(self):
+        #         goToHa = HabitacionesVista()
+        #         self.usuarios.close()
+        #         goToHa.habitaciones.show()
+        #         goToHa.showRooms()
 
 
         def habilitarBtn(self, btn):
@@ -174,7 +174,7 @@ class UsuariosVista(Programa):
         def ventanaUsuarioNormal(self):
                 self.usuarios.usuarios.label_2.setText("Agregar Nuevo Usuario")
                 self.usuarios.usuarios.label_2.setStyleSheet("color: white;")
-                self.usuarios.usuarioss.frame_3.setStyleSheet("background-color: qlineargradient(spread:pad, \
+                self.usuarios.usuarios.frame_3.setStyleSheet("background-color: qlineargradient(spread:pad, \
                         x1:0.493, y1:0, x2:0.502, y2:1, stop:0 rgba(0, 166, 255, 255), stop:1 \
                         rgba(162, 254, 255, 0));\n""border-radius: 15px;\n""\n""\n""")
                 self.usuarios.usuarios.nameRegister.setText("")
