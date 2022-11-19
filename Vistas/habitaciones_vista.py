@@ -121,8 +121,12 @@ class HabitacionesVista(Plantilla):
         self.showRooms()
 
     def borrarD(self):
+        print(self.habitaciones.habitaciones.Dispositivos.item(self.habitaciones.habitaciones.Dispositivos.currentRow(),
+                                                               0).text())
         for dis in globales.Dispositivos:
+            print(dis[1])
             if dis[1] == self.habitaciones.habitaciones.Dispositivos.item(self.habitaciones.habitaciones.Dispositivos.currentRow(), 0).text():
+                print(1)
                 reply = QtWidgets.QMessageBox.warning(self.habitaciones, "Atención",
                                                       f"¿Está seguro que desea eliminar el dispositivo con el nombre"
                                                       f" {dis[1]}?",
@@ -212,7 +216,7 @@ class HabitacionesVista(Plantilla):
         self.dispositivosC.crearDispositivo(newDevice)
         self.addD.uiFormD.nameRegister.setText("")
         self.addD.close()
-        self.showRooms()
+        self.showDevices()
 
     def mostrar_ventana_crearD(self):
         self.addD.uiFormD.comboBoxH.setCurrentIndex(0)
@@ -235,10 +239,10 @@ class HabitacionesVista(Plantilla):
         
         
     def showDevices(self):
-        habitacion = self.habitaciones.habitaciones.Habitaciones.cellWidget(self.habitaciones.habitaciones.Habitaciones.currentRow(), 0).text()
+        globales.Habitacion = self.habitaciones.habitaciones.Habitaciones.cellWidget(self.habitaciones.habitaciones.Habitaciones.currentRow(), 0).text()
         self.habitaciones.habitaciones.Dispositivos.clearContents()
         for hab in globales.Habitaciones:
-            if hab[1] == habitacion:
+            if hab[1] == globales.Habitacion:
                 globales.Dispositivos = self.dispositivosC.mostrarDispositivos(hab[0])
         row = 0
         for dis in globales.Dispositivos:

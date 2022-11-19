@@ -7,6 +7,7 @@ global Usuarios
 
 global Dispositivos
 
+global Habitacion
 
 
 
