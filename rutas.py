@@ -1,5 +1,6 @@
+import globales
 from acciones import Acciones
-import time
+
 
 class Rutas(Acciones):
     def __init__(self):
@@ -17,8 +18,14 @@ class Rutas(Acciones):
         ingreso = self.loginVista.SITHome_Login()
         if ingreso == True:
             self.ir_usuarios(self.loginVista.home)
-        else:
+        elif ingreso == False:
             self.ir_habitaciones(self.loginVista.home)
+
+        else:
+            self.loginVista.home.home.loginCode.setStyleSheet(
+                "border-radius: 10px; border: 2px solid red; font: 24px; background-color: white;")
+            self.loginVista.home.home.loginCode_2.setStyleSheet(
+                "border-radius: 10px; border: 2px solid red; font: 24px; background-color: white;")
         
     def ir_usuarios(self,de):
         de.close()
@@ -27,6 +34,10 @@ class Rutas(Acciones):
     
     def ir_login(self,de):
         de.close()
+        globales.Usuario = None
+        globales.Usuarios = []
+        globales.Habitaciones = []
+        globales.Dispositivos = []
         self.loginVista.home.show()
 
     def ir_habitaciones(self, de):

@@ -5,81 +5,23 @@ from Controladores.permisos_controlador import PermisosControlador
 from Modelos.habitacion_modelo import HabitacionModelo
 from Modelos.dispositivos_modelo import DispositivoModelo
 from Modelos.permisos_modelo import PermisoModelo
-# from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui, QtCore
-# from interfaces.SITHome_Devices import Ui_SITHome_Dispositivos
-# from interfaces.SITHome_HabForm import Ui_Dialog
-# from interfaces.SITHome_DispForm import Ui_DialogD
 import globales
 from plantilla import Plantilla
 
-# class FormularioH(QDialog):
-#     def __init__(self):
-#         super(FormularioH, self).__init__()
-#         self.uiForm = Ui_Dialog()
-#         self.uiForm.setupUi(self)
-#
-# class FormularioD(QDialog):
-#     def __init__(self):
-#         super(FormularioD, self).__init__()
-#         self.uiFormD = Ui_DialogD()
-#         self.uiFormD.setupUi(self)
 
-#
-# class HabitacionesUi(QMainWindow):
+
 class HabitacionesVista(Plantilla):
     def __init__(self):
         super(HabitacionesVista, self).__init__()
-        # self.addH = plantilla.FormularioH()
-        # self.addD = plantilla.FormularioD()
-        # self.habitacion = plantilla.HabitacionesUi()
-        # self.habitacion.habitaciones.setupUi(self)
-
-
-
         self.habitacionC = HabitacionControlador()
         self.dispositivosC = DispositivoControlador()
         self.usuarioC = UsuarioControlador()
         self.permisosC = PermisosControlador()
-        # self.inicialize()
-        
-
-    # def inicialize(self):
-    #     self.habitacion.habitaciones.addHabitacion.clicked.connect(lambda: self.mostrar_ventana_crear())
-    #     self.addH.uiForm.btn_cancelar.clicked.connect(lambda: self.addH.close())
-    #     self.addD.uiFormD.btn_cancelar.clicked.connect(lambda: self.addD.close())
-    #     self.addH.uiForm.btn_crear.setEnabled(False)
-    #     self.addH.uiForm.btn_guardar.setEnabled(False)
-    #     self.addD.uiFormD.btn_registrar.setEnabled(False)
-    #     self.addD.uiFormD.btn_guardar.setEnabled(False)
-    #     self.addH.uiForm.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.addH.uiForm.btn_crear, self.addH.uiForm.nameRegister))
-    #     self.addH.uiForm.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.addH.uiForm.btn_guardar, self.addH.uiForm.nameRegister))
-    #     self.addD.uiFormD.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.addD.uiFormD.btn_registrar, self.addD.uiFormD.nameRegister))
-    #     self.addD.uiFormD.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.addD.uiFormD.btn_guardar, self.addD.uiFormD.nameRegister))
-    #     self.addH.uiForm.btn_guardar.clicked.connect(lambda: self.editarH())
-    #     self.addH.uiForm.btn_crear.clicked.connect(lambda: self.addRoom())
-    #     self.addD.uiFormD.btn_registrar.clicked.connect(lambda: self.addDevice())
-    #     self.addD.uiFormD.btn_guardar.clicked.connect(lambda: self.editarD())
-    #     self.habitacion.habitaciones.addDispositivo.clicked.connect(lambda: self.mostrar_ventana_crearD())
-        # self.habitaciones.btn_salir.clicked.connect(lambda: self.salir_login())
-        #self.addH.uiForm.btn_ok.clicked.connect(self.actualizarPermisos)
-        # self.habitaciones.btn_usuarios.clicked.connect(lambda: self.usuarios_regresar())
-    
-        # self.showRooms()
-        # self.habitaciones.registerButton.setEnabled(False)
-        # self.habitaciones.registerButton.clicked.connect(lambda: self.SITHome_register())
-        # self.habitaciones.viewPass.clicked.connect(lambda: self.viewPass())
-        # self.habitaciones.dispButton.clicked.connect(lambda: UsuariosUi().allDevs())
-        # self.habitaciones.nameRegister.textChanged.connect(self.habilitarBtn)
-        # self.habitaciones.codeRegister.textChanged.connect(self.habilitarBtn)
-        #
-        # self.dispositivos.listaDispositivos.back.clicked.connect(lambda: self.dispositivos.hide())
-        # self.dispositivos.listaDispositivos.back.clicked.connect(lambda: UsuariosUi().show())
 
     def mostrar_ventana_crear(self):
         self.addH.uiForm.nameRegister.setText("")
         self.mostrarUsuariosHab(None, "crear")
-        # self.mostrarUsuariosHab(hab[0])
         self.addH.show()
         self.addH.uiForm.btn_guardar.hide()
         self.addH.uiForm.btn_crear.show()
@@ -167,12 +109,11 @@ class HabitacionesVista(Plantilla):
     def borrarH(self):
         for hab in globales.Habitaciones:
             if hab[1] == self.habitaciones.habitaciones.Habitaciones.cellWidget(self.habitaciones.habitaciones.Habitaciones.currentRow(), 0).text():
-                reply = QtWidgets.QMessageBox.warning(self, "Atención",
+                reply = QtWidgets.QMessageBox.warning(self.habitaciones, "Atención",
                                                       f"¿Está seguro que desea eliminar la habitación con el nombre"
                                                       f" {hab[1]}?",
                                                       QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
                 if reply == QtWidgets.QMessageBox.Yes:
-                    # for usuario in globales.Usuarios:
                     self.permisosC.eliminarPermisosPorHab(hab[0])
                     self.dispositivosC.eliminarDispositivosPorHab(hab[0])
                     self.habitacionC.eliminarHabitacion(hab[0])
@@ -182,12 +123,11 @@ class HabitacionesVista(Plantilla):
     def borrarD(self):
         for dis in globales.Dispositivos:
             if dis[1] == self.habitaciones.habitaciones.Dispositivos.item(self.habitaciones.habitaciones.Dispositivos.currentRow(), 0).text():
-                reply = QtWidgets.QMessageBox.warning(self, "Atención",
+                reply = QtWidgets.QMessageBox.warning(self.habitaciones, "Atención",
                                                       f"¿Está seguro que desea eliminar el dispositivo con el nombre"
                                                       f" {dis[1]}?",
                                                       QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
                 if reply == QtWidgets.QMessageBox.Yes:
-                    # for usuario in globales.Usuarios:
                     self.dispositivosC.eliminarDispositivo(dis[0])
                     self.habitaciones.habitaciones.Dispositivos.removeRow(self.habitaciones.habitaciones.Dispositivos.currentRow())
             self.showDevices()
@@ -206,7 +146,6 @@ class HabitacionesVista(Plantilla):
         BtnEditar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         BtnBorrar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         BtnEditar.clicked.connect(lambda: self.mostrar_ventana_editar())
-        # BtnEditar.clicked.connect(self.mostrarUsuariosHab)
         BtnBorrar.clicked.connect(self.borrarH)
 
     def agregarBtnDis(self, tabla, fila, status, id):
@@ -273,7 +212,6 @@ class HabitacionesVista(Plantilla):
         self.dispositivosC.crearDispositivo(newDevice)
         self.addD.uiFormD.nameRegister.setText("")
         self.addD.close()
-        # self.showDevices()
         self.showRooms()
 
     def mostrar_ventana_crearD(self):
@@ -297,14 +235,11 @@ class HabitacionesVista(Plantilla):
         
         
     def showDevices(self):
-        # globales.Dispositivos = []
         habitacion = self.habitaciones.habitaciones.Habitaciones.cellWidget(self.habitaciones.habitaciones.Habitaciones.currentRow(), 0).text()
         self.habitaciones.habitaciones.Dispositivos.clearContents()
         for hab in globales.Habitaciones:
             if hab[1] == habitacion:
                 globales.Dispositivos = self.dispositivosC.mostrarDispositivos(hab[0])
-        # for row in range(self.habitaciones.Dispositivos.rowCount()):
-        #     self.habitaciones.Dispositivos.removeRow(row)
         row = 0
         for dis in globales.Dispositivos:
             column = 0
@@ -319,7 +254,6 @@ class HabitacionesVista(Plantilla):
     def mostrarUsuariosHab(self,idH, caso):
         tabla = self.addH.uiForm.tableWidget
         tabla.clearContents()
-        # self.usuarioC.mostrarUsuario()
         row = 0
         for user in globales.Usuarios:
             tabla.removeRow(row)
@@ -331,7 +265,6 @@ class HabitacionesVista(Plantilla):
 
     def agregarCheckBox(self, tabla, fila, usuario, habitacion, caso):
         check = QtWidgets.QCheckBox()
-        # print(tabla,fila,usuario,habitacion)
         permiso = self.permisosC.mostrarPermisos(usuario[0], habitacion)
         if caso == "editar":
             if usuario[2] == "Usuario":

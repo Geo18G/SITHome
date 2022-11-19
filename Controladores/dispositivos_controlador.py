@@ -36,16 +36,4 @@ class DispositivoControlador:
         sql = f"UPDATE dispositivos SET estado = '{estado}' WHERE iddispositivos = '{id}'"
         return self.__conexion.update(sql)
 
-# prueba = DispositivoControlador()
-# disp = DispositivoModelo()
-# # disp.setNombreD("foco")
-# # disp.setStatusD(False)
-# # disp.setHabitacionD(1)
-# #
-# # # prueba.crearDispositivo(disp)
-# # # print(prueba.mostrarDispositivo())
-# # # dispositivo.setNombreH("cocina")
-# # # prueba.actualizarDispositivo(disp,2)
-# # print(prueba.mostrarDispositivo())
-# # prueba.eliminarDispositivo(2)
-# print(prueba.mostrarDispositivo(1))
+

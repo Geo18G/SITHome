@@ -6,8 +6,6 @@ from Modelos.permisos_modelo import PermisoModelo
 from PyQt5 import QtWidgets, QtGui, QtCore
 import globales
 from plantilla import Plantilla
-from PyQt5.QtWidgets import *
-import sys
 
 class UsuariosVista(Plantilla):
         def __init__(self):
@@ -15,23 +13,6 @@ class UsuariosVista(Plantilla):
                 self.usuarioC = UsuarioControlador()
                 self.habitacionC = HabitacionControlador()
                 self.permisosC = PermisosControlador()
-                # self.inicialize()
-
-        # def inicialize(self):
-        #         #buttons-------------
-        #         self.usuarios.usuarios.registerButton.clicked.connect(lambda: self.SITHome_register())
-        #         self.usuarios.usuarios.viewPass.clicked.connect(lambda: self.viewPass())
-        #         self.usuarios.usuarios.btnGuardar.clicked.connect(self.editarUsuario)
-        #         self.usuarios.usuarios.addUser.clicked.connect(self.ventanaUsuarioNormal)
-        #         self.usuarios.usuarios.dispButton.clicked.connect(self.goToHabitacionesVista)
-        #         #elements & functions----------------
-        #         self.usuarios.usuarios.registerButton.setEnabled(False)
-        #         self.usuarios.usuarios.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.usuarios.usuarios.registerButton))
-        #         self.usuarios.usuarios.codeRegister.textChanged.connect(lambda: self.habilitarBtn(self.usuarios.usuarios.registerButton))
-        #         self.usuarios.usuarios.nameRegister.textChanged.connect(lambda: self.habilitarBtn(self.usuarios.usuarios.btnGuardar))
-        #         self.usuarios.usuarios.codeRegister.textChanged.connect(lambda: self.habilitarBtn(self.usuarios.usuarios.btnGuardar))
-        #         self.usuarios.usuarios.addUser.hide()
-        #         self.usuarios.usuarios.btnGuardar.hide()
 
         def showUsers(self):
                 self.usuarios.usuarios.userTable.clearContents()
@@ -51,7 +32,6 @@ class UsuariosVista(Plantilla):
                         
 
         def SITHome_register(self):
-                # globales.idHabitaciones = self.habitacionC.obtener_ids()
                 newUsuario = UsuarioModelo()
                 newUsuario.setNombreU(self.usuarios.usuarios.nameRegister.text())
                 newUsuario.setContrasenaU(self.usuarios.usuarios.codeRegister.text())
@@ -85,26 +65,9 @@ class UsuariosVista(Plantilla):
                                                         self.permisosC.crearPermisos(permiso)
 
 
-
-
-
-
-
-                # try:
-                #         for hab in globales.idHabitaciones:
-                #                 self.permisosC.nuevoUsuarioPermisos(newUsuario.getNombreU(), hab)
-                #         print("permiso automatico agregado")
-                # except:
-                #         print("no se pudo agregar permiso automatico al usuario")
-
+#checar que regrese a ocultar
         def viewPass(self):
                 self.usuarios.usuarios.codeRegister.setEchoMode(0)
-
-        # def goToHabitacionesVista(self):
-        #         goToHa = HabitacionesVista()
-        #         self.usuarios.close()
-        #         goToHa.habitaciones.show()
-        #         goToHa.showRooms()
 
 
         def habilitarBtn(self, btn):
@@ -129,9 +92,6 @@ class UsuariosVista(Plantilla):
                 BtnBorrar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
                 BtnEditar.clicked.connect(lambda: self.ventanaUsuarioEditar(usuario))
                 BtnBorrar.clicked.connect(lambda: self.borrarUsuario())
-
-        def ocultar_btn_borrar(self):
-                pass
                
         def editarUsuario(self):
                 newUsuario = UsuarioModelo()
@@ -152,7 +112,6 @@ class UsuariosVista(Plantilla):
                 self.usuarios.usuarios.registerButton.show()
                 self.habilitarBtn(self.usuarios.usuarios.registerButton)
                 self.showUsers()
-                
                 self.ventanaUsuarioNormal()
 
         def ventanaUsuarioEditar(self, usuario):
@@ -186,23 +145,16 @@ class UsuariosVista(Plantilla):
                 self.usuarios.usuarios.addUser.hide()
 
         def borrarUsuario(self):
-                # usuariosRegistrados = self.usuarioC.mostrarUsuario()
                 for usuar in globales.Usuarios:
                         if usuar[1] == self.usuarios.usuarios.userTable.item(self.usuarios.usuarios.userTable.currentRow(), 0).text():
-                                reply = QtWidgets.QMessageBox.warning(self, "Atención", f"¿Está seguro que desea eliminar a {usuar[1]}?", QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+                                reply = QtWidgets.QMessageBox.warning(self.usuarios, "Atención", f"¿Está seguro que desea eliminar a {usuar[1]}?", QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
                                 if reply == QtWidgets.QMessageBox.Yes:
                                         self.permisosC.eliminarPermisosPorUs(usuar[0])
                                         self.usuarioC.eliminarUsuario(usuar[0])
                                         self.usuarios.usuarios.userTable.removeRow(self.usuarios.usuarios.userTable.currentRow())
-
                         else:
                                 pass
                 self.showUsers()
 
 
 
-# if __name__=="__main__":
-#         app = QApplication([])
-#         myapp = UsuariosVista()
-#         myapp.usuarios.show()
-#         sys.exit(app.exec_())
