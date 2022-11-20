@@ -53,7 +53,7 @@ class Ui_MainWindow(object):
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
         self.login = QtWidgets.QPushButton(self.frame_4)
-        self.login.setGeometry(QtCore.QRect(490, 240, 111, 41))
+        self.login.setGeometry(QtCore.QRect(490, 250, 111, 41))
         self.login.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.login.setStyleSheet("border-radius: 10px;\n"
 "background-color: rgb(0, 255, 0);\n"
@@ -90,6 +90,18 @@ class Ui_MainWindow(object):
 "background-color: none;\n"
 "color: white;")
         self.label_3.setObjectName("label_3")
+        self.nombre_Inc = QtWidgets.QLabel(self.frame_4)
+        self.nombre_Inc.setGeometry(QtCore.QRect(450, 100, 201, 41))
+        self.nombre_Inc.setStyleSheet("font: 24pt \"MS shell Dlg 2\";\n"
+"background-color: none;\n"
+"color: white;")
+        self.nombre_Inc.setObjectName("nombre_Inc")
+        self.contrasena_Inc = QtWidgets.QLabel(self.frame_4)
+        self.contrasena_Inc.setGeometry(QtCore.QRect(470, 210, 151, 41))
+        self.contrasena_Inc.setStyleSheet("font: 24pt \"MS shell Dlg 2\";\n"
+"background-color: none;\n"
+"color: white;")
+        self.contrasena_Inc.setObjectName("contrasena_Inc")
         self.horizontalLayout.addWidget(self.frame_4)
         self.verticalLayout.addWidget(self.frame_2)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -107,3 +119,15 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Contraseña</span></p></body></html>"))
         self.loginCode_2.setPlaceholderText(_translate("MainWindow", "Usuario"))
         self.label_3.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Nombre de usuario</span></p></body></html>"))
+        self.nombre_Inc.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; color:#ff0000;\">Nombre de Usuario incorrecto</span></p></body></html>"))
+        self.contrasena_Inc.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; color:#ff0000;\">Contraseña incorrecta</span></p></body></html>"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())

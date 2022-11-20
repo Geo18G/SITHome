@@ -123,7 +123,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "SITHome-Formulario Habitación"))
         self.nombreHab.setText(_translate("Dialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:22pt; color:#ffffff;\">Agregar o editar Habitación</span></p></body></html>"))
         self.nameRegister.setPlaceholderText(_translate("Dialog", "\"Sala principal\""))
         self.btn_crear.setText(_translate("Dialog", "Crear"))

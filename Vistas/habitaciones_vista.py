@@ -1,22 +1,20 @@
 from Controladores.habitaciones_controlador import HabitacionControlador
 from Controladores.permisos_controlador import PermisosControlador
-
 from Modelos.habitacion_modelo import HabitacionModelo
 from Modelos.permisos_modelo import PermisoModelo
 from Vistas.dispositivos_vista import *
 from PyQt5 import QtWidgets, QtGui, QtCore
 import globales
-# from plantilla import Plantilla
+
 
 
 
 class HabitacionesVista(DispositivoVista):
     def __init__(self):
         super(HabitacionesVista, self).__init__()
-        # self.dispositivosVista = DispositivoVista()
         self.habitacionC = HabitacionControlador()
-        # self.dispositivosC = DispositivoControlador()
         self.permisosC = PermisosControlador()
+
 
     def mostrar_ventana_crear(self):
         self.addH.uiForm.frame.setStyleSheet("background-color: qlineargradient(spread:pad, \
@@ -79,7 +77,7 @@ class HabitacionesVista(DispositivoVista):
     def crearBotonHab(self,hab):
         btnHabitacion = QtWidgets.QPushButton(text=f"{hab}")
         btnHabitacion.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        btnHabitacion.setStyleSheet("border-radius: 12px;border: 2px solid white;color: white;font: 12px; background-color: rgb(0, 170, 255)")
+        btnHabitacion.setStyleSheet("border-radius: 18px;border: 8px solid white;color: white;font: 12px black; background-color: rgb(0, 170, 255)")
         btnHabitacion.clicked.connect(self.showDevices)
         btnHabitacion.clicked.connect(self.showDevices)
         return btnHabitacion

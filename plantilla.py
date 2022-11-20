@@ -46,6 +46,7 @@ class HabitacionesUi(QMainWindow):
         super(HabitacionesUi, self).__init__()
         self.habitaciones = Ui_SITHome_Dispositivos()
         self.habitaciones.setupUi(self)
+        # self.setCentralWidget(self.habitaciones.Habitaciones)
 
 class Plantilla():
     def __init__(self):

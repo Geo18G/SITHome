@@ -57,6 +57,7 @@ class Ui_SITHome_Usuarios(object):
         item = QtWidgets.QTableWidgetItem()
         self.userTable.setHorizontalHeaderItem(3, item)
         self.userTable.horizontalHeader().setDefaultSectionSize(120)
+        self.userTable.verticalHeader().setDefaultSectionSize(50)
         self.label_5 = QtWidgets.QLabel(self.frame)
         self.label_5.setGeometry(QtCore.QRect(150, 130, 211, 31))
         self.label_5.setStyleSheet("background-color: none;\n"
@@ -236,12 +237,29 @@ class Ui_SITHome_Usuarios(object):
         self.frame_10.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_10.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_10.setObjectName("frame_10")
-        self.dispButton = QtWidgets.QPushButton(self.frame_10)
-        self.dispButton.setGeometry(QtCore.QRect(160, 40, 161, 61))
-        self.dispButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.dispButton.setStyleSheet("border-radius: 15px;\n"
+        self.btn_irHab = QtWidgets.QPushButton(self.frame_10)
+        self.btn_irHab.setGeometry(QtCore.QRect(50, 30, 161, 61))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.btn_irHab.setFont(font)
+        self.btn_irHab.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_irHab.setStyleSheet("border-radius: 15px;\n"
 "background-color: qlineargradient(spread:pad, x1:0.497975, y1:0, x2:0.502, y2:1, stop:0.736318 rgba(255, 255, 255, 255), stop:1 rgba(192, 255, 255, 255));")
-        self.dispButton.setObjectName("dispButton")
+        self.btn_irHab.setObjectName("btn_irHab")
+        self.btn_Salir = QtWidgets.QPushButton(self.frame_10)
+        self.btn_Salir.setGeometry(QtCore.QRect(290, 30, 161, 61))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.btn_Salir.setFont(font)
+        self.btn_Salir.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_Salir.setStyleSheet("background-color: rgb(255, 85, 0);\n"
+"border-radius: 15px;\n"
+"font: 10pt;\n"
+"color: white;")
+        self.btn_Salir.setObjectName("btn_Salir")
         self.verticalLayout_4.addWidget(self.frame_10)
         self.verticalLayout.addWidget(self.frame_5)
         self.horizontalLayout.addWidget(self.frame_2)
@@ -258,9 +276,9 @@ class Ui_SITHome_Usuarios(object):
         item.setText(_translate("SITHome_Usuarios", "Nombre"))
         item = self.userTable.horizontalHeaderItem(1)
         item.setText(_translate("SITHome_Usuarios", "Rol"))
-        self.label_5.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Usuarios Registrados</span></p></body></html>"))
+        self.label_5.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600;\">Usuarios Registrados</span></p></body></html>"))
         self.addUser.setText(_translate("SITHome_Usuarios", "+"))
-        self.label_2.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; color:#ffffff;\">Agregar nuevo usuario</span></p></body></html>"))
+        self.label_2.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-weight:600; color:#ffffff;\">Agregar nuevo usuario</span></p></body></html>"))
         self.label_3.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Nombre:</span></p></body></html>"))
         self.nameRegister.setPlaceholderText(_translate("SITHome_Usuarios", "Nombre"))
         self.label_4.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Código:</span></p></body></html>"))
@@ -269,8 +287,9 @@ class Ui_SITHome_Usuarios(object):
         self.adminCheck.setText(_translate("SITHome_Usuarios", "Administrador"))
         self.registerButton.setText(_translate("SITHome_Usuarios", "Registrar"))
         self.btnGuardar.setText(_translate("SITHome_Usuarios", "Guardar"))
-        self.label_6.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; color:#ffffff;\">Administrar Dispositivos</span></p></body></html>"))
-        self.dispButton.setText(_translate("SITHome_Usuarios", "Entrar"))
+        self.label_6.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:600; color:#ffffff;\">Administrar Habitaciones </span></p><p align=\"center\"><span style=\" font-size:18pt; font-weight:600; color:#ffffff;\">Y </span></p><p align=\"center\"><span style=\" font-size:18pt; font-weight:600; color:#ffffff;\">Dispositivos</span></p></body></html>"))
+        self.btn_irHab.setText(_translate("SITHome_Usuarios", "Entrar"))
+        self.btn_Salir.setText(_translate("SITHome_Usuarios", "Salir"))
 
 
 if __name__ == "__main__":

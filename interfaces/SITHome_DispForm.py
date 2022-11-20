@@ -12,15 +12,15 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_DialogD(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(555, 320)
-        Dialog.setMinimumSize(QtCore.QSize(555, 320))
-        Dialog.setMaximumSize(QtCore.QSize(555, 320))
-        Dialog.setStyleSheet("background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0.386364 rgba(162, 254, 255, 255), stop:1 rgba(255, 255, 255, 255));")
-        self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
+    def setupUi(self, DialogD):
+        DialogD.setObjectName("DialogD")
+        DialogD.resize(555, 320)
+        DialogD.setMinimumSize(QtCore.QSize(555, 320))
+        DialogD.setMaximumSize(QtCore.QSize(555, 320))
+        DialogD.setStyleSheet("background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:0, y2:1, stop:0.386364 rgba(162, 254, 255, 255), stop:1 rgba(255, 255, 255, 255));")
+        self.verticalLayout = QtWidgets.QVBoxLayout(DialogD)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.frame = QtWidgets.QFrame(Dialog)
+        self.frame = QtWidgets.QFrame(DialogD)
         self.frame.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0.493, y1:0, x2:0.502, y2:1, stop:0 rgba(0, 166, 255, 255), stop:1 rgba(162, 254, 255, 0));\n"
 "border-radius: 15px;")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -107,29 +107,29 @@ class Ui_DialogD(object):
         self.verticalLayout_3.addWidget(self.frame_4)
         self.verticalLayout.addWidget(self.frame)
 
-        self.retranslateUi(Dialog)
+        self.retranslateUi(DialogD)
         self.comboBoxH.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(DialogD)
 
-    def retranslateUi(self, Dialog):
+    def retranslateUi(self, DialogD):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.label.setText(_translate("Dialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:22pt; color:#ffffff;\">Agregar Nuevo Dispositivo</span></p></body></html>"))
-        self.label_2.setText(_translate("Dialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; color:#ffffff;\">Nombre:</span></p></body></html>"))
-        self.nameRegister.setPlaceholderText(_translate("Dialog", "\"Foco Inteligente\""))
-        self.comboBoxH.setCurrentText(_translate("Dialog", "           --SELECCIONE--"))
-        self.comboBoxH.setItemText(0, _translate("Dialog", "           --SELECCIONE--"))
-        self.label_3.setText(_translate("Dialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; color:#ffffff;\">Habitación:</span></p></body></html>"))
-        self.btn_guardar.setText(_translate("Dialog", "Guardar"))
-        self.btn_cancelar.setText(_translate("Dialog", "Cancelar"))
-        self.btn_registrar.setText(_translate("Dialog", "Registrar"))
+        DialogD.setWindowTitle(_translate("DialogD", "SITHome-Formulario Dispositivo"))
+        self.label.setText(_translate("DialogD", "<html><head/><body><p align=\"center\"><span style=\" font-size:22pt; color:#ffffff;\">Agregar Nuevo Dispositivo</span></p></body></html>"))
+        self.label_2.setText(_translate("DialogD", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; color:#ffffff;\">Nombre:</span></p></body></html>"))
+        self.nameRegister.setPlaceholderText(_translate("DialogD", "\"Foco Inteligente\""))
+        self.comboBoxH.setCurrentText(_translate("DialogD", "           --SELECCIONE--"))
+        self.comboBoxH.setItemText(0, _translate("DialogD", "           --SELECCIONE--"))
+        self.label_3.setText(_translate("DialogD", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; color:#ffffff;\">Habitación:</span></p></body></html>"))
+        self.btn_guardar.setText(_translate("DialogD", "Guardar"))
+        self.btn_cancelar.setText(_translate("DialogD", "Cancelar"))
+        self.btn_registrar.setText(_translate("DialogD", "Registrar"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
+    DialogD = QtWidgets.QDialog()
     ui = Ui_DialogD()
-    ui.setupUi(Dialog)
-    Dialog.show()
+    ui.setupUi(DialogD)
+    DialogD.show()
     sys.exit(app.exec_())

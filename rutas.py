@@ -9,9 +9,10 @@ class Rutas(Acciones):
         
     def asignarRutas(self):
         self.loginVista.home.home.login.clicked.connect(self.ingresar)
-        self.usuariosVista.usuarios.usuarios.dispButton.clicked.connect(lambda: self.ir_habitaciones(self.usuariosVista.usuarios))
+        self.usuariosVista.usuarios.usuarios.btn_irHab.clicked.connect(lambda: self.ir_habitaciones(self.usuariosVista.usuarios))
         self.habitacionesVista.habitaciones.habitaciones.btn_usuarios.clicked.connect(lambda: self.ir_usuarios(self.habitacionesVista.habitaciones))
         self.habitacionesVista.habitaciones.habitaciones.btn_salir.clicked.connect(lambda: self.ir_login(self.habitacionesVista.habitaciones))
+        self.usuariosVista.usuarios.usuarios.btn_Salir.clicked.connect(lambda: self.ir_login(self.usuariosVista.usuarios))
 
 
     def ingresar(self):
@@ -25,6 +26,8 @@ class Rutas(Acciones):
                 "border-radius: 10px; border: 2px solid red; font: 24px; background-color: white;")
             self.loginVista.home.home.loginCode_2.setStyleSheet(
                 "border-radius: 10px; border: 2px solid red; font: 24px; background-color: white;")
+            self.loginVista.home.home.nombre_Inc.show()
+            self.loginVista.home.home.contrasena_Inc.show()
         
     def ir_usuarios(self,de):
         de.close()

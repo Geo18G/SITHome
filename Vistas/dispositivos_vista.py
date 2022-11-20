@@ -82,6 +82,12 @@ class DispositivoVista(Plantilla):
         self.showDevices()
 
     def mostrar_ventana_crearD(self):
+        self.addD.uiFormD.frame.setStyleSheet("background-color: qlineargradient(spread:pad, \
+                                x1:0.493, y1:0, x2:0.502, y2:1, stop:0 rgba(0, 166, 255, 255), stop:1 \
+                                rgba(162, 254, 255, 0));\n""border-radius: 15px;\n""\n""\n""")
+        self.addD.uiFormD.label.setText("Agregar Nuevo Dispositivo ")
+        self.addD.uiFormD.label.setStyleSheet("color: white; font: 28px;")
+        self.addD.uiFormD.label.setAlignment(QtCore.Qt.AlignCenter)
         self.addD.uiFormD.comboBoxH.setCurrentIndex(0)
         self.addD.uiFormD.nameRegister.setText("")
         self.addD.show()
@@ -89,6 +95,12 @@ class DispositivoVista(Plantilla):
         self.addD.uiFormD.btn_registrar.show()
 
     def mostrar_ventana_editarD(self):
+        self.addD.uiFormD.frame.setStyleSheet("border-radius: 15px; \
+                        background-color: qlineargradient(spread:pad, x1:0.517, y1:0, \
+                        x2:0.506, y2:1, stop:0 rgba(251, 144, 8, 255), stop:1 rgba(255, 255, 255, 255));")
+        self.addD.uiFormD.label.setText("Editar dispositivo")
+        self.addD.uiFormD.label.setStyleSheet("color: white; font: 28px;")
+        self.addD.uiFormD.label.setAlignment(QtCore.Qt.AlignCenter)
         self.addD.uiFormD.nameRegister.setText(self.habitaciones.habitaciones.Dispositivos.item(self.habitaciones.habitaciones.Dispositivos.currentRow(), 0).text())
         self.addD.show()
         self.addD.uiFormD.btn_guardar.show()

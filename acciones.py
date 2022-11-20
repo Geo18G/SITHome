@@ -21,7 +21,7 @@ class Acciones():
         globales.Contador = 0 
         globales.Condicion = True
         
-        #Inicializacion de botones inactivos
+        #Inicializacion de botones y labels inactivos
         self.usuariosVista.usuarios.usuarios.registerButton.setEnabled(False)
         self.habitacionesVista.addH.uiForm.btn_crear.setEnabled(False)
         self.habitacionesVista.addH.uiForm.btn_guardar.setEnabled(False)
@@ -29,6 +29,8 @@ class Acciones():
         self.habitacionesVista.addD.uiFormD.btn_guardar.setEnabled(False)
         self.usuariosVista.usuarios.usuarios.addUser.hide()
         self.usuariosVista.usuarios.usuarios.btnGuardar.hide()
+        self.loginVista.home.home.nombre_Inc.hide()
+        self.loginVista.home.home.contrasena_Inc.hide()
         
         #Asignar funciones a botones de eventos
         #Usuarios
@@ -49,6 +51,9 @@ class Acciones():
         self.habitacionesVista.addD.uiFormD.btn_guardar.clicked.connect(lambda: self.habitacionesVista.editarD())
         
         #Asignar funciones por cambio de eventos
+        #Login
+        self.loginVista.home.home.loginCode.textChanged.connect(lambda: self.loginVista.home.home.contrasena_Inc.hide())
+        self.loginVista.home.home.loginCode_2.textChanged.connect(lambda: self.loginVista.home.home.nombre_Inc.hide())
         #Usuarios
         self.usuariosVista.usuarios.usuarios.nameRegister.textChanged.connect(lambda: self.usuariosVista.habilitarBtn(self.usuariosVista.usuarios.usuarios.registerButton))
         self.usuariosVista.usuarios.usuarios.codeRegister.textChanged.connect(lambda: self.usuariosVista.habilitarBtn(self.usuariosVista.usuarios.usuarios.registerButton))

@@ -176,6 +176,7 @@ class Ui_SITHome_Dispositivos(object):
         item.setTextAlignment(QtCore.Qt.AlignCenter)
         self.Habitaciones.setHorizontalHeaderItem(2, item)
         self.Habitaciones.horizontalHeader().setDefaultSectionSize(150)
+        self.Habitaciones.verticalHeader().setDefaultSectionSize(50)
         self.verticalLayout_2.addWidget(self.Habitaciones)
         self.gridLayout.addWidget(self.frame_3, 0, 0, 1, 1)
         self.verticalLayout.addWidget(self.frame_2)
