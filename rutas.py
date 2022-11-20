@@ -20,7 +20,6 @@ class Rutas(Acciones):
             self.ir_usuarios(self.loginVista.home)
         elif ingreso == False:
             self.ir_habitaciones(self.loginVista.home)
-
         else:
             self.loginVista.home.home.loginCode.setStyleSheet(
                 "border-radius: 10px; border: 2px solid red; font: 24px; background-color: white;")
@@ -38,11 +37,14 @@ class Rutas(Acciones):
         globales.Usuarios = []
         globales.Habitaciones = []
         globales.Dispositivos = []
+        globales.Habitacion = None
         self.loginVista.home.show()
 
     def ir_habitaciones(self, de):
         de.close()
+        globales.Habitaciones = self.habitacionesVista.habitacionC.obtener_Habitaciones()
         self.habitacionesVista.habitaciones.show()
         self.habitacionesVista.showRooms()
+        self.dispositivosVista.showDevices()
 
         

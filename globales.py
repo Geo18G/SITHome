@@ -9,5 +9,9 @@ global Dispositivos
 
 global Habitacion
 
+global Contador
+
+global Condicion
+
 
 

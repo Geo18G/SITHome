@@ -1,12 +1,10 @@
 from Controladores.usuarios_controlador import UsuarioControlador
-from Controladores.habitaciones_controlador import HabitacionControlador
 import globales
 from plantilla import Plantilla
 
 class LoginVista(Plantilla):
     def __init__(self):
         super(LoginVista, self).__init__()
-        self.habitacionC = HabitacionControlador()
         self.usuarioC = UsuarioControlador()
 
     def SITHome_Login(self):
@@ -16,7 +14,6 @@ class LoginVista(Plantilla):
         if usuario:
             globales.Usuario = usuario
             if usuario[2] == "Administrador":
-                globales.Habitaciones = self.habitacionC.obtener_Habitaciones()
                 return True
             else:
                 return False

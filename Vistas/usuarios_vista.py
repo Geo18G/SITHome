@@ -1,5 +1,4 @@
 from Controladores.usuarios_controlador import UsuarioControlador
-from Controladores.habitaciones_controlador import HabitacionControlador
 from Controladores.permisos_controlador import PermisosControlador
 from Modelos.usuario_modelo import UsuarioModelo
 from Modelos.permisos_modelo import PermisoModelo
@@ -7,29 +6,12 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 import globales
 from plantilla import Plantilla
 
+
 class UsuariosVista(Plantilla):
         def __init__(self):
                 super(UsuariosVista, self).__init__()
                 self.usuarioC = UsuarioControlador()
-                self.habitacionC = HabitacionControlador()
                 self.permisosC = PermisosControlador()
-
-        def showUsers(self):
-                self.usuarios.usuarios.userTable.clearContents()
-                globales.Usuarios = self.usuarioC.mostrarUsuario()
-                row = 0
-                for user in globales.Usuarios:
-                        column = 0
-                        self.usuarios.usuarios.userTable.removeRow(row)
-                        self.usuarios.usuarios.userTable.insertRow(row)
-                        cell = QtWidgets.QTableWidgetItem(user[1])
-                        self.usuarios.usuarios.userTable.setItem(row, column, cell)
-                        column +=1
-                        cell = QtWidgets.QTableWidgetItem(user[2])
-                        self.usuarios.usuarios.userTable.setItem(row, column, cell)
-                        self.agregarBtn(self.usuarios.usuarios.userTable, row, user)
-                        row +=1
-                        
 
         def SITHome_register(self):
                 newUsuario = UsuarioModelo()
@@ -63,13 +45,66 @@ class UsuariosVista(Plantilla):
                                                 else:
                                                         permiso.setPermiso(0)
                                                         self.permisosC.crearPermisos(permiso)
+                                                        
+        def showUsers(self):
+                self.usuarios.usuarios.userTable.clearContents()
+                globales.Usuarios = self.usuarioC.mostrarUsuario()
+                row = 0
+                for user in globales.Usuarios:
+                        column = 0
+                        self.usuarios.usuarios.userTable.removeRow(row)
+                        self.usuarios.usuarios.userTable.insertRow(row)
+                        cell = QtWidgets.QTableWidgetItem(user[1])
+                        self.usuarios.usuarios.userTable.setItem(row, column, cell)
+                        column +=1
+                        cell = QtWidgets.QTableWidgetItem(user[2])
+                        self.usuarios.usuarios.userTable.setItem(row, column, cell)
+                        self.agregarBtn(self.usuarios.usuarios.userTable, row, user)
+                        row +=1
+                        
+        def editarUsuario(self):
+                newUsuario = UsuarioModelo()
+                newUsuario.setNombreU(self.usuarios.usuarios.nameRegister.text())
+                newUsuario.setContrasenaU(self.usuarios.usuarios.codeRegister.text())
+                if self.usuarios.usuarios.adminCheck.isChecked():
+                        typpe = 1
+                else:
+                        typpe = 2
+                newUsuario.setRolU(typpe)
+                self.usuarios.usuarios.nameRegister.setText("")
+                self.usuarios.usuarios.codeRegister.setText("")
+                usuariosRegistrados = self.usuarioC.mostrarUsuario()
+                for usuario in usuariosRegistrados:
+                        if usuario[1] == self.usuarios.usuarios.userTable.item(self.usuarios.usuarios.userTable.currentRow(), 0).text():
+                                self.usuarioC.actualizarUsuario(newUsuario, usuario[0])
+                self.usuarios.usuarios.btnGuardar.hide()
+                self.usuarios.usuarios.registerButton.show()
+                self.habilitarBtn(self.usuarios.usuarios.registerButton)
+                self.showUsers()
+                self.ventanaUsuarioNormal()
+                        
+        def borrarUsuario(self):
+                for usuar in globales.Usuarios:
+                        if usuar[1] == self.usuarios.usuarios.userTable.item(self.usuarios.usuarios.userTable.currentRow(), 0).text():
+                                reply = QtWidgets.QMessageBox.warning(self.usuarios, "Atención", f"¿Está seguro que desea eliminar a {usuar[1]}?", QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+                                if reply == QtWidgets.QMessageBox.Yes:
+                                        self.permisosC.eliminarPermisosPorUs(usuar[0])
+                                        self.usuarioC.eliminarUsuario(usuar[0])
+                                        self.usuarios.usuarios.userTable.removeRow(self.usuarios.usuarios.userTable.currentRow())
+                        else:
+                                pass
+                self.showUsers()
 
 
-#checar que regrese a ocultar
         def viewPass(self):
-                self.usuarios.usuarios.codeRegister.setEchoMode(0)
-
-
+                if globales.Condicion == True:
+                        self.usuarios.usuarios.codeRegister.setEchoMode(0)
+                        globales.Condicion = False
+                else:
+                        self.usuarios.usuarios.codeRegister.setEchoMode(QtWidgets.QLineEdit.Password)
+                        globales.Condicion = True
+                        
+                        
         def habilitarBtn(self, btn):
                 if (len(self.usuarios.usuarios.codeRegister.text()) >=4 and len(self.usuarios.usuarios.nameRegister.text()) !=0):
                         btn.setEnabled(True)
@@ -92,27 +127,7 @@ class UsuariosVista(Plantilla):
                 BtnBorrar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
                 BtnEditar.clicked.connect(lambda: self.ventanaUsuarioEditar(usuario))
                 BtnBorrar.clicked.connect(lambda: self.borrarUsuario())
-               
-        def editarUsuario(self):
-                newUsuario = UsuarioModelo()
-                newUsuario.setNombreU(self.usuarios.usuarios.nameRegister.text())
-                newUsuario.setContrasenaU(self.usuarios.usuarios.codeRegister.text())
-                if self.usuarios.usuarios.adminCheck.isChecked():
-                        typpe = 1
-                else:
-                        typpe = 2
-                newUsuario.setRolU(typpe)
-                self.usuarios.usuarios.nameRegister.setText("")
-                self.usuarios.usuarios.codeRegister.setText("")
-                usuariosRegistrados = self.usuarioC.mostrarUsuario()
-                for usuario in usuariosRegistrados:
-                        if usuario[1] == self.usuarios.usuarios.userTable.item(self.usuarios.usuarios.userTable.currentRow(), 0).text():
-                                self.usuarioC.actualizarUsuario(newUsuario, usuario[0])
-                self.usuarios.usuarios.btnGuardar.hide()
-                self.usuarios.usuarios.registerButton.show()
-                self.habilitarBtn(self.usuarios.usuarios.registerButton)
-                self.showUsers()
-                self.ventanaUsuarioNormal()
+
 
         def ventanaUsuarioEditar(self, usuario):
                 self.usuarios.usuarios.frame_3.setStyleSheet("border-radius: 15px; \
@@ -144,17 +159,8 @@ class UsuariosVista(Plantilla):
                 self.usuarios.usuarios.btnGuardar.hide()
                 self.usuarios.usuarios.addUser.hide()
 
-        def borrarUsuario(self):
-                for usuar in globales.Usuarios:
-                        if usuar[1] == self.usuarios.usuarios.userTable.item(self.usuarios.usuarios.userTable.currentRow(), 0).text():
-                                reply = QtWidgets.QMessageBox.warning(self.usuarios, "Atención", f"¿Está seguro que desea eliminar a {usuar[1]}?", QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-                                if reply == QtWidgets.QMessageBox.Yes:
-                                        self.permisosC.eliminarPermisosPorUs(usuar[0])
-                                        self.usuarioC.eliminarUsuario(usuar[0])
-                                        self.usuarios.usuarios.userTable.removeRow(self.usuarios.usuarios.userTable.currentRow())
-                        else:
-                                pass
-                self.showUsers()
+        
+             
 
 
 
