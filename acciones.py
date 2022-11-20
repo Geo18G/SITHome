@@ -14,8 +14,7 @@ class Acciones():
         
     def inicializarWidgets(self):
         #Inicializacion de variables globales
-        globales.Usuario = None
-        globales.idHabitaciones = None
+        globales.Usuario = []
         globales.Habitaciones = []
         globales.Usuarios = []
         globales.Dispositivos = []
@@ -26,8 +25,8 @@ class Acciones():
         self.usuariosVista.usuarios.usuarios.registerButton.setEnabled(False)
         self.habitacionesVista.addH.uiForm.btn_crear.setEnabled(False)
         self.habitacionesVista.addH.uiForm.btn_guardar.setEnabled(False)
-        self.habitacionesVista.dispositivosVista.addD.uiFormD.btn_registrar.setEnabled(False)
-        self.habitacionesVista.dispositivosVista.addD.uiFormD.btn_guardar.setEnabled(False)
+        self.habitacionesVista.addD.uiFormD.btn_registrar.setEnabled(False)
+        self.habitacionesVista.addD.uiFormD.btn_guardar.setEnabled(False)
         self.usuariosVista.usuarios.usuarios.addUser.hide()
         self.usuariosVista.usuarios.usuarios.btnGuardar.hide()
         
@@ -40,17 +39,14 @@ class Acciones():
         #Habitaciones
         self.habitacionesVista.habitaciones.habitaciones.addHabitacion.clicked.connect(lambda: self.habitacionesVista.mostrar_ventana_crear())
         self.habitacionesVista.habitaciones.habitaciones.addDispositivo.clicked.connect(lambda: self.habitacionesVista.mostrar_ventana_crearD())
-        botonHab = self.habitacionesVista.showRooms()
-        botonHab.clicked.connect(self.habitacionesVista.dispositivosVista.showDevices())
-        self.habitacionesVista.habitaciones.habitaciones.Habitaciones.btnHabitacion.clicked.connect(self.dispocitivosVista.showDevices)
         #Formulario habitaciones
         self.habitacionesVista.addH.uiForm.btn_guardar.clicked.connect(lambda: self.habitacionesVista.editarH())
         self.habitacionesVista.addH.uiForm.btn_crear.clicked.connect(lambda: self.habitacionesVista.addRoom())
         self.habitacionesVista.addH.uiForm.btn_cancelar.clicked.connect(lambda: self.habitacionesVista.addH.close())
         #Formulario dispositivos
-        self.habitacionesVista.dispositivosVista.addD.uiFormD.btn_cancelar.clicked.connect(lambda: self.habitacionesVista.dispositivosVista.addD.close())
-        self.habitacionesVista.dispositivosVista.addD.uiFormD.btn_registrar.clicked.connect(lambda: self.habitacionesVista.dispositivosVista.addDevice())
-        self.habitacionesVista.dispositivosVista.addD.uiFormD.btn_guardar.clicked.connect(lambda: self.habitacionesVista.dispositivosVista.editarD())
+        self.habitacionesVista.addD.uiFormD.btn_cancelar.clicked.connect(lambda: self.habitacionesVista.addD.close())
+        self.habitacionesVista.addD.uiFormD.btn_registrar.clicked.connect(lambda: self.habitacionesVista.addDevice())
+        self.habitacionesVista.addD.uiFormD.btn_guardar.clicked.connect(lambda: self.habitacionesVista.editarD())
         
         #Asignar funciones por cambio de eventos
         #Usuarios
@@ -64,10 +60,10 @@ class Acciones():
         self.habitacionesVista.addH.uiForm.nameRegister.textChanged.connect(
             lambda: self.habitacionesVista.habilitarBtn(self.habitacionesVista.addH.uiForm.btn_guardar, self.habitacionesVista.addH.uiForm.nameRegister))
         #Formulario dispositivos
-        self.habitacionesVista.dispositivosVista.addD.uiFormD.nameRegister.textChanged.connect(
-            lambda: self.habitacionesVista.habilitarBtn(self.habitacionesVista.dispositivosVista.addD.uiFormD.btn_registrar, self.habitacionesVista.addD.uiFormD.nameRegister))
-        self.habitacionesVista.dispositivosVista.addD.uiFormD.nameRegister.textChanged.connect(
-            lambda: self.habitacionesVista.habilitarBtn(self.habitacionesVista.dispositivosVista.addD.uiFormD.btn_guardar, self.habitacionesVista.addD.uiFormD.nameRegister))
+        self.habitacionesVista.addD.uiFormD.nameRegister.textChanged.connect(
+            lambda: self.habitacionesVista.habilitarBtn(self.habitacionesVista.addD.uiFormD.btn_registrar, self.habitacionesVista.addD.uiFormD.nameRegister))
+        self.habitacionesVista.addD.uiFormD.nameRegister.textChanged.connect(
+            lambda: self.habitacionesVista.habilitarBtn(self.habitacionesVista.addD.uiFormD.btn_guardar, self.habitacionesVista.addD.uiFormD.nameRegister))
         
         
         

@@ -8,7 +8,7 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 class DispositivoVista(Plantilla):
     def __init__(self):
         super(DispositivoVista, self).__init__()
-        self.dispocitivosC = DispositivoControlador()
+        self.dispositivosC = DispositivoControlador()
         
     def editarD(self):
         newDevice = DispositivoModelo()
@@ -95,7 +95,6 @@ class DispositivoVista(Plantilla):
         self.addD.uiFormD.btn_registrar.hide()
         
     def showDevices(self):
-        # print(globales.Contador)
         for i in range(0, globales.Contador):
             self.habitaciones.habitaciones.Dispositivos.removeRow(i)
         try:
@@ -104,15 +103,16 @@ class DispositivoVista(Plantilla):
             for hab in globales.Habitaciones:
                 if hab[1] == globales.Habitacion:
                     globales.Dispositivos = self.dispositivosC.mostrarDispositivos(hab[0])
-            globales.Contador = 0
-            for dis in globales.Dispositivos:
-                column = 0
-                self.habitaciones.habitaciones.Dispositivos.removeRow(globales.Contador)
-                self.habitaciones.habitaciones.Dispositivos.insertRow(globales.Contador)
-                cell = QtWidgets.QTableWidgetItem(dis[1])
-                self.habitaciones.habitaciones.Dispositivos.setItem(globales.Contador, column, cell)
-                self.agregarBtnDis(self.habitaciones.habitaciones.Dispositivos,globales.Contador, dis[2], dis[0])
-                globales.Contador += 1
+
+                globales.Contador = 0
+                for dis in globales.Dispositivos:
+                    column = 0
+                    self.habitaciones.habitaciones.Dispositivos.removeRow(globales.Contador)
+                    self.habitaciones.habitaciones.Dispositivos.insertRow(globales.Contador)
+                    cell = QtWidgets.QTableWidgetItem(dis[1])
+                    self.habitaciones.habitaciones.Dispositivos.setItem(globales.Contador, column, cell)
+                    self.agregarBtnDis(self.habitaciones.habitaciones.Dispositivos,globales.Contador, dis[2], dis[0])
+                    globales.Contador += 1
         except:
             pass
         

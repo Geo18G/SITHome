@@ -41,8 +41,10 @@ class Ui_SITHome_Usuarios(object):
 "border-radius: 15px;")
         self.userTable.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.userTable.setAlternatingRowColors(True)
-        self.userTable.setShowGrid(True)
+        self.userTable.setShowGrid(False)
         self.userTable.setGridStyle(QtCore.Qt.NoPen)
+        self.userTable.setWordWrap(True)
+        self.userTable.setCornerButtonEnabled(True)
         self.userTable.setObjectName("userTable")
         self.userTable.setColumnCount(4)
         self.userTable.setRowCount(0)
@@ -250,7 +252,7 @@ class Ui_SITHome_Usuarios(object):
 
     def retranslateUi(self, SITHome_Usuarios):
         _translate = QtCore.QCoreApplication.translate
-        SITHome_Usuarios.setWindowTitle(_translate("SITHome_Usuarios", "MainWindow"))
+        SITHome_Usuarios.setWindowTitle(_translate("SITHome_Usuarios", "SITHome-Usuarios"))
         self.label.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-size:24pt; color:#ffffff;\">SITHome Administrador</span></p></body></html>"))
         item = self.userTable.horizontalHeaderItem(0)
         item.setText(_translate("SITHome_Usuarios", "Nombre"))

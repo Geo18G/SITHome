@@ -45,6 +45,6 @@ class Rutas(Acciones):
         globales.Habitaciones = self.habitacionesVista.habitacionC.obtener_Habitaciones()
         self.habitacionesVista.habitaciones.show()
         self.habitacionesVista.showRooms()
-        self.dispositivosVista.showDevices()
+        self.habitacionesVista.showDevices()
 
         
