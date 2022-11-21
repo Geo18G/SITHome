@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 16-11-2022 a las 18:52:28
--- Versión del servidor: 5.7.33
--- Versión de PHP: 7.4.20
+-- Tiempo de generación: 21-11-2022 a las 22:40:13
+-- Versión del servidor: 8.0.30
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -29,26 +28,21 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `dispositivos` (
-  `iddispositivos` int(11) NOT NULL,
+  `iddispositivos` int NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
-  `estado` int(1) DEFAULT '0',
-  `habitaciones_idhabitaciones` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `estado` int DEFAULT '0',
+  `habitaciones_idhabitaciones` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Volcado de datos para la tabla `dispositivos`
 --
 
 INSERT INTO `dispositivos` (`iddispositivos`, `nombre`, `estado`, `habitaciones_idhabitaciones`) VALUES
-(1, 'foco', 0, 1),
 (2, 'tele', 0, 2),
-(3, 'tabla', 0, 1),
-(4, 'radio', 0, 1),
 (5, 'licuadora', 0, 2),
-(6, 'xbox', 0, 1),
-(7, 'estufa', 0, 2),
-(8, 'dddd', 0, 1),
-(9, 'tele2', 0, 1);
+(20, 'radio', 0, 29),
+(23, 'tele2', 0, 31);
 
 -- --------------------------------------------------------
 
@@ -57,17 +51,18 @@ INSERT INTO `dispositivos` (`iddispositivos`, `nombre`, `estado`, `habitaciones_
 --
 
 CREATE TABLE `habitaciones` (
-  `idhabitaciones` int(11) NOT NULL,
+  `idhabitaciones` int NOT NULL,
   `nombre` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Volcado de datos para la tabla `habitaciones`
 --
 
 INSERT INTO `habitaciones` (`idhabitaciones`, `nombre`) VALUES
+(31, 'baño'),
 (2, 'cocina'),
-(1, 'sala');
+(29, 'Sala');
 
 -- --------------------------------------------------------
 
@@ -76,20 +71,25 @@ INSERT INTO `habitaciones` (`idhabitaciones`, `nombre`) VALUES
 --
 
 CREATE TABLE `permisos` (
-  `usuarios_idusuarios` int(11) NOT NULL,
-  `habitaciones_idhabitaciones` int(11) NOT NULL,
-  `permiso` int(1) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `usuarios_idusuarios` int NOT NULL,
+  `habitaciones_idhabitaciones` int NOT NULL,
+  `permiso` int DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Volcado de datos para la tabla `permisos`
 --
 
 INSERT INTO `permisos` (`usuarios_idusuarios`, `habitaciones_idhabitaciones`, `permiso`) VALUES
-(4, 1, 1),
 (4, 2, 1),
-(36, 1, 1),
-(36, 2, 1);
+(4, 29, 1),
+(4, 31, 1),
+(36, 2, 1),
+(36, 29, 0),
+(36, 31, 0),
+(52, 2, 1),
+(52, 29, 0),
+(52, 31, 1);
 
 -- --------------------------------------------------------
 
@@ -98,9 +98,9 @@ INSERT INTO `permisos` (`usuarios_idusuarios`, `habitaciones_idhabitaciones`, `p
 --
 
 CREATE TABLE `roles` (
-  `idroles` int(11) NOT NULL,
+  `idroles` int NOT NULL,
   `tipo` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -117,19 +117,20 @@ INSERT INTO `roles` (`idroles`, `tipo`) VALUES
 --
 
 CREATE TABLE `usuarios` (
-  `idusuarios` int(11) NOT NULL,
+  `idusuarios` int NOT NULL,
   `nombreUsuario` varchar(45) NOT NULL,
-  `contrasena` varchar(45) DEFAULT NULL,
-  `roles_idroles` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `contrasena` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `roles_idroles` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`idusuarios`, `nombreUsuario`, `contrasena`, `roles_idroles`) VALUES
-(4, 'nacho', '123', 1),
-(36, 'pepe', '1234', 2);
+(4, 'nacho', '$pbkdf2-sha256$30000$P2cMgRBi7P0/h7DWOudcSw$Hft5lkpOxQkkzHJ4pd1HDyH0tL/bSP65SnmWpZaZIpc', 1),
+(36, 'pepe', '$pbkdf2-sha256$30000$SsnZe8.5dw7BOIdQKkVIiQ$MY33cgfhqnkywoi3x3Gh.sgGsuu8vxg64mO0kHgjWxM', 2),
+(52, 'luis', '$pbkdf2-sha256$30000$bU1JiZFSCiGkNGas1RqDUA$.nCV9jDdnvY/C6/egCF8ugPyrgl0cAupk6OYAxdWfBg', 2);
 
 --
 -- Índices para tablas volcadas
@@ -180,25 +181,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `dispositivos`
 --
 ALTER TABLE `dispositivos`
-  MODIFY `iddispositivos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `iddispositivos` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  MODIFY `idhabitaciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `idhabitaciones` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `idroles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idroles` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `idusuarios` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- Restricciones para tablas volcadas
@@ -208,20 +209,20 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `dispositivos`
 --
 ALTER TABLE `dispositivos`
-  ADD CONSTRAINT `fk_dispositivos_habitaciones1` FOREIGN KEY (`habitaciones_idhabitaciones`) REFERENCES `habitaciones` (`idhabitaciones`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_dispositivos_habitaciones1` FOREIGN KEY (`habitaciones_idhabitaciones`) REFERENCES `habitaciones` (`idhabitaciones`);
 
 --
 -- Filtros para la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  ADD CONSTRAINT `fk_usuarios_has_habitaciones_habitaciones1` FOREIGN KEY (`habitaciones_idhabitaciones`) REFERENCES `habitaciones` (`idhabitaciones`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_usuarios_has_habitaciones_usuarios1` FOREIGN KEY (`usuarios_idusuarios`) REFERENCES `usuarios` (`idusuarios`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_usuarios_has_habitaciones_habitaciones1` FOREIGN KEY (`habitaciones_idhabitaciones`) REFERENCES `habitaciones` (`idhabitaciones`),
+  ADD CONSTRAINT `fk_usuarios_has_habitaciones_usuarios1` FOREIGN KEY (`usuarios_idusuarios`) REFERENCES `usuarios` (`idusuarios`);
 
 --
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `fk_usuarios_roles1` FOREIGN KEY (`roles_idroles`) REFERENCES `roles` (`idroles`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_usuarios_roles1` FOREIGN KEY (`roles_idroles`) REFERENCES `roles` (`idroles`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -5,6 +5,7 @@ from interfaces.SITHome_Home import Ui_MainWindow
 from interfaces.SITHome_LoginAdmin import Ui_SITHome_Usuarios
 from PyQt5.QtWidgets import *
 import sys
+from passlib.context import CryptContext
 
 # def singleton(clase):
 #     instancias = dict()
@@ -17,15 +18,15 @@ import sys
 
 # @singleton
 
-class FormularioH(QDialog):
+class Formulario_Habitaciones(QDialog):
     def __init__(self):
-        super(FormularioH, self).__init__()
+        super(Formulario_Habitaciones, self).__init__()
         self.uiForm = Ui_Dialog()
         self.uiForm.setupUi(self)
 
-class FormularioD(QDialog):
+class Formulario_Dispositivos(QDialog):
     def __init__(self):
-        super(FormularioD, self).__init__()
+        super(Formulario_Dispositivos, self).__init__()
         self.uiFormD = Ui_DialogD()
         self.uiFormD.setupUi(self)
 
@@ -46,15 +47,19 @@ class HabitacionesUi(QMainWindow):
         super(HabitacionesUi, self).__init__()
         self.habitaciones = Ui_SITHome_Dispositivos()
         self.habitaciones.setupUi(self)
-        # self.setCentralWidget(self.habitaciones.Habitaciones)
 
 class Plantilla():
     def __init__(self):
         self.home = LoginUi()
         self.usuarios = UsuariosUi()
         self.habitaciones = HabitacionesUi()
-        self.addH = FormularioH()
-        self.addD = FormularioD()
+        self.addH = Formulario_Habitaciones()
+        self.addD = Formulario_Dispositivos()
+        self.contexto = CryptContext(
+            schemes=["pbkdf2_sha256"],
+            default="pbkdf2_sha256",
+            pbkdf2_sha256__default_rounds=30000
+        )
 
 
 

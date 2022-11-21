@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="sin conexion">
+    <file>sin_conexion.png</file>
+  </qresource>
+</RCC>

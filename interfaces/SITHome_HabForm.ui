@@ -128,7 +128,7 @@ font: 12pt;</string>
             <property name="geometry">
              <rect>
               <x>150</x>
-              <y>130</y>
+              <y>140</y>
               <width>80</width>
               <height>35</height>
              </rect>
@@ -161,7 +161,7 @@ font: 10pt;</string>
             <property name="geometry">
              <rect>
               <x>250</x>
-              <y>130</y>
+              <y>140</y>
               <width>80</width>
               <height>35</height>
              </rect>
@@ -210,7 +210,7 @@ font: 10pt;</string>
             <property name="geometry">
              <rect>
               <x>50</x>
-              <y>130</y>
+              <y>140</y>
               <width>80</width>
               <height>35</height>
              </rect>
@@ -237,6 +237,26 @@ font: 10pt;</string>
             </property>
             <property name="text">
              <string>Guardar</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="hab_Exit">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="geometry">
+             <rect>
+              <x>30</x>
+              <y>100</y>
+              <width>321</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: none;
+color: white;</string>
+            </property>
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#ff0000;&quot;&gt;El Nombre de la Habitación ya Existe&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </widget>

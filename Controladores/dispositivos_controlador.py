@@ -1,4 +1,4 @@
-from Modelos.dispositivos_modelo import DispositivoModelo
+
 from conexion import Conexion
 
 

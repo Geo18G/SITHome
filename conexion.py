@@ -14,6 +14,13 @@ class Conexion:
                 password='',
                 db='sithome'
             )
+            # self.__connection = pymysql.connect(
+            #     host='fdb30.atspace.me',
+            #     user='4215794_sithome',
+            #     password='LosC@bitos7',
+            #     db='4215794_sithome',
+            #     port='3306'
+            # )
             self.__cursor = self.__connection.cursor()
             return True
         except MySQLError:

@@ -33,6 +33,7 @@ class Rutas(Acciones):
         de.close()
         self.usuariosVista.usuarios.show()
         self.usuariosVista.showUsers()
+        self.habitacionesVista.showRooms()
     
     def ir_login(self,de):
         de.close()

@@ -1,4 +1,4 @@
-from Modelos.rol_modelo import RolModelo
+
 from conexion import Conexion
 
 class RolControlador:
@@ -23,14 +23,3 @@ class RolControlador:
         sql = f"SELECT * FROM roles"
         return self.__conexion.selectAll(sql)
 
-# prueba = RolControlador()
-# # rol = RolModelo()
-# # # rol.setTipoR("niño")
-# # # prueba.crearRol(rol)
-# # # print(prueba.mostrarRol())
-# # rol.setTipoR("invitado")
-# # print(rol.getTipoR())
-# # prueba.actualizarRol(rol,4)
-# # print(prueba.mostrarRol())
-# prueba.eliminarRol(4)
-# print(prueba.mostrarRol())

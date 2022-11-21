@@ -144,6 +144,7 @@ class HabitacionesVista(DispositivoVista):
         newRoom.setNombreH(self.addH.uiForm.nameRegister.text())
         retorno = self.habitacionC.crearHabitacion(newRoom)
         if retorno == False:
+            self.addH.uiForm.hab_Exit.show()
             self.addH.uiForm.nameRegister.setStyleSheet(
                 "border-radius: 10px; border: 2px solid red; font: 24px")
         else:

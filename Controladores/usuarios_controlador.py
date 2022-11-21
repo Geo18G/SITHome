@@ -1,4 +1,4 @@
-from Modelos.usuario_modelo import UsuarioModelo
+
 
 from conexion import Conexion
 
@@ -22,31 +22,11 @@ class UsuarioControlador:
 
     def mostrarUsuario(self):
         sql = 'SELECT u.idusuarios, u.nombreUsuario, r.tipo  FROM usuarios u INNER JOIN  roles r on u.roles_idroles = r.idroles'
-        registred_users = list()
         return self.__conexion.selectAll(sql)
-        
-    def obtener_ids(self):
-        sql = f"SELECT idusuarios FROM usuarios"
-        retorno = self.__conexion.selectAll(sql)
-        listaIds = list()
-        for i in retorno:
-            for j in i:
-                listaIds.append(j)
-        return listaIds
 
-    def buscarUsuario(self, nombre, contrasena):
-        #sql = f"SELECT * FROM usuarios WHERE contrasena = '{contrasena}' AND nombreUsuario = '{nombre}'"
-        sql = f"SELECT u.idusuarios, u.nombreUsuario, r.tipo  FROM usuarios u INNER JOIN  roles r on u.roles_idroles = r.idroles WHERE u.contrasena = '{contrasena}' AND u.nombreUsuario = '{nombre}'"
+
+    def buscarUsuario(self, nombre):
+        sql = f"SELECT u.idusuarios, u.nombreUsuario, r.tipo, u.contrasena FROM usuarios u INNER JOIN  roles r on u.roles_idroles = r.idroles WHERE u.nombreUsuario = '{nombre}'"
         return self.__conexion.select(sql)
 
-# prueba = UsuarioControlador()
-# usuario = UsuarioModelo()
-# usuario.setNombreU("Geo")
-# usuario.setContrasenaU(111)
-# usuario.setRolU(1)
-# # prueba.crearUsuario(usuario)
-# #print(prueba.mostrarUsuario())
-# # prueba.eliminarUsuario(3)
-# prueba.actualizarUsuario(usuario,1)
-# print(prueba.mostrarUsuario())
 

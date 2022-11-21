@@ -78,7 +78,7 @@ class Ui_DialogD(object):
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
         self.btn_guardar = QtWidgets.QPushButton(self.frame_4)
-        self.btn_guardar.setGeometry(QtCore.QRect(320, 30, 80, 35))
+        self.btn_guardar.setGeometry(QtCore.QRect(240, 30, 80, 35))
         self.btn_guardar.setMinimumSize(QtCore.QSize(80, 35))
         self.btn_guardar.setMaximumSize(QtCore.QSize(80, 35))
         self.btn_guardar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
@@ -87,7 +87,7 @@ class Ui_DialogD(object):
 "font: 10pt;")
         self.btn_guardar.setObjectName("btn_guardar")
         self.btn_cancelar = QtWidgets.QPushButton(self.frame_4)
-        self.btn_cancelar.setGeometry(QtCore.QRect(410, 30, 80, 35))
+        self.btn_cancelar.setGeometry(QtCore.QRect(420, 30, 80, 35))
         self.btn_cancelar.setMinimumSize(QtCore.QSize(80, 35))
         self.btn_cancelar.setMaximumSize(QtCore.QSize(80, 35))
         self.btn_cancelar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
@@ -96,7 +96,7 @@ class Ui_DialogD(object):
 "font: 10pt;")
         self.btn_cancelar.setObjectName("btn_cancelar")
         self.btn_registrar = QtWidgets.QPushButton(self.frame_4)
-        self.btn_registrar.setGeometry(QtCore.QRect(230, 30, 80, 35))
+        self.btn_registrar.setGeometry(QtCore.QRect(330, 30, 80, 35))
         self.btn_registrar.setMinimumSize(QtCore.QSize(80, 35))
         self.btn_registrar.setMaximumSize(QtCore.QSize(80, 35))
         self.btn_registrar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
@@ -104,6 +104,12 @@ class Ui_DialogD(object):
 "border-radius: 15px;\n"
 "font: 10pt;")
         self.btn_registrar.setObjectName("btn_registrar")
+        self.dis_Exit = QtWidgets.QLabel(self.frame_4)
+        self.dis_Exit.setEnabled(True)
+        self.dis_Exit.setGeometry(QtCore.QRect(170, -10, 321, 31))
+        self.dis_Exit.setStyleSheet("background-color: none;\n"
+"color: white;")
+        self.dis_Exit.setObjectName("dis_Exit")
         self.verticalLayout_3.addWidget(self.frame_4)
         self.verticalLayout.addWidget(self.frame)
 
@@ -123,6 +129,7 @@ class Ui_DialogD(object):
         self.btn_guardar.setText(_translate("DialogD", "Guardar"))
         self.btn_cancelar.setText(_translate("DialogD", "Cancelar"))
         self.btn_registrar.setText(_translate("DialogD", "Registrar"))
+        self.dis_Exit.setText(_translate("DialogD", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600; color:#ff0000;\">El Nombre del Dispositivo ya Existe</span></p></body></html>"))
 
 
 if __name__ == "__main__":

@@ -113,6 +113,7 @@ class Ui_SITHome_Usuarios(object):
         self.verticalLayout_3.addWidget(self.label_2)
         self.verticalLayout_2.addWidget(self.frame_4)
         self.frame_6 = QtWidgets.QFrame(self.frame_3)
+        self.frame_6.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -208,6 +209,12 @@ class Ui_SITHome_Usuarios(object):
 "border : none;\n"
 "font: 11pt;")
         self.btnGuardar.setObjectName("btnGuardar")
+        self.usua_Exit = QtWidgets.QLabel(self.frame_8)
+        self.usua_Exit.setEnabled(True)
+        self.usua_Exit.setGeometry(QtCore.QRect(110, -10, 281, 31))
+        self.usua_Exit.setStyleSheet("background-color: none;\n"
+"color: white;")
+        self.usua_Exit.setObjectName("usua_Exit")
         self.verticalLayout_2.addWidget(self.frame_8)
         self.verticalLayout.addWidget(self.frame_3)
         self.frame_5 = QtWidgets.QFrame(self.frame_2)
@@ -287,6 +294,7 @@ class Ui_SITHome_Usuarios(object):
         self.adminCheck.setText(_translate("SITHome_Usuarios", "Administrador"))
         self.registerButton.setText(_translate("SITHome_Usuarios", "Registrar"))
         self.btnGuardar.setText(_translate("SITHome_Usuarios", "Guardar"))
+        self.usua_Exit.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:600; color:#ff0000;\">El Nombre de Usuario ya Existe</span></p></body></html>"))
         self.label_6.setText(_translate("SITHome_Usuarios", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:600; color:#ffffff;\">Administrar Habitaciones </span></p><p align=\"center\"><span style=\" font-size:18pt; font-weight:600; color:#ffffff;\">Y </span></p><p align=\"center\"><span style=\" font-size:18pt; font-weight:600; color:#ffffff;\">Dispositivos</span></p></body></html>"))
         self.btn_irHab.setText(_translate("SITHome_Usuarios", "Entrar"))
         self.btn_Salir.setText(_translate("SITHome_Usuarios", "Salir"))

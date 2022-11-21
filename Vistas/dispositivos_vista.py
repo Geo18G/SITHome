@@ -68,10 +68,16 @@ class DispositivoVista(Plantilla):
         newDevice = DispositivoModelo()
         newDevice.setNombreD(self.addD.uiFormD.nameRegister.text())
         newDevice.setStatusD(0)
+        for hab in globales.Habitaciones:
+            if hab[1] == self.addD.uiFormD.comboBoxH.currentText():
+                newDevice.setHabitacionD(hab[0])
         retorno = self.dispositivosC.crearDispositivo(newDevice)
+        print(retorno)
         if retorno == False:
+            self.addD.uiFormD.dis_Exit.show()
             self.addD.uiFormD.nameRegister.setStyleSheet(
                 "border-radius: 10px; border: 2px solid red; font: 24px")
+            pass
         else:
             for hab in globales.Habitaciones:
                 if hab[1] == self.addD.uiFormD.comboBoxH.currentText():

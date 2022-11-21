@@ -181,7 +181,7 @@ font: 12pt;</string>
         <widget class="QPushButton" name="btn_guardar">
          <property name="geometry">
           <rect>
-           <x>320</x>
+           <x>240</x>
            <y>30</y>
            <width>80</width>
            <height>35</height>
@@ -214,7 +214,7 @@ font: 10pt;</string>
         <widget class="QPushButton" name="btn_cancelar">
          <property name="geometry">
           <rect>
-           <x>410</x>
+           <x>420</x>
            <y>30</y>
            <width>80</width>
            <height>35</height>
@@ -247,7 +247,7 @@ font: 10pt;</string>
         <widget class="QPushButton" name="btn_registrar">
          <property name="geometry">
           <rect>
-           <x>230</x>
+           <x>330</x>
            <y>30</y>
            <width>80</width>
            <height>35</height>
@@ -275,6 +275,26 @@ font: 10pt;</string>
          </property>
          <property name="text">
           <string>Registrar</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="dis_Exit">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>170</x>
+           <y>-10</y>
+           <width>321</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: none;
+color: white;</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#ff0000;&quot;&gt;El Nombre del Dispositivo ya Existe&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </widget>

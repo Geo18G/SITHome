@@ -16,7 +16,7 @@ class UsuariosVista(Plantilla):
         def SITHome_register(self):
                 newUsuario = UsuarioModelo()
                 newUsuario.setNombreU(self.usuarios.usuarios.nameRegister.text())
-                newUsuario.setContrasenaU(self.usuarios.usuarios.codeRegister.text())
+                newUsuario.setContrasenaU(self.contexto.hash(self.usuarios.usuarios.codeRegister.text()))
                 if self.usuarios.usuarios.adminCheck.isChecked():
                         typpe = 1
                 else:
@@ -24,6 +24,7 @@ class UsuariosVista(Plantilla):
                 newUsuario.setRolU(typpe)
                 retorno = self.usuarioC.crearUsuario(newUsuario)
                 if retorno == False:
+                        self.usuarios.usuarios.usua_Exit.show()
                         self.usuarios.usuarios.nameRegister.setStyleSheet(
                                 "border-radius: 10px; border: 2px solid red; font: 24px")
                         self.usuarios.usuarios.codeRegister.setStyleSheet(
@@ -61,11 +62,12 @@ class UsuariosVista(Plantilla):
                         self.usuarios.usuarios.userTable.setItem(row, column, cell)
                         self.agregarBtn(self.usuarios.usuarios.userTable, row, user)
                         row +=1
+
                         
         def editarUsuario(self):
                 newUsuario = UsuarioModelo()
                 newUsuario.setNombreU(self.usuarios.usuarios.nameRegister.text())
-                newUsuario.setContrasenaU(self.usuarios.usuarios.codeRegister.text())
+                newUsuario.setContrasenaU(self.contexto.hash(self.usuarios.usuarios.codeRegister.text()))
                 if self.usuarios.usuarios.adminCheck.isChecked():
                         typpe = 1
                 else:
@@ -115,7 +117,7 @@ class UsuariosVista(Plantilla):
                 BtnBorrar = QtWidgets.QPushButton()
                 BtnEditar = QtWidgets.QPushButton()
                 tabla.setCellWidget(fila, 2, BtnEditar)
-                if int(usuario[0]) != int(globales.Usuario[0]):
+                if usuario[0] != globales.Usuario[0]:
                         tabla.setCellWidget(fila, 3, BtnBorrar)
                 BtnEditar.setMaximumSize(28, 28)
                 BtnBorrar.setMaximumSize(28, 28)                

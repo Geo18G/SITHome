@@ -44,6 +44,12 @@
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <widget class="QLabel" name="label">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="styleSheet">
           <string notr="true">font: 50pt  &quot;MS shell  Dlg 2&quot;;
 
@@ -233,6 +239,24 @@ color: white;</string>
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; color:#ff0000;&quot;&gt;Contraseña incorrecta&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
+         <widget class="QLabel" name="sin_Conex">
+          <property name="geometry">
+           <rect>
+            <x>960</x>
+            <y>20</y>
+            <width>101</width>
+            <height>71</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">image: url(:/sin conexion/sin_conexion.png);
+
+background-color: rgb(255, 238, 47);</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
         </widget>
        </item>
       </layout>
@@ -241,6 +265,8 @@ color: white;</string>
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../assets/imagenes.qrc"/>
+ </resources>
  <connections/>
 </ui>

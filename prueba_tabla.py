@@ -31,8 +31,10 @@ from passlib.context import CryptContext
 contexto = CryptContext(
     schemes=["pbkdf2_sha256"],
     default="pbkdf2_sha256",
-    pbkdf2_sha256_default_rounds=3000
+    pbkdf2_sha256__default_rounds=30000
 )
 texto = "123"
+texto1 = "1234"
 texto_encriptado = contexto.hash(texto)
 print(texto_encriptado)
+print(contexto.verify(texto1, texto_encriptado))

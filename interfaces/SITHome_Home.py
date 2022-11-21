@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from assets import imagenes
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -30,6 +30,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frame)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.label = QtWidgets.QLabel(self.frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy)
         self.label.setStyleSheet("font: 50pt  \"MS shell  Dlg 2\";\n"
 "\n"
 "background-color: None;\n"
@@ -102,6 +107,13 @@ class Ui_MainWindow(object):
 "background-color: none;\n"
 "color: white;")
         self.contrasena_Inc.setObjectName("contrasena_Inc")
+        self.sin_Conex = QtWidgets.QLabel(self.frame_4)
+        self.sin_Conex.setGeometry(QtCore.QRect(960, 20, 101, 71))
+        self.sin_Conex.setStyleSheet("image: url(:/sin conexion/sin_conexion.png);\n"
+"\n"
+"background-color: rgb(255, 238, 47);")
+        self.sin_Conex.setText("")
+        self.sin_Conex.setObjectName("sin_Conex")
         self.horizontalLayout.addWidget(self.frame_4)
         self.verticalLayout.addWidget(self.frame_2)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -121,6 +133,7 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Nombre de usuario</span></p></body></html>"))
         self.nombre_Inc.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; color:#ff0000;\">Nombre de Usuario incorrecto</span></p></body></html>"))
         self.contrasena_Inc.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; color:#ff0000;\">Contraseña incorrecta</span></p></body></html>"))
+
 
 
 if __name__ == "__main__":
