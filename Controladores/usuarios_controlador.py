@@ -1,5 +1,3 @@
-
-
 from conexion import Conexion
 
 class UsuarioControlador:

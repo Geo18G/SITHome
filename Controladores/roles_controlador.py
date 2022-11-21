@@ -1,4 +1,3 @@
-
 from conexion import Conexion
 
 class RolControlador:

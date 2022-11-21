@@ -1,7 +1,6 @@
 from Vistas.login_vista import LoginVista
 from Vistas.usuarios_vista import UsuariosVista
 from Vistas.habitaciones_vista import HabitacionesVista
-# from Vistas.dispositivos_vista import DispositivoVista
 import globales
 
 class Acciones():
@@ -9,7 +8,6 @@ class Acciones():
         self.loginVista = LoginVista()
         self.usuariosVista = UsuariosVista()
         self.habitacionesVista = HabitacionesVista()
-        # self.dispositivosVista = DispositivoVista()
         self.inicializarWidgets()
         
     def inicializarWidgets(self):

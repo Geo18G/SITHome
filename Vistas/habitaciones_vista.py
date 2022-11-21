@@ -7,8 +7,6 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 import globales
 
 
-
-
 class HabitacionesVista(DispositivoVista):
     def __init__(self):
         super(HabitacionesVista, self).__init__()
@@ -103,10 +101,8 @@ class HabitacionesVista(DispositivoVista):
                     if tabla.item(row, 0).text() == user[1]:
                         if tabla.cellWidget(row, 1).isChecked():
                             self.permisosC.actualizarPermisos(user[0],habitacion, 1)
-                            # print(f"permiso actualizado: SI para {user[1]} en habitación {habitacion}.")
                         else:
                             self.permisosC.actualizarPermisos(user[0],habitacion, 0)
-                            # print(f"permiso actualizado: NO para {user[1]} en habitación {habitacion}.")
 
     def borrarH(self):
         for hab in globales.Habitaciones:

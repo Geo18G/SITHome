@@ -1,4 +1,3 @@
-from Modelos.habitacion_modelo import HabitacionModelo
 from conexion import Conexion
 
 class HabitacionControlador:

@@ -17,6 +17,8 @@ class Rutas(Acciones):
 
     def ingresar(self):
         ingreso = self.loginVista.SITHome_Login()
+        self.loginVista.home.home.loginCode.setText("")
+        self.loginVista.home.home.loginCode_2.setText("")
         if ingreso == True:
             self.ir_usuarios(self.loginVista.home)
         elif ingreso == False:
