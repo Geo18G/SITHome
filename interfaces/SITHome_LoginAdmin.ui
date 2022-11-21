@@ -112,7 +112,7 @@ border-radius: 15px;</string>
        </column>
        <column>
         <property name="text">
-         <string>Rol</string>
+         <string>Tipo de Rol</string>
         </property>
        </column>
        <column>
@@ -123,11 +123,6 @@ border-radius: 15px;</string>
        <column>
         <property name="text">
          <string>Borrar</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string/>
         </property>
        </column>
       </widget>
