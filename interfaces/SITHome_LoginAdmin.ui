@@ -117,7 +117,12 @@ border-radius: 15px;</string>
        </column>
        <column>
         <property name="text">
-         <string/>
+         <string>Editar</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Borrar</string>
         </property>
        </column>
        <column>

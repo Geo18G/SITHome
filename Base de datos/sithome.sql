@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 21-11-2022 a las 22:40:13
+-- Tiempo de generación: 21-11-2022 a las 23:31:30
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -34,16 +34,6 @@ CREATE TABLE `dispositivos` (
   `habitaciones_idhabitaciones` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
---
--- Volcado de datos para la tabla `dispositivos`
---
-
-INSERT INTO `dispositivos` (`iddispositivos`, `nombre`, `estado`, `habitaciones_idhabitaciones`) VALUES
-(2, 'tele', 0, 2),
-(5, 'licuadora', 0, 2),
-(20, 'radio', 0, 29),
-(23, 'tele2', 0, 31);
-
 -- --------------------------------------------------------
 
 --
@@ -54,15 +44,6 @@ CREATE TABLE `habitaciones` (
   `idhabitaciones` int NOT NULL,
   `nombre` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Volcado de datos para la tabla `habitaciones`
---
-
-INSERT INTO `habitaciones` (`idhabitaciones`, `nombre`) VALUES
-(31, 'baño'),
-(2, 'cocina'),
-(29, 'Sala');
 
 -- --------------------------------------------------------
 
@@ -75,21 +56,6 @@ CREATE TABLE `permisos` (
   `habitaciones_idhabitaciones` int NOT NULL,
   `permiso` int DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Volcado de datos para la tabla `permisos`
---
-
-INSERT INTO `permisos` (`usuarios_idusuarios`, `habitaciones_idhabitaciones`, `permiso`) VALUES
-(4, 2, 1),
-(4, 29, 1),
-(4, 31, 1),
-(36, 2, 1),
-(36, 29, 0),
-(36, 31, 0),
-(52, 2, 1),
-(52, 29, 0),
-(52, 31, 1);
 
 -- --------------------------------------------------------
 
@@ -128,9 +94,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idusuarios`, `nombreUsuario`, `contrasena`, `roles_idroles`) VALUES
-(4, 'nacho', '$pbkdf2-sha256$30000$P2cMgRBi7P0/h7DWOudcSw$Hft5lkpOxQkkzHJ4pd1HDyH0tL/bSP65SnmWpZaZIpc', 1),
-(36, 'pepe', '$pbkdf2-sha256$30000$SsnZe8.5dw7BOIdQKkVIiQ$MY33cgfhqnkywoi3x3Gh.sgGsuu8vxg64mO0kHgjWxM', 2),
-(52, 'luis', '$pbkdf2-sha256$30000$bU1JiZFSCiGkNGas1RqDUA$.nCV9jDdnvY/C6/egCF8ugPyrgl0cAupk6OYAxdWfBg', 2);
+(1, 'Admin', '$pbkdf2-sha256$30000$P2cMgRBi7P0/h7DWOudcSw$Hft5lkpOxQkkzHJ4pd1HDyH0tL/bSP65SnmWpZaZIpc', 1);
 
 --
 -- Índices para tablas volcadas
@@ -181,13 +145,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `dispositivos`
 --
 ALTER TABLE `dispositivos`
-  MODIFY `iddispositivos` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `iddispositivos` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  MODIFY `idhabitaciones` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `idhabitaciones` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -199,7 +163,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuarios` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `idusuarios` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
