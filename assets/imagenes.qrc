@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="sin conexion">
     <file>sin_conexion.png</file>
+    <file>SITHome_Logo.png</file>
   </qresource>
 </RCC>

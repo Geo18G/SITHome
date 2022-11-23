@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'SITHome_Home.ui'
+# Form implementation generated from reading ui file '.\SITHome_Home.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
 #
@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from assets import imagenes
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -23,25 +24,29 @@ class Ui_MainWindow(object):
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName("verticalLayout")
         self.frame = QtWidgets.QFrame(self.centralwidget)
+        self.frame.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.frame.setStyleSheet("background-color: None;")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frame)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.label = QtWidgets.QLabel(self.frame)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.frame)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.Logo = QtWidgets.QLabel(self.frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy)
-        self.label.setStyleSheet("font: 50pt  \"MS shell  Dlg 2\";\n"
+        sizePolicy.setHeightForWidth(self.Logo.sizePolicy().hasHeightForWidth())
+        self.Logo.setSizePolicy(sizePolicy)
+        self.Logo.setMaximumSize(QtCore.QSize(320, 320))
+        self.Logo.setStyleSheet("image: url(:/sin conexion/SITHome_Logo.png);\n"
 "\n"
 "background-color: None;\n"
 "\n"
 "")
-        self.label.setObjectName("label")
-        self.verticalLayout_2.addWidget(self.label)
+        self.Logo.setText("")
+        self.Logo.setScaledContents(True)
+        self.Logo.setObjectName("Logo")
+        self.horizontalLayout_2.addWidget(self.Logo)
         self.verticalLayout.addWidget(self.frame)
         self.frame_2 = QtWidgets.QFrame(self.centralwidget)
         self.frame_2.setStyleSheet("background-color: None;")
@@ -124,7 +129,6 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "SITHome"))
-        self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:36pt;\">SITHome</span></p></body></html>"))
         self.login.setText(_translate("MainWindow", "Ingresar"))
         self.login.setShortcut(_translate("MainWindow", "Return"))
         self.loginCode.setPlaceholderText(_translate("MainWindow", "******"))
@@ -133,8 +137,6 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Nombre de usuario</span></p></body></html>"))
         self.nombre_Inc.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; color:#ff0000;\">Nombre de Usuario incorrecto</span></p></body></html>"))
         self.contrasena_Inc.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600; color:#ff0000;\">Contraseña incorrecta</span></p></body></html>"))
-
-
 
 if __name__ == "__main__":
     import sys
