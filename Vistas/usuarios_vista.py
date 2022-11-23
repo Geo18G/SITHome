@@ -93,6 +93,8 @@ class UsuariosVista(Plantilla):
                                         self.permisosC.eliminarPermisosPorUs(usuar[0])
                                         self.usuarioC.eliminarUsuario(usuar[0])
                                         self.usuarios.usuarios.userTable.removeRow(self.usuarios.usuarios.userTable.currentRow())
+                                        self.showUsers()
+                                        return True
                         else:
                                 pass
                 self.showUsers()
