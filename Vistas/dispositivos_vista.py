@@ -38,7 +38,7 @@ class DispositivoVista(Plantilla):
                         self.habitaciones.habitaciones.Dispositivos.removeRow(self.habitaciones.habitaciones.Dispositivos.currentRow())
                 self.showDevices()
                 
-    def agregarBtnDis(self, tabla, fila, status, id):
+    def agregarBtnDis(self, tabla, fila, id):
         BtnBorrar = QtWidgets.QPushButton()
         BtnEditar = QtWidgets.QPushButton()
         BtnStatus = QtWidgets.QPushButton()
@@ -48,7 +48,9 @@ class DispositivoVista(Plantilla):
         BtnEditar.setMaximumSize(32, 32)
         BtnBorrar.setMaximumSize(32, 32)
         BtnStatus.setMaximumSize(32, 32)
-        if status == "1":
+        status=self.dispositivosC.obtenerStatus(id)
+        print(status[0])
+        if status[0] == 1:
             BtnStatus.setIcon(QtGui.QIcon("assets\\interruptor-on.png"))
         else:
             BtnStatus.setIcon(QtGui.QIcon("assets\\interruptor-off.png"))
@@ -129,7 +131,7 @@ class DispositivoVista(Plantilla):
                     self.habitaciones.habitaciones.Dispositivos.insertRow(globales.Contador)
                     cell = QtWidgets.QTableWidgetItem(dis[1])
                     self.habitaciones.habitaciones.Dispositivos.setItem(globales.Contador, column, cell)
-                    self.agregarBtnDis(self.habitaciones.habitaciones.Dispositivos,globales.Contador, dis[2], dis[0])
+                    self.agregarBtnDis(self.habitaciones.habitaciones.Dispositivos,globales.Contador, dis[0])
                     globales.Contador += 1
         except:
             pass
